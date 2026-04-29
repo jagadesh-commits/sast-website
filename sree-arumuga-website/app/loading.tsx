@@ -10,7 +10,7 @@ export default function Loading() {
             alt="Sree Arumuga Logo"
             width={90}
             height={90}
-            className="h-full w-full rounded-full object-contain"
+            className="block h-full w-full object-contain object-center"
           />
         </div>
         <p className="industrial-heading mt-4 text-sm font-semibold tracking-[0.25em] text-white">Trusted Since 1984</p>
