@@ -36,7 +36,7 @@ function LoaderOverlay() {
                 alt="Sree Arumuga logo"
                 width={90}
                 height={90}
-                className="block h-full w-full object-contain object-center"
+                className="block h-full w-full rounded-full object-cover object-center"
               />
             </motion.div>
             <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.45 }} className="industrial-heading mt-4 text-sm tracking-[0.28em] text-white">
