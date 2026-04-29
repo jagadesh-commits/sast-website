@@ -157,11 +157,11 @@ export default function Home() {
           </div>
           <div className="text-center">
             <div className="mx-auto mb-2 h-1 w-20 rounded-full bg-[var(--primary-blue)] ring-1 ring-white/40" />
-            <CountUp end={1000} label="Clients" dark suffix="+" className="text-center" />
+            <CountUp end={5000} label="Customers" dark suffix="+" className="text-center" />
           </div>
           <div className="text-center">
             <div className="mx-auto mb-2 h-1 w-20 rounded-full bg-[var(--gold)]" />
-            <CountUp end={50000} label="Tons" dark suffix="+" className="text-center" />
+            <CountUp end={500000} label="Tons" dark suffix="+" className="text-center" />
           </div>
           <div className="text-center">
             <div className="mx-auto mb-2 h-1 w-20 rounded-full bg-[var(--primary-blue)] ring-1 ring-white/40" />

@@ -33,7 +33,7 @@ export default function AchievementsPage() {
         <div className="grid gap-6 md:grid-cols-3">
           <CountUp end={40} label="Years in Business" />
           <CountUp end={250} label="Projects Supplied" />
-          <CountUp end={1000} label="Repeat Clients" />
+          <CountUp end={5000} label="Repeat Customers" />
         </div>
         <Reveal className="mt-10 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
           <h2 className="text-3xl font-black text-[var(--primary-blue)]">Milestone Timeline</h2>
