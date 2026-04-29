@@ -287,7 +287,7 @@ function QuoteModal({ show, onClose }: { show: boolean; onClose: () => void }) {
         >
           <motion.div
             onClick={(event) => event.stopPropagation()}
-            className="premium-card w-full max-w-lg rounded-3xl p-8"
+            className="premium-card w-full max-w-lg rounded-3xl p-8 pb-10 max-h-[90vh] overflow-y-auto overscroll-contain"
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}

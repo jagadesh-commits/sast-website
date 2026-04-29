@@ -15,7 +15,7 @@ export default function ContactPage() {
         <h1 className="text-5xl font-black text-[var(--primary-blue)]">Contact Us</h1>
       </Reveal>
       <div className="mt-10 grid gap-7 md:grid-cols-2">
-        <Reveal className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+        <Reveal className="rounded-3xl border border-zinc-200 bg-white p-8 pb-10 shadow-sm max-h-[90vh] overflow-y-auto overscroll-contain">
           <h2 className="text-2xl font-bold text-[var(--primary-blue)]">Send an Enquiry</h2>
           <EnquiryForm source="contact-page" />
         </Reveal>

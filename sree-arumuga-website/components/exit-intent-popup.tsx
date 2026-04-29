@@ -60,7 +60,7 @@ export function ExitIntentPopup() {
             initial={{ y: 20, opacity: 0, scale: 0.97 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 10, opacity: 0 }}
-            className="w-full max-w-md rounded-3xl bg-[var(--primary-blue)] p-7 text-white shadow-2xl"
+            className="w-full max-w-md rounded-3xl bg-[var(--primary-blue)] p-7 pb-10 text-white shadow-2xl max-h-[90vh] overflow-y-auto overscroll-contain"
           >
             <h3 className="industrial-heading text-3xl font-black">Get a FREE Quote Before You Leave!</h3>
             <p className="mt-2 text-sm text-white/85">Our steel experts are ready to help.</p>

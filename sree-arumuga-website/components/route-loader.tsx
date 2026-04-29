@@ -29,9 +29,15 @@ function LoaderOverlay() {
               initial={{ scale: 0.55, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="mx-auto h-24 w-24 overflow-hidden rounded-full border border-white/30 bg-white/15 p-2"
+              className="mx-auto flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/15 p-[15px]"
             >
-              <Image src="/Logo.png" alt="Sree Arumuga logo" width={88} height={88} className="h-full w-full object-contain" />
+              <Image
+                src="/Logo.png"
+                alt="Sree Arumuga logo"
+                width={90}
+                height={90}
+                className="h-full w-full rounded-full object-contain"
+              />
             </motion.div>
             <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.45 }} className="industrial-heading mt-4 text-sm tracking-[0.28em] text-white">
               Trusted Since 1984
