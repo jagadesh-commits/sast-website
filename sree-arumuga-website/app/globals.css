@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f9f9f9;
+  --surface: #ffffff;
+  --foreground: #111111;
+  --primary-red: #c0271e;
+  --primary-blue: #1a3a8f;
+  --green: #0a7c45;
+  --black: #0d0d0d;
+  --gold: #d4af37;
+  --silver: #b9c3d3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-oswald);
+  --font-mono: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+body.custom-cursor,
+body.custom-cursor a,
+body.custom-cursor button,
+body.custom-cursor input,
+body.custom-cursor textarea,
+body.custom-cursor select {
+  cursor: none !important;
+}
+
+.industrial-heading {
+  font-family: var(--font-oswald), Arial, Helvetica, sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.premium-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 45px rgba(26, 58, 143, 0.11);
+}
+
+.ticker-track {
+  animation: ticker 30s linear infinite;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-grid {
+  background-image: linear-gradient(rgba(26, 58, 143, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 58, 143, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--primary-blue), #3b5cb8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.mesh-bg {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.95), transparent 45%),
+    radial-gradient(circle at 78% 20%, rgba(26, 58, 143, 0.12), transparent 40%),
+    radial-gradient(circle at 45% 65%, rgba(26, 58, 143, 0.08), transparent 42%),
+    linear-gradient(150deg, #ffffff, #f4f5f8 48%, #f6f8fc);
+}
+
+.section-pattern {
+  position: relative;
+}
+
+.section-pattern::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(26, 58, 143, 0.1) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.premium-button {
+  background: var(--primary-blue);
+  box-shadow: 0 12px 30px rgba(26, 58, 143, 0.28);
+  color: white;
+}
+
+.premium-button:hover,
+.premium-button:active {
+  background: var(--primary-red);
+  box-shadow: 0 12px 30px rgba(192, 39, 30, 0.25);
+}
+
+.premium-button:hover {
+  filter: brightness(1.03);
+  transform: translateY(-2px);
+}
+
+.gold-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.55), transparent 65%);
+  transform: translateX(-120%);
+  animation: goldSweep 3.2s linear infinite;
+}
+
+@keyframes goldSweep {
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.gradient-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(26, 58, 143, 0.45), transparent);
+}
+
+.floating-shape {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(0.2px);
+  animation: floaty 8s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+.premium-card-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-card-hover::after {
+  content: "";
+  position: absolute;
+  top: -130%;
+  left: -100%;
+  width: 60%;
+  height: 260%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  transform: rotate(15deg);
+  transition: left 0.7s ease;
+}
+
+.premium-card-hover:hover::after {
+  left: 160%;
+}
+
+.hero-frame {
+  position: relative;
+  border-radius: 1.5rem;
+  padding: 2px;
+  background: linear-gradient(120deg, var(--primary-blue), var(--gold), #2d4aa8, var(--primary-blue));
+  background-size: 300% 300%;
+  animation: border-flow 8s linear infinite;
+}
+
+@keyframes border-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
