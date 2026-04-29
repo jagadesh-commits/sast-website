@@ -78,7 +78,7 @@ export function EnquiryForm({ source, className, leadingActions }: EnquiryFormPr
         <p className="mt-3 text-base font-bold text-[#1a3a8f]">
           Sree Arumuga Steel Trading Private Limited
         </p>
-        <p className="mt-1 text-sm font-medium text-[#1a3a8f]">GST No: 33AAICP9456C1ZC</p>
+        <p className="mt-1 text-sm font-medium text-[#1a3a8f]">GST No: 33ABSCS3792H1ZS</p>
       </div>
       <div className="grid gap-3">
         <div>
