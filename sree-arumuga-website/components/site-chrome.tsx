@@ -6,7 +6,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { BackToTopProgress } from "@/components/back-to-top-progress";
-import { CustomCursor } from "@/components/custom-cursor";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { RouteLoader } from "@/components/route-loader";
@@ -271,7 +270,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <ExitIntentPopup />
       <BackToTopProgress />
       <WhatsAppWidget />
-      <CustomCursor />
     </div>
   );
 }

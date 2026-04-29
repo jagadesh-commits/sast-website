@@ -15,7 +15,13 @@ export function CustomCursor() {
   useEffect(() => {
     const isTouchLike = window.matchMedia("(any-pointer: coarse)").matches;
     if (isTouchLike) return;
-    const onMouseMove = () => setEnabled(true);
+    const onMouseMove = (event: MouseEvent) => {
+      const position = { x: event.clientX, y: event.clientY };
+      targetRef.current = position;
+      setDot(position);
+      setRing(position);
+      setEnabled(true);
+    };
     const onTouchStart = () => setEnabled(false);
     window.addEventListener("mousemove", onMouseMove, { once: true });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
