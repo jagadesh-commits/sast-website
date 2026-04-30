@@ -11,6 +11,9 @@ type ProductType = "HRPO" | "HR" | "CR" | "GP" | "Colour Coated";
 type SheetType = "Sheet" | "Coil";
 type QuantityUnit = "Tons" | "Pieces";
 type Step =
+  | "welcomeMenu"
+  | "infoProducts"
+  | "infoContact"
   | "product"
   | "sheetType"
   | "brand"
@@ -107,24 +110,12 @@ Phone: ${enquiry.phone}`;
 }
 
 function createInitialMessages(): ChatMessage[] {
-  return [
-    {
-      id: makeId("bot"),
-      sender: "bot",
-      text:
-        "👋 Welcome to Sree Arumuga Steel Trading!\nI'll help you with your steel enquiry.\nLet's get started!",
-    },
-    {
-      id: makeId("bot"),
-      sender: "bot",
-      text: "Please select your product:",
-    },
-  ];
+  return [];
 }
 
 export function ChatbotWidget() {
   const [open, setOpen] = useState(false);
-  const [step, setStep] = useState<Step>("product");
+  const [step, setStep] = useState<Step>("welcomeMenu");
   const [messages, setMessages] = useState<ChatMessage[]>(createInitialMessages);
   const [enquiry, setEnquiry] = useState<EnquiryState>(INITIAL_ENQUIRY);
   const [brandInput, setBrandInput] = useState("");
@@ -135,9 +126,12 @@ export function ChatbotWidget() {
   const [quantityInput, setQuantityInput] = useState("");
   const [nameInput, setNameInput] = useState("");
   const [phoneInput, setPhoneInput] = useState("");
+  const [botTyping, setBotTyping] = useState(false);
   const [inactivityPrompted, setInactivityPrompted] = useState(false);
   const [lastActivityTs, setLastActivityTs] = useState<number>(Date.now());
   const chatBodyRef = useRef<HTMLDivElement | null>(null);
+  const typingTimerRef = useRef<number | null>(null);
+  const delayedWelcomeRef = useRef<number | null>(null);
 
   useEffect(() => {
     try {
@@ -146,7 +140,7 @@ export function ChatbotWidget() {
       const parsed = JSON.parse(raw) as PersistedState;
       if (!parsed || !Array.isArray(parsed.messages)) return;
       setOpen(Boolean(parsed.open));
-      const persistedStep = (parsed as { step?: Step }).step ?? "product";
+      const persistedStep = (parsed as { step?: Step }).step ?? "welcomeMenu";
       setStep(persistedStep);
       setMessages(parsed.messages.length ? parsed.messages : createInitialMessages());
       setEnquiry({ ...INITIAL_ENQUIRY, ...parsed.enquiry });
@@ -178,6 +172,13 @@ export function ChatbotWidget() {
   }, [messages, open]);
 
   useEffect(() => {
+    return () => {
+      if (typingTimerRef.current) window.clearTimeout(typingTimerRef.current);
+      if (delayedWelcomeRef.current) window.clearTimeout(delayedWelcomeRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!open) return;
     if (step === "submitting" || step === "completed") return;
     const timer = window.setTimeout(() => {
@@ -205,12 +206,22 @@ export function ChatbotWidget() {
     setMessages((prev) => [...prev, { id: makeId("bot"), sender: "bot", text }]);
   };
 
+  const addBotMessageWithTyping = (text: string, delayMs = 700): Promise<void> =>
+    new Promise((resolve) => {
+      setBotTyping(true);
+      typingTimerRef.current = window.setTimeout(() => {
+        addBotMessage(text);
+        setBotTyping(false);
+        resolve();
+      }, delayMs);
+    });
+
   const addUserMessage = (text: string) => {
     setMessages((prev) => [...prev, { id: makeId("user"), sender: "user", text }]);
   };
 
   const restartConversation = () => {
-    setStep("product");
+    setStep("welcomeMenu");
     setEnquiry(INITIAL_ENQUIRY);
     setBrandInput("");
     setThicknessInput("");
@@ -221,7 +232,17 @@ export function ChatbotWidget() {
     setNameInput("");
     setPhoneInput("");
     setMessages(createInitialMessages());
+    setBotTyping(false);
     markActivity();
+    void runWelcomeSequence();
+  };
+
+  const runWelcomeSequence = async () => {
+    setStep("welcomeMenu");
+    addBotMessageWithTyping("👋 Hello! Welcome to\nSree Arumuga Steel Trading!\nTrusted Since 1984 🏭", 350);
+    delayedWelcomeRef.current = window.setTimeout(() => {
+      void addBotMessageWithTyping("I'm your Steel Enquiry Assistant.\nHow can I help you today?", 450);
+    }, 1000);
   };
 
   const submitToSheet = async (current: EnquiryState): Promise<boolean> => {
@@ -277,6 +298,33 @@ export function ChatbotWidget() {
     addUserMessage(value);
     addBotMessage("Please select the type:");
     setStep("sheetType");
+  };
+
+  const onSelectWelcomeAction = (action: "enquiry" | "products" | "contact") => {
+    markActivity();
+    if (action === "enquiry") {
+      addUserMessage("1️⃣ Steel Enquiry");
+      void addBotMessageWithTyping("Please select your product:", 350);
+      setStep("product");
+      return;
+    }
+
+    if (action === "products") {
+      addUserMessage("2️⃣ Product Information");
+      void addBotMessageWithTyping(
+        "We deal in the following products:\n• HRPO Sheets & Coils\n• HR Sheets & Coils\n• CR Sheets & Coils\n• GP Sheets & Coils\n• Colour Coated Sheets & Coils\n\nAll products are from trusted brands like JSW Steel.\n\nWould you like to place an enquiry?",
+        400,
+      );
+      setStep("infoProducts");
+      return;
+    }
+
+    addUserMessage("3️⃣ Contact Us");
+    void addBotMessageWithTyping(
+      "📞 Phone: +91 99401 19914\n📧 Email: sree.arumuga@gmail.com\n📍 D-196, Sathangadu Iron & Steel \nMarket, Manali, Chennai - 600068\n\n🕐 Working Hours:\nMon-Sat: 9AM - 6PM\n\nOr chat with us directly on WhatsApp!",
+      400,
+    );
+    setStep("infoContact");
   };
 
   const onSelectSheetType = (value: SheetType) => {
@@ -399,6 +447,12 @@ export function ChatbotWidget() {
     setStep("product");
   };
 
+  useEffect(() => {
+    if (!open) return;
+    if (messages.length > 0) return;
+    void runWelcomeSequence();
+  }, [open, messages.length]);
+
   return (
     <div className="fixed bottom-[90px] right-5 z-[94]">
       <AnimatePresence>
@@ -450,10 +504,75 @@ export function ChatbotWidget() {
                     </div>
                   </motion.div>
                 ))}
+                {botTyping ? (
+                  <motion.div
+                    key="typing"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 6 }}
+                    className="mb-2 flex justify-start"
+                  >
+                    <div className="rounded-2xl rounded-bl-sm border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-500">
+                      Typing...
+                    </div>
+                  </motion.div>
+                ) : null}
               </AnimatePresence>
             </div>
 
             <div className="space-y-2 border-t border-zinc-200 bg-zinc-50 p-3">
+              {step === "welcomeMenu" ? (
+                <div className="grid gap-2">
+                  <button
+                    type="button"
+                    onClick={() => onSelectWelcomeAction("enquiry")}
+                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                  >
+                    1️⃣ Steel Enquiry
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onSelectWelcomeAction("products")}
+                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                  >
+                    2️⃣ Product Information
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onSelectWelcomeAction("contact")}
+                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                  >
+                    3️⃣ Contact Us
+                  </button>
+                </div>
+              ) : null}
+
+              {step === "infoProducts" ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    markActivity();
+                    addUserMessage("Start Enquiry");
+                    void addBotMessageWithTyping("Please select your product:", 300);
+                    setStep("product");
+                  }}
+                  className="w-full rounded-lg bg-[#1a3a8f] px-3 py-2 text-sm font-semibold text-white"
+                >
+                  Start Enquiry
+                </button>
+              ) : null}
+
+              {step === "infoContact" ? (
+                <a
+                  href={talkToTeamUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block w-full rounded-lg bg-[#25D366] px-3 py-2 text-center text-sm font-semibold text-white"
+                >
+                  Open WhatsApp
+                </a>
+              ) : null}
+
               {step === "product" ? (
                 <div className="grid grid-cols-2 gap-2">
                   {(["HRPO", "HR", "CR", "GP", "Colour Coated"] as ProductType[]).map((item) => (
