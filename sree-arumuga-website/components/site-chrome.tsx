@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { BackToTopProgress } from "@/components/back-to-top-progress";
+import { ChatbotWidget } from "@/components/chatbot-widget";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { RouteLoader } from "@/components/route-loader";
@@ -269,6 +270,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <QuoteModal show={showModal} onClose={() => setShowModal(false)} />
       <ExitIntentPopup />
       <BackToTopProgress />
+      <ChatbotWidget />
       <WhatsAppWidget />
     </div>
   );
