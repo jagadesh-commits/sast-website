@@ -400,7 +400,7 @@ export function ChatbotWidget() {
   };
 
   return (
-    <div className="fixed bottom-24 right-5 z-[94]">
+    <div className="fixed bottom-[90px] right-5 z-[94]">
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -699,10 +699,10 @@ export function ChatbotWidget() {
           setOpen((value) => !value);
         }}
         aria-label={open ? "Close chatbot" : "Open chatbot"}
-        className="relative grid h-14 w-14 place-items-center rounded-full bg-[#1a3a8f] text-white shadow-xl transition hover:scale-[1.03]"
+        className="relative grid h-[60px] w-[60px] place-items-center rounded-full bg-[#1a3a8f] text-white shadow-xl transition hover:scale-[1.03]"
       >
         <span className="absolute inset-0 animate-ping rounded-full bg-[#1a3a8f]/55" />
-        <span className="relative text-xl">{open ? "×" : "💬"}</span>
+        <span className="relative text-2xl">{open ? "×" : "🤖"}</span>
       </button>
     </div>
   );

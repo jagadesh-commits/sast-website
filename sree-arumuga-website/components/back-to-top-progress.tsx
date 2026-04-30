@@ -21,8 +21,8 @@ export function BackToTopProgress() {
 
   if (!show) return null;
 
-  const size = 52;
-  const stroke = 4;
+  const size = 45;
+  const stroke = 3.5;
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
   const dashOffset = circumference * (1 - progress);
@@ -32,7 +32,7 @@ export function BackToTopProgress() {
       type="button"
       aria-label="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-24 right-5 z-[96] grid h-[52px] w-[52px] place-items-center rounded-full bg-white shadow-xl"
+      className="fixed bottom-[160px] right-5 z-[96] grid h-[45px] w-[45px] place-items-center rounded-full bg-[#1a3a8f] text-white shadow-xl"
     >
       <svg width={size} height={size} className="absolute inset-0 -rotate-90">
         <circle cx={size / 2} cy={size / 2} r={radius} stroke="rgba(26,58,143,0.2)" strokeWidth={stroke} fill="none" />
@@ -48,7 +48,7 @@ export function BackToTopProgress() {
           strokeDashoffset={dashOffset}
         />
       </svg>
-      <span className="relative text-[var(--primary-blue)]">↑</span>
+      <span className="relative text-base font-semibold leading-none text-white">↑</span>
     </button>
   );
 }

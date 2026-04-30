@@ -52,7 +52,7 @@ export function WhatsAppWidget() {
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-label="Open WhatsApp chat"
-        className="relative grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-xl transition hover:scale-[1.03]"
+        className="relative grid h-[60px] w-[60px] place-items-center rounded-full bg-[#25D366] text-white shadow-xl transition hover:scale-[1.03]"
       >
         <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366]/60" />
         <span className="relative text-xl">💬</span>
