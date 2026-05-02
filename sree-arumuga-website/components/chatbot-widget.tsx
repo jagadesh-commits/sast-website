@@ -5,7 +5,10 @@ import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 const STORAGE_KEY = "sas-chatbot-session-v2";
+/** Main site WhatsApp (Talk to Team, quick links inside chatbot info steps). */
 const WHATSAPP_NUMBER = "919940119914";
+/** Used ONLY when redirecting after successful chatbot enquiry submission. */
+const WHATSAPP_CHATBOT_SUBMIT_NUMBER = "919889883039";
 
 type ProductType = "HRPO" | "HR" | "CR" | "GP" | "Colour Coated";
 type SheetType = "Sheet" | "Coil";
@@ -289,7 +292,11 @@ export function ChatbotWidget() {
 
   const openWhatsAppWithEnquiry = (current: EnquiryState) => {
     const text = buildWhatsAppMessage(current);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+    window.open(
+      `https://wa.me/${WHATSAPP_CHATBOT_SUBMIT_NUMBER}?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   const onSelectProduct = (value: ProductType) => {
