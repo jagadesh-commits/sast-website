@@ -825,10 +825,28 @@ export function ChatbotWidget() {
           setOpen((value) => !value);
         }}
         aria-label={open ? "Close chatbot" : "Open chatbot"}
-        className="relative grid h-[60px] w-[60px] place-items-center rounded-full bg-[#1a3a8f] text-white shadow-xl transition hover:scale-[1.03]"
+        className="grid h-[60px] w-[60px] place-items-center rounded-full bg-transparent p-0 shadow-none"
       >
-        <span className="absolute inset-0 animate-ping rounded-full bg-[#1a3a8f]/55" />
-        <span className="relative text-2xl">{open ? "×" : "🤖"}</span>
+        {open ? (
+          <span className="text-4xl font-light leading-none text-[#1a3a8f]" aria-hidden="true">
+            ×
+          </span>
+        ) : (
+          <img
+            src="/chatbot-icon.png"
+            alt="Chatbot"
+            width={60}
+            height={60}
+            draggable={false}
+            style={{
+              width: "60px",
+              height: "60px",
+              borderRadius: "50%",
+              objectFit: "contain",
+              objectPosition: "center",
+            }}
+          />
+        )}
       </button>
     </div>
   );
