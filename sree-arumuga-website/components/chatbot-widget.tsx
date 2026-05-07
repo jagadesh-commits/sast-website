@@ -825,7 +825,7 @@ export function ChatbotWidget() {
           setOpen((value) => !value);
         }}
         aria-label={open ? "Close chatbot" : "Open chatbot"}
-        className="grid h-[60px] w-[60px] place-items-center rounded-full bg-transparent p-0 shadow-none"
+        className="beat-glow-blue grid h-[60px] w-[60px] place-items-center rounded-full bg-transparent p-0 shadow-none"
       >
         {open ? (
           <span className="text-4xl font-light leading-none text-[#1a3a8f]" aria-hidden="true">
@@ -838,6 +838,7 @@ export function ChatbotWidget() {
             width={60}
             height={60}
             draggable={false}
+            className="fab-glow-beat"
             style={{
               width: "60px",
               height: "60px",

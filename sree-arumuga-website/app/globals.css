@@ -193,3 +193,49 @@ html {
     background-position: 100% 50%;
   }
 }
+
+@keyframes beat-glow-blue {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(26, 58, 143, 0.7), 0 0 12px 4px rgba(26, 58, 143, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px rgba(26, 58, 143, 0), 0 0 24px 8px rgba(26, 58, 143, 0.3);
+  }
+}
+
+@keyframes beat-glow-green {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7), 0 0 12px 4px rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0), 0 0 24px 8px rgba(37, 211, 102, 0.3);
+  }
+}
+
+.beat-glow-blue {
+  display: inline-block;
+  border-radius: 50%;
+  animation: beat-glow-blue 2s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+.beat-glow-green {
+  display: inline-block;
+  border-radius: 50%;
+  animation: beat-glow-green 2s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beat-glow-blue,
+  .beat-glow-green {
+    animation: none;
+    box-shadow: none;
+  }
+}
