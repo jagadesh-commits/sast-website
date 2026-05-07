@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { BackToTopProgress } from "@/components/back-to-top-progress";
 import { ChatbotWidget } from "@/components/chatbot-widget";
 import { EnquiryForm } from "@/components/enquiry-form";
@@ -257,10 +258,81 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             </p>
             <p className="mt-2 text-sm text-white/80">GST No: 33ABSCS3792H1ZS</p>
             <div className="mt-4 flex gap-3 text-sm">
-              <a href="https://www.facebook.com/profile.php?id=61577460474521" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white text-[var(--primary-blue)]">f</a>
-              <a href="https://www.instagram.com/sreearumugastell" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white text-[var(--primary-blue)]">i</a>
-              <a href="https://www.linkedin.com/company/sree-arumuga-steel-trading-private-limited" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white text-[var(--primary-blue)]">in</a>
-              <a href="https://wa.me/919940119914" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white text-[var(--primary-blue)]">wa</a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61577460474521"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  background: "rgba(255,255,255,0.15)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  transition: "background 0.3s",
+                }}
+              >
+                <FaFacebookF size={16} />
+              </a>
+
+              <a
+                href="https://www.instagram.com/sreearumugastell"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  background: "rgba(255,255,255,0.15)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  transition: "background 0.3s",
+                }}
+              >
+                <FaInstagram size={16} />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/company/sree-arumuga-steel-trading-private-limited"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  background: "rgba(255,255,255,0.15)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  transition: "background 0.3s",
+                }}
+              >
+                <FaLinkedinIn size={16} />
+              </a>
+
+              <a
+                href="https://wa.me/919940119914"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  background: "rgba(255,255,255,0.15)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  transition: "background 0.3s",
+                }}
+              >
+                <FaWhatsapp size={16} />
+              </a>
             </div>
           </div>
         </div>
