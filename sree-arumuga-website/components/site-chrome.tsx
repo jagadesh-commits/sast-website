@@ -263,7 +263,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="mt-10 h-[1px] bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
-        <p className="pt-5 text-center text-xs text-white/65">Copyright 2024 Sree Arumuga Steel Trading Private Limited</p>
+        <p className="pt-5 text-center text-xs text-white/65">
+          © {new Date().getFullYear()} Sree Arumuga Steel Trading Private Limited. All rights reserved.
+        </p>
         </div>
       </footer>
 

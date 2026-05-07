@@ -33,7 +33,7 @@ export function CountUp({ end, suffix = "+", label, dark = false, className }: C
 
   useEffect(() => {
     if (!started) return;
-    const duration = 1600;
+    const duration = 2000;
     const start = performance.now();
     const frame = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);

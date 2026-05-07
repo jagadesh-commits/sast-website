@@ -833,7 +833,7 @@ export function ChatbotWidget() {
           </span>
         ) : (
           <img
-            src="/chatbot-icon.png"
+            src="/Chat_bot_icon_image.png"
             alt="Chatbot"
             width={60}
             height={60}
