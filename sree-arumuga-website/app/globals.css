@@ -232,6 +232,44 @@ html {
   will-change: transform, box-shadow;
 }
 
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.social-icon:hover,
+.social-icon:active {
+  transform: scale(1.2);
+}
+
+.social-facebook:hover,
+.social-facebook:active {
+  background: #1877f2;
+}
+
+.social-instagram:hover,
+.social-instagram:active {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.social-linkedin:hover,
+.social-linkedin:active {
+  background: #0a66c2;
+}
+
+.social-whatsapp:hover,
+.social-whatsapp:active {
+  background: #25d366;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .beat-glow-blue,
   .beat-glow-green {

@@ -262,17 +262,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 href="https://www.facebook.com/profile.php?id=61577460474521"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.15)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
-                  transition: "background 0.3s",
-                }}
+                className="social-icon social-facebook"
               >
                 <FaFacebookF size={16} />
               </a>
@@ -281,17 +271,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 href="https://www.instagram.com/sreearumugastell"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.15)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
-                  transition: "background 0.3s",
-                }}
+                className="social-icon social-instagram"
               >
                 <FaInstagram size={16} />
               </a>
@@ -300,17 +280,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 href="https://www.linkedin.com/company/sree-arumuga-steel-trading-private-limited"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.15)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
-                  transition: "background 0.3s",
-                }}
+                className="social-icon social-linkedin"
               >
                 <FaLinkedinIn size={16} />
               </a>
@@ -319,17 +289,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 href="https://wa.me/919940119914"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.15)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
-                  transition: "background 0.3s",
-                }}
+                className="social-icon social-whatsapp"
               >
                 <FaWhatsapp size={16} />
               </a>
