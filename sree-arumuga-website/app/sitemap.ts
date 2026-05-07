@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://sreearumugasteel.in";
+  const base = "https://sast-website.vercel.app";
   const staticRoutes = [
     "",
     "/about",

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { HeroGsap } from "@/components/hero-gsap";
@@ -5,6 +6,10 @@ import { SteelCalculator } from "@/components/steel-calculator";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://sast-website.vercel.app/" },
+};
 
 export default function Home() {
   return (

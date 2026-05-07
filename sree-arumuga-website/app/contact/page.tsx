@@ -6,6 +6,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Contact Sree Arumuga Steel Trading Private Limited for steel supply and quote requests.",
+  alternates: { canonical: "https://sast-website.vercel.app/contact" },
 };
 
 export default function ContactPage() {

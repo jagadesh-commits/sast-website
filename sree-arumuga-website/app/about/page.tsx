@@ -5,6 +5,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "About Us",
   description: "Learn about Sree Arumuga Steel Trading Private Limited and its legacy since 1984.",
+  alternates: { canonical: "https://sast-website.vercel.app/about" },
 };
 
 export default function AboutPage() {

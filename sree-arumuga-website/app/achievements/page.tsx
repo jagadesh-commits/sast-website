@@ -6,6 +6,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Achievements",
   description: "Milestones and industrial achievements of Sree Arumuga Steel Trading Private Limited.",
+  alternates: { canonical: "https://sast-website.vercel.app/achievements" },
 };
 
 export default function AchievementsPage() {
