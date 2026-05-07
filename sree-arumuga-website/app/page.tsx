@@ -56,8 +56,8 @@ export default function Home() {
               </h1>
               <div data-hero-anim className="mt-5 h-1.5 w-44 rounded-full bg-[var(--primary-blue)]" />
               <p data-hero-anim className="mt-6 max-w-2xl text-lg text-zinc-300">
-                Trusted steel trading solutions since 1984. Premium sheets, plates and coils for
-                infrastructure, fabrication and industrial growth.
+                Trusted steel trading solutions since 1984. Premium HR, CR, GP, GL, EG &amp; PPGL sheets, plates and
+                coils for infrastructure, fabrication and industrial growth.
               </p>
               <div data-hero-anim className="mt-10 flex flex-wrap gap-4">
                 <button
@@ -118,8 +118,11 @@ export default function Home() {
             <p className="industrial-heading text-sm font-semibold text-[var(--primary-blue)]">About Us</p>
             <h2 className="industrial-heading mt-3 text-5xl font-black text-zinc-900">Trusted Steel Partner Since 1984</h2>
             <p className="mt-5 text-zinc-600">
-              Sree Arumuga Steel Trading Private Limited serves Tamil Nadu with dependable quality,
-              transparent pricing, and reliable industrial steel supply.
+              Sree Arumuga Steel Trading Private Limited has been serving Tamil Nadu&apos;s industrial sector for over
+              four decades. As an exclusive JSW Steel distributor in Chennai, we supply premium HR, HRPO, CR, GP,
+              GL, EG and PPGL sheets, plates and coils to fabricators, contractors, and industries across the region.
+              Our commitment to quality, transparent pricing, and on-time delivery has made us the most trusted
+              steel trading company in the Sathangadu Iron &amp; Steel Market, Manali, Chennai.
             </p>
             <div className="mt-8 space-y-4">
               {[
@@ -160,9 +163,18 @@ export default function Home() {
       <section className="bg-[var(--primary-blue)] px-6 py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
           {[
-            { name: "Steel Sheets", text: "High precision sheets for fabrication and industrial use." },
-            { name: "Steel Plates", text: "Reliable heavy-duty plates for core infrastructure projects." },
-            { name: "Steel Coils", text: "Premium coils with consistent quality and controlled finish." },
+            {
+              name: "Steel Sheets",
+              text: "High precision HR, CR, GP, GL, EG and PPGL sheets for fabrication, roofing, automotive and industrial use.",
+            },
+            {
+              name: "Steel Plates",
+              text: "Heavy-duty MS plates for infrastructure, construction, shipbuilding and core engineering projects.",
+            },
+            {
+              name: "Steel Coils",
+              text: "Premium HR and CR coils with consistent thickness, controlled finish and reliable quality for all industries.",
+            },
           ].map((item) => (
             <article key={item.name} className="rounded-2xl border border-white/20 bg-white/5 p-7 transition hover:bg-white/10">
               <p className="text-4xl">▣</p>
@@ -196,8 +208,8 @@ export default function Home() {
 
       <section className="bg-white px-6 py-20">
         <div className="mx-auto max-w-7xl">
-          <p className="industrial-heading text-sm font-semibold text-zinc-500">Industrial News</p>
-          <h2 className="industrial-heading mt-2 text-5xl font-black text-zinc-900">Blog Posts</h2>
+          <p className="industrial-heading text-sm font-semibold text-zinc-500">Testimonials</p>
+          <h2 className="industrial-heading mt-2 text-5xl font-black text-zinc-900">What Our Clients Say</h2>
           <div className="mt-8 overflow-hidden rounded-3xl bg-[#1d1f24] text-white">
             <div className="grid md:grid-cols-2">
               <div className="p-8 md:p-12">
@@ -234,8 +246,8 @@ export default function Home() {
       <section className="bg-[var(--primary-blue)] px-6 py-14 text-white">
         <div className="mx-auto max-w-7xl rounded-3xl border border-white/20 bg-white/10 p-7 md:flex md:items-center md:justify-between">
           <div>
-            <p className="industrial-heading text-sm tracking-wide text-white/80">Need Exact Loading Estimation?</p>
-            <h3 className="industrial-heading mt-2 text-3xl font-black">Use Full Calculator Page</h3>
+            <p className="industrial-heading text-sm tracking-wide text-white/80">Steel Weight Calculator</p>
+            <h3 className="industrial-heading mt-2 text-3xl font-black">Estimate Weight &amp; Price Instantly</h3>
           </div>
           <Link
             href="/calculator"

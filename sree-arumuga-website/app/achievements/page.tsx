@@ -41,8 +41,10 @@ export default function AchievementsPage() {
         <div className="absolute inset-0 bg-[var(--primary-blue)]/75" />
         <div className="mx-auto max-w-7xl">
           <Reveal>
-            <h1 className="text-5xl font-black md:text-6xl">Achievements</h1>
-            <p className="mt-3 text-white/80">Milestones that reflect our consistency and customer trust.</p>
+            <h1 className="text-5xl font-black md:text-6xl">Our Achievements</h1>
+            <p className="mt-3 text-white/80">
+              Four decades of milestones, awards and recognition in the steel trading industry.
+            </p>
           </Reveal>
         </div>
       </section>
@@ -50,17 +52,20 @@ export default function AchievementsPage() {
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-6 md:grid-cols-3">
           <CountUp end={40} label="Years in Business" />
-          <CountUp end={250} label="Projects Supplied" />
-          <CountUp end={5000} label="Repeat Customers" />
+          <CountUp end={500} label="Happy Customers" />
+          <CountUp end={50000} label="Tons Supplied" />
         </div>
         <Reveal className="mt-10 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
           <h2 className="text-3xl font-black text-[var(--primary-blue)]">Milestone Timeline</h2>
           <div className="mt-6 space-y-4">
             {[
-              "1984 - Company established in Chennai steel market",
-              "2005 - Expanded statewide supply capabilities",
-              "2018 - Delivered high-volume industrial contracts",
-              "2026 - Recognized as JSW Exclusive Distributor",
+              "1984: Founded as Sree Arumuga Steel Traders — started operations in Sathangadu Iron & Steel Market, Manali, Chennai.",
+              "1995: Expanded product range to include GP and CR sheets — serving 100+ customers across Chennai.",
+              "2005: Became authorized JSW Steel distributor — a major milestone in our growth journey.",
+              "2015: Crossed 10,000 tons annual supply milestone — serving industries across Tamil Nadu.",
+              "2020: Recognized as Top Performing JSW Distributor in Tamil Nadu region.",
+              "2023: Converted to Private Limited company — Sree Arumuga Steel Trading Private Limited incorporated.",
+              "2024: Launched digital platform and expanded to serve 500+ customers across Tamil Nadu.",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
                 <span className="text-xl text-[var(--gold)]">🏆</span>

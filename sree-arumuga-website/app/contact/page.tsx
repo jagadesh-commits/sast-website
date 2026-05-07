@@ -31,10 +31,11 @@ export default function ContactPage() {
     <div className="mx-auto max-w-7xl px-6 py-20">
       <Reveal>
         <h1 className="text-5xl font-black text-[var(--primary-blue)]">Contact Us</h1>
+        <p className="mt-3 text-zinc-600">Get in touch for steel enquiries, pricing, bulk orders and delivery information.</p>
       </Reveal>
       <div className="mt-10 grid gap-7 md:grid-cols-2">
         <Reveal className="rounded-3xl border border-zinc-200 bg-white p-8 pb-10 shadow-sm max-h-[90vh] overflow-y-auto overscroll-contain">
-          <h2 className="text-2xl font-bold text-[var(--primary-blue)]">Send an Enquiry</h2>
+          <h2 className="text-2xl font-bold text-[var(--primary-blue)]">Send Us an Enquiry</h2>
           <EnquiryForm source="contact-page" />
         </Reveal>
         <Reveal className="relative min-h-[420px] overflow-hidden rounded-3xl border border-zinc-200">
@@ -49,9 +50,14 @@ export default function ContactPage() {
       </div>
       <Reveal className="mt-7 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
           <h2 className="text-2xl font-bold text-[var(--primary-blue)]">Reach Us Directly</h2>
-          <p className="mt-4 text-sm text-zinc-600">Phone: +91 99401 19914</p>
+          <p className="mt-4 text-sm text-zinc-600">
+            Address: D-196, Sathangadu Iron &amp; Steel Market, Manali, Chennai - 600068, Tamil Nadu, India
+          </p>
+          <p className="mt-2 text-sm text-zinc-600">Phone: +91 98400 36010</p>
+          <p className="text-sm text-zinc-600">WhatsApp: +91 99401 19914</p>
           <p className="text-sm text-zinc-600">Email: sree.arumuga@gmail.com</p>
-          <p className="mt-2 text-sm text-zinc-600">D-196, Sathangadu Iron & Steel Market, Manali, Chennai - 600068</p>
+          <p className="mt-2 text-sm text-zinc-600">Hours: Monday to Saturday: 9:00 AM - 6:00 PM</p>
+          <p className="text-sm text-zinc-600">GST: 33ABSCS3792H1ZS</p>
           <a href="https://wa.me/919940119914" target="_blank" rel="noreferrer" className="mt-6 inline-block rounded-full bg-[#25D366] px-5 py-3 font-semibold text-white">
             WhatsApp
           </a>

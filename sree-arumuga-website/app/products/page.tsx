@@ -125,45 +125,86 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <h1 className="text-5xl font-black">Our Steel Products</h1>
-            <p className="mt-3 max-w-2xl text-zinc-200">Explore premium sheets, plates, and coils for industrial applications.</p>
+            <p className="mt-3 max-w-2xl text-zinc-200">
+              Premium JSW steel sheets, plates and coils for every industrial need. Trusted by 500+ businesses across
+              Tamil Nadu.
+            </p>
           </Reveal>
         </div>
       </section>
 
       <section className="bg-white px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <div className="mt-8 flex flex-wrap gap-3">
-            {["All", "Sheets", "Plates", "Coils"].map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setActive(tag)}
-                className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
-                  active === tag
-                    ? "bg-[var(--primary-blue)] text-white shadow-lg shadow-[var(--primary-blue)]/30"
-                    : "border border-zinc-300 bg-white text-zinc-700"
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {filtered.map((item) => (
-              <Reveal key={item.name}>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {[
+              {
+                title: "HR Sheets & Coils (Hot Rolled)",
+                desc:
+                  "Hot Rolled steel sheets and coils are the foundation of industrial manufacturing. Ideal for fabrication, automotive components, pipes, tubes, and general engineering applications. Available in thicknesses from 1.6mm to 16mm.",
+                apps: "Fabrication, Automotive, Pipes & Tubes, General Engineering",
+                brand: "JSW Steel",
+              },
+              {
+                title: "HRPO Sheets & Coils (Hot Rolled Pickled & Oiled)",
+                desc:
+                  "HRPO sheets offer a cleaner, scale-free surface compared to standard HR. Perfect for applications requiring better surface finish before further processing. Available in thicknesses from 1.6mm to 6mm.",
+                apps: "Automotive parts, White goods, Press components",
+                brand: "JSW Steel",
+              },
+              {
+                title: "CR Sheets & Coils (Cold Rolled)",
+                desc:
+                  "Cold Rolled steel offers superior surface finish, tighter thickness tolerances and excellent formability. Widely used in automotive, appliances, and precision engineering. Available from 0.4mm to 3.15mm.",
+                apps: "Automotive, Home appliances, Precision components",
+                brand: "JSW Steel",
+              },
+              {
+                title: "GP Sheets & Coils (Galvanized Plain)",
+                desc:
+                  "Galvanized Plain sheets provide excellent corrosion resistance through hot-dip zinc coating. Ideal for roofing, cladding, ducts and agricultural equipment. Available from 0.14mm to 3.15mm.",
+                apps: "Roofing, Cladding, Ducts, Agricultural equipment",
+                brand: "JSW Steel",
+              },
+              {
+                title: "GL Sheets & Coils (Galvalume)",
+                desc:
+                  "Galvalume sheets combine zinc and aluminum coating for superior corrosion and heat resistance compared to standard GP. Perfect for industrial roofing and long-life structural applications.",
+                apps: "Industrial roofing, Long-life structures, Pre-engineered buildings",
+                brand: "JSW Steel",
+              },
+              {
+                title: "EG Sheets & Coils (Electro Galvanized)",
+                desc:
+                  "Electro Galvanized sheets offer a thin, uniform zinc coating applied through electroplating. Ideal for applications requiring excellent paintability and surface quality.",
+                apps: "Automotive body panels, Appliances, Painted components",
+                brand: "JSW Steel",
+              },
+              {
+                title: "PPGL Sheets (Pre-Painted Galvalume)",
+                desc:
+                  "Pre-Painted Galvalume sheets come with factory-applied paint coating over Galvalume base. Available in multiple colors. Perfect for roofing, wall cladding and architectural applications.",
+                apps: "Roofing, Wall cladding, Architectural panels, Pre-engineered buildings",
+                brand: "JSW Colour ON+, JSW Radiance, Colourshine Spectrum, Colourshine Pratham",
+              },
+              {
+                title: "MS Plates (Mild Steel)",
+                desc:
+                  "Mild Steel plates are essential for heavy structural and engineering applications. High tensile strength and weldability make them ideal for bridges, ships, pressure vessels and construction.",
+                apps: "Bridges, Shipbuilding, Pressure vessels, Heavy construction",
+                brand: "JSW Steel / Jindal India",
+              },
+            ].map((p) => (
+              <Reveal key={p.title}>
                 <article className="premium-card rounded-3xl border border-zinc-200 p-6 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-                  <div className="relative h-40 overflow-hidden rounded-2xl">
-                    <Image
-                      src={categoryImages[item.category]}
-                      alt={`${item.name} product`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-[var(--primary-blue)]">{item.category}</p>
-                  <h3 className="mt-1 text-xl font-bold text-[var(--primary-blue)]">{item.name}</h3>
-                  <p className="mt-2 text-sm text-zinc-700">Thickness: {item.thickness}</p>
-                  <p className="mt-1 text-sm text-zinc-600">Use: {item.useCase}</p>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[var(--primary-blue)]">Product</p>
+                  <h3 className="mt-2 text-xl font-bold text-[var(--primary-blue)]">{p.title}</h3>
+                  <p className="mt-3 text-sm text-zinc-700">{p.desc}</p>
+                  <p className="mt-3 text-sm text-zinc-600">
+                    <span className="font-semibold text-zinc-800">Applications:</span> {p.apps}
+                  </p>
+                  <p className="mt-1 text-sm text-zinc-600">
+                    <span className="font-semibold text-zinc-800">Brand:</span> {p.brand}
+                  </p>
                   <button
                     data-open-quote="true"
                     className="mt-5 rounded-full bg-[var(--primary-blue)] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[var(--primary-red)] active:bg-[var(--primary-red)]"

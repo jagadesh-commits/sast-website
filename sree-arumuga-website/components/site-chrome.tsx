@@ -226,7 +226,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           <div>
             <p className="font-semibold text-[var(--gold)]">About</p>
             <p className="mt-3 text-sm text-white/80">
-              Exclusive JSW Steel distributor delivering quality sheets, plates, and coils across Tamil Nadu.
+              Exclusive JSW Steel Distributor in Chennai since 1984. Premium sheets, plates and coils for Tamil Nadu&apos;s
+              industrial growth.
             </p>
           </div>
           <div>
@@ -254,6 +255,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             <p className="mt-2 text-sm text-white/80">
               D-196, Sathangadu Iron & Steel Market, Manali, Chennai - 600068
             </p>
+            <p className="mt-2 text-sm text-white/80">GST No: 33ABSCS3792H1ZS</p>
             <div className="mt-4 flex gap-3 text-sm">
               <a href="https://www.facebook.com/profile.php?id=61577460474521" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white text-[var(--primary-blue)]">f</a>
               <a href="https://www.instagram.com/sreearumugastell" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white text-[var(--primary-blue)]">i</a>
@@ -264,7 +266,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         </div>
         <div className="mt-10 h-[1px] bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
         <p className="pt-5 text-center text-xs text-white/65">
-          © {new Date().getFullYear()} Sree Arumuga Steel Trading Private Limited. All rights reserved.
+          © {new Date().getFullYear()} Sree Arumuga Steel Trading Private Limited. All Rights Reserved.
         </p>
         </div>
       </footer>
