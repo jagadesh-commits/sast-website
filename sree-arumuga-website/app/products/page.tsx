@@ -1,8 +1,32 @@
 "use client";
 
+import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+
+export const metadata: Metadata = {
+  title: "Steel Products | HR, HRPO, CR, GP, GL, EG, PPGL Sheets & Coils Chennai",
+  description:
+    "Buy JSW HR, HRPO, CR, GP, GL, EG, PPGL steel sheets, plates and coils in Chennai. Exclusive JSW distributor. Best prices, bulk supply. Call +91 98400 36010.",
+  alternates: { canonical: "https://sast-website.vercel.app/products" },
+  openGraph: {
+    type: "website",
+    siteName: "Sree Arumuga Steel Trading",
+    url: "https://sast-website.vercel.app/products",
+    title: "Steel Products | HR, HRPO, CR, GP, GL, EG, PPGL Sheets & Coils Chennai",
+    description:
+      "Buy JSW HR, HRPO, CR, GP, GL, EG, PPGL steel sheets, plates and coils in Chennai. Exclusive JSW distributor. Best prices, bulk supply. Call +91 98400 36010.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Steel Products | HR, HRPO, CR, GP, GL, EG, PPGL Sheets & Coils Chennai",
+    description:
+      "Buy JSW HR, HRPO, CR, GP, GL, EG, PPGL steel sheets, plates and coils in Chennai. Exclusive JSW distributor. Best prices, bulk supply. Call +91 98400 36010.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
+};
 
 const items = [
   {
@@ -92,8 +116,26 @@ export default function ProductsPage() {
     [active]
   );
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "JSW Steel Sheets Plates and Coils",
+    brand: { "@type": "Brand", name: "JSW Steel" },
+    seller: {
+      "@type": "Organization",
+      name: "Sree Arumuga Steel Trading Private Limited",
+    },
+    category: "HR, HRPO, CR, GP, GL, EG, PPGL Steel Sheets and Coils",
+    url: "https://sast-website.vercel.app/products",
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <section className="relative overflow-hidden px-6 py-20 text-white">
         <Image
           src="/warehouse_3.png"

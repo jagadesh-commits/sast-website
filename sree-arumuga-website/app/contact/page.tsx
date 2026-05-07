@@ -4,9 +4,26 @@ import { Reveal } from "@/components/reveal";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
-  description: "Contact Sree Arumuga Steel Trading Private Limited for steel supply and quote requests.",
+  title: "Contact Us | Sree Arumuga Steel Trading Chennai | +91 98400 36010",
+  description:
+    "Contact Sree Arumuga Steel Trading Pvt Ltd. Visit us at D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. Call +91 98400 36010 or WhatsApp +91 99401 19914.",
   alternates: { canonical: "https://sast-website.vercel.app/contact" },
+  openGraph: {
+    type: "website",
+    siteName: "Sree Arumuga Steel Trading",
+    url: "https://sast-website.vercel.app/contact",
+    title: "Contact Us | Sree Arumuga Steel Trading Chennai | +91 98400 36010",
+    description:
+      "Contact Sree Arumuga Steel Trading Pvt Ltd. Visit us at D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. Call +91 98400 36010 or WhatsApp +91 99401 19914.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us | Sree Arumuga Steel Trading Chennai | +91 98400 36010",
+    description:
+      "Contact Sree Arumuga Steel Trading Pvt Ltd. Visit us at D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. Call +91 98400 36010 or WhatsApp +91 99401 19914.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
 };
 
 export default function ContactPage() {

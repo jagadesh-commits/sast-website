@@ -3,9 +3,26 @@ import { Reveal } from "@/components/reveal";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description: "Learn about Sree Arumuga Steel Trading Private Limited and its legacy since 1984.",
+  title: "About Us | Sree Arumuga Steel Trading Pvt Ltd Chennai",
+  description:
+    "Trusted steel trading company since 1984. JSW exclusive distributor in Chennai specializing in HR, CR, GP sheets and coils for infrastructure and fabrication.",
   alternates: { canonical: "https://sast-website.vercel.app/about" },
+  openGraph: {
+    type: "website",
+    siteName: "Sree Arumuga Steel Trading",
+    url: "https://sast-website.vercel.app/about",
+    title: "About Us | Sree Arumuga Steel Trading Pvt Ltd Chennai",
+    description:
+      "Trusted steel trading company since 1984. JSW exclusive distributor in Chennai specializing in HR, CR, GP sheets and coils for infrastructure and fabrication.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | Sree Arumuga Steel Trading Pvt Ltd Chennai",
+    description:
+      "Trusted steel trading company since 1984. JSW exclusive distributor in Chennai specializing in HR, CR, GP sheets and coils for infrastructure and fabrication.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
 };
 
 export default function AboutPage() {

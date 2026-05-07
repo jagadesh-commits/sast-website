@@ -1,34 +1,10 @@
-import type { MetadataRoute } from "next";
-import { blogPosts } from "@/lib/blog-data";
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://sast-website.vercel.app";
-  const staticRoutes = [
-    "",
-    "/about",
-    "/products",
-    "/achievements",
-    "/blog",
-    "/careers",
-    "/contact",
-    "/calculator",
-  ];
-
-  const now = new Date();
-
+export default function sitemap() {
   return [
-    ...staticRoutes.map((path) => ({
-      url: `${base}${path}`,
-      lastModified: now,
-      changeFrequency: "weekly" as const,
-      priority: path === "" ? 1 : 0.7,
-    })),
-    ...blogPosts.map((post) => ({
-      url: `${base}/blog/${post.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
+    { url: "https://sast-website.vercel.app/", lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
+    { url: "https://sast-website.vercel.app/about", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://sast-website.vercel.app/products", lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: "https://sast-website.vercel.app/achievements", lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: "https://sast-website.vercel.app/contact", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
   ];
 }
 

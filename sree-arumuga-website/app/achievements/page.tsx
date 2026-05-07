@@ -4,9 +4,26 @@ import { Reveal } from "@/components/reveal";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Achievements",
-  description: "Milestones and industrial achievements of Sree Arumuga Steel Trading Private Limited.",
+  title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd",
+  description:
+    "40+ years of excellence in steel trading. JSW exclusive distributor awards, milestones and achievements by Sree Arumuga Steel Trading Chennai.",
   alternates: { canonical: "https://sast-website.vercel.app/achievements" },
+  openGraph: {
+    type: "website",
+    siteName: "Sree Arumuga Steel Trading",
+    url: "https://sast-website.vercel.app/achievements",
+    title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd",
+    description:
+      "40+ years of excellence in steel trading. JSW exclusive distributor awards, milestones and achievements by Sree Arumuga Steel Trading Chennai.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd",
+    description:
+      "40+ years of excellence in steel trading. JSW exclusive distributor awards, milestones and achievements by Sree Arumuga Steel Trading Chennai.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
 };
 
 export default function AchievementsPage() {

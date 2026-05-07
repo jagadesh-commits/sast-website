@@ -8,7 +8,26 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
+  description:
+    "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
   alternates: { canonical: "https://sast-website.vercel.app/" },
+  openGraph: {
+    type: "website",
+    siteName: "Sree Arumuga Steel Trading",
+    url: "https://sast-website.vercel.app/",
+    title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
+    description:
+      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
+    description:
+      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
+  },
 };
 
 export default function Home() {

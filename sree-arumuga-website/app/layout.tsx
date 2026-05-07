@@ -16,11 +16,11 @@ const oswald = Oswald({
 export const metadata: Metadata = {
   metadataBase: new URL("https://sast-website.vercel.app"),
   title: {
-    default: "Sree Arumuga Steel Trading Private Limited | Trusted Since 1984",
-    template: "%s | Sree Arumuga Steel Trading Private Limited",
+    default: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
+    template: "%s | Sree Arumuga Steel Trading",
   },
   description:
-    "Exclusive JSW Steel distributor in Tamil Nadu for premium steel sheets, plates, and coils. Trusted industrial steel trading partner since 1984.",
+    "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
   robots: {
     index: true,
     follow: true,
@@ -35,18 +35,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/",
-    siteName: "Sree Arumuga Steel Trading Private Limited",
-    title: "Sree Arumuga Steel Trading Private Limited | Trusted Since 1984",
+    siteName: "Sree Arumuga Steel Trading",
+    title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
     description:
-      "Exclusive JSW Steel distributor in Tamil Nadu for premium steel sheets, plates, and coils. Trusted since 1984.",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Sree Arumuga Steel Trading" }],
+      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+    images: [{ url: "https://sast-website.vercel.app/og-image.jpg", width: 1200, height: 630, alt: "Sree Arumuga Steel Trading" }],
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sree Arumuga Steel Trading Private Limited",
-    description: "JSW Exclusive Distributor in Tamil Nadu. Premium sheets, plates, and coils.",
-    images: ["/twitter-image"],
+    title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
+    description:
+      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+    images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   category: "business",
   applicationName: "Sree Arumuga Steel Trading",
@@ -55,6 +56,8 @@ export const metadata: Metadata = {
     email: true,
     address: true,
   },
+  keywords:
+    "steel trading Chennai, JSW distributor Chennai, HR sheets Chennai, CR coils Chennai, GP sheets Chennai, steel plates Chennai, PPGL sheets, EG sheets, steel supplier Chennai, Manali steel market",
   other: {
     "geo.region": "IN-TN",
     "geo.placename": "Chennai",
@@ -68,42 +71,31 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const baseUrl = "https://sast-website.vercel.app";
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": `${baseUrl}/#org`,
-        name: "Sree Arumuga Steel Trading Private Limited",
-        url: baseUrl,
-        logo: `${baseUrl}/Logo.png`,
-        sameAs: [
-          "https://www.facebook.com/profile.php?id=61577460474521",
-          "https://www.instagram.com/sreearumugastell",
-          "https://www.linkedin.com/company/sree-arumuga-steel-trading-private-limited",
-        ],
-      },
-      {
-        "@type": "LocalBusiness",
-        "@id": `${baseUrl}/#localbusiness`,
-        name: "Sree Arumuga Steel Trading Private Limited",
-        url: baseUrl,
-        image: `${baseUrl}/Logo.png`,
-        telephone: "+91 99401 19914",
-        email: "sree.arumuga@gmail.com",
-        priceRange: "$$",
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "D-196, Sathangadu Iron & Steel Market, Manali",
-          addressLocality: "Chennai",
-          addressRegion: "TN",
-          postalCode: "600068",
-          addressCountry: "IN",
-        },
-        areaServed: "Tamil Nadu",
-      },
-    ],
+    "@type": "LocalBusiness",
+    name: "Sree Arumuga Steel Trading Private Limited",
+    image: "https://sast-website.vercel.app/og-image.jpg",
+    url: "https://sast-website.vercel.app",
+    telephone: "+919840036010",
+    email: "sree.arumuga@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "D-196 Sathangadu Iron & Steel Market, Manali",
+      addressLocality: "Chennai",
+      addressRegion: "Tamil Nadu",
+      postalCode: "600068",
+      addressCountry: "IN",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 13.1388,
+      longitude: 80.2978,
+    },
+    openingHours: "Mo-Sa 09:00-18:00",
+    priceRange: "₹₹",
+    sameAs: [],
+    description: "JSW exclusive distributor for steel sheets, plates and coils in Chennai since 1984.",
   };
 
   return (
