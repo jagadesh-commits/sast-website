@@ -67,7 +67,13 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         >
           <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
             <Link href="/" className="flex items-center gap-3">
-              <Image src="/Logo.png" alt="Sree Arumuga Logo" width={60} height={60} className="h-12 w-12 md:h-14 md:w-14" />
+              <Image
+                src="/Logo.png"
+                alt="Sree Arumuga Steel Trading Private Limited Logo"
+                width={60}
+                height={60}
+                className="h-12 w-12 md:h-14 md:w-14"
+              />
               <div className="hidden md:block">
                 <p className="industrial-heading text-xl font-bold text-[var(--primary-blue)]">Sree Arumuga Steel Trading Private Limited</p>
               </div>

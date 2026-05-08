@@ -5,8 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Steel industry news, company updates and product guides from Sree Arumuga Steel Trading Private Limited.",
+  title: "Steel Blog | HR Coil Price, CR Coil, GP Coil Guide | Sree Arumuga Chennai",
+  description:
+    "Steel industry guides, HR coil price updates, CR vs HR coil comparison, GP coil full form explained. Expert steel knowledge from JSW distributor Chennai.",
+  keywords:
+    "hr coil price today, cr coil full form, what is hrpo, gp coil full form, hr coil vs cr coil, steel price chennai, jsw steel price today",
 };
 
 export default function BlogPage() {
@@ -26,7 +29,7 @@ export default function BlogPage() {
         <article className="relative mb-12 overflow-hidden rounded-3xl text-white">
           <Image
             src="/macchine_warehouse1.png"
-            alt="Featured industrial blog post"
+            alt="Steel warehouse Chennai — HR CR GP coil sheets"
             fill
             sizes="100vw"
             className="object-cover"

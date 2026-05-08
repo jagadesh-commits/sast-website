@@ -4,24 +4,26 @@ import { Reveal } from "@/components/reveal";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd",
+  title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd | 40 Years Excellence Chennai",
   description:
-    "40+ years of excellence in steel trading. JSW exclusive distributor awards, milestones and achievements by Sree Arumuga Steel Trading Chennai.",
+    "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 500+ customers across Tamil Nadu since 1984.",
+  keywords:
+    "jsw steel dealer award, steel trading company achievements, sree arumuga steel trading, jsw distributor tamil nadu, steel supplier chennai 1984",
   alternates: { canonical: "https://sast-website.vercel.app/achievements" },
   openGraph: {
     type: "website",
     siteName: "Sree Arumuga Steel Trading",
     url: "https://sast-website.vercel.app/achievements",
-    title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd",
+    title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd | 40 Years Excellence Chennai",
     description:
-      "40+ years of excellence in steel trading. JSW exclusive distributor awards, milestones and achievements by Sree Arumuga Steel Trading Chennai.",
+      "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 500+ customers across Tamil Nadu since 1984.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd",
+    title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd | 40 Years Excellence Chennai",
     description:
-      "40+ years of excellence in steel trading. JSW exclusive distributor awards, milestones and achievements by Sree Arumuga Steel Trading Chennai.",
+      "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 500+ customers across Tamil Nadu since 1984.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
 };

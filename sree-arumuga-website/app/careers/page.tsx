@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Careers",
-  description: "Join Sree Arumuga Steel Trading Private Limited and build your career in industrial supply.",
+  title: "Careers | Sree Arumuga Steel Trading Chennai | Steel Industry Jobs",
+  description:
+    "Join Sree Arumuga Steel Trading Pvt Ltd — JSW exclusive steel distributor in Chennai. Steel sales, warehouse and admin jobs available in Manali Chennai.",
+  keywords:
+    "steel company jobs chennai, steel trading jobs tamil nadu, jsw distributor jobs chennai, sales executive steel company, warehouse jobs manali chennai",
 };
 
 export default function CareersPage() {

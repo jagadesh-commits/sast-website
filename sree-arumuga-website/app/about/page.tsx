@@ -3,24 +3,26 @@ import { Reveal } from "@/components/reveal";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About Us | Sree Arumuga Steel Trading Pvt Ltd Chennai",
+  title: "About Us | Sree Arumuga Steel Trading Pvt Ltd | JSW Distributor Chennai Since 1984",
   description:
-    "Trusted steel trading company since 1984. JSW exclusive distributor in Chennai specializing in HR, CR, GP sheets and coils for infrastructure and fabrication.",
+    "Sree Arumuga Steel Trading Private Limited — JSW exclusive steel distributor in Chennai since 1984. Supplying HR, CR, GP, HRPO, GL, EG, PPGL sheets and coils across Tamil Nadu.",
+  keywords:
+    "jsw steel distributor chennai, jsw distributors tamil nadu, steel trading company chennai, sree arumuga steel, jsw steel dealership, steel supplier sathangadu manali chennai",
   alternates: { canonical: "https://sast-website.vercel.app/about" },
   openGraph: {
     type: "website",
     siteName: "Sree Arumuga Steel Trading",
     url: "https://sast-website.vercel.app/about",
-    title: "About Us | Sree Arumuga Steel Trading Pvt Ltd Chennai",
+    title: "About Us | Sree Arumuga Steel Trading Pvt Ltd | JSW Distributor Chennai Since 1984",
     description:
-      "Trusted steel trading company since 1984. JSW exclusive distributor in Chennai specializing in HR, CR, GP sheets and coils for infrastructure and fabrication.",
+      "Sree Arumuga Steel Trading Private Limited — JSW exclusive steel distributor in Chennai since 1984. Supplying HR, CR, GP, HRPO, GL, EG, PPGL sheets and coils across Tamil Nadu.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us | Sree Arumuga Steel Trading Pvt Ltd Chennai",
+    title: "About Us | Sree Arumuga Steel Trading Pvt Ltd | JSW Distributor Chennai Since 1984",
     description:
-      "Trusted steel trading company since 1984. JSW exclusive distributor in Chennai specializing in HR, CR, GP sheets and coils for infrastructure and fabrication.",
+      "Sree Arumuga Steel Trading Private Limited — JSW exclusive steel distributor in Chennai since 1984. Supplying HR, CR, GP, HRPO, GL, EG, PPGL sheets and coils across Tamil Nadu.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
 };
@@ -31,7 +33,7 @@ export default function AboutPage() {
       <section className="relative overflow-hidden px-6 py-20 text-white">
         <Image
           src="/warehouse_3.png"
-          alt="Industrial warehouse facility"
+          alt="Steel warehouse Chennai — HR CR GP coil sheets"
           fill
           priority
           sizes="100vw"

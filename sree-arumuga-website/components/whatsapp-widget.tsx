@@ -56,7 +56,7 @@ export function WhatsAppWidget() {
       >
         <img
           src="/whatsapp-icon.png"
-          alt="WhatsApp"
+          alt="WhatsApp steel enquiry +91 99401 19914"
           width={60}
           height={60}
           draggable={false}

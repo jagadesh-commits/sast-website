@@ -8,24 +8,26 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
+  title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
   description:
-    "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+    "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price. Call +91 98400 36010.",
+  keywords:
+    "jsw steel dealers chennai, hr coil chennai, cr coil chennai, gp coil chennai, hrpo sheet chennai, steel supplier chennai, jsw distributors tamil nadu, steel trading company manali chennai",
   alternates: { canonical: "https://sast-website.vercel.app/" },
   openGraph: {
     type: "website",
     siteName: "Sree Arumuga Steel Trading",
     url: "https://sast-website.vercel.app/",
-    title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
+    title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
     description:
-      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price. Call +91 98400 36010.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
+    title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
     description:
-      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price. Call +91 98400 36010.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
 };
@@ -38,7 +40,7 @@ export default function Home() {
       >
         <Image
           src="/website_phot_1.png"
-          alt="Industrial steel warehouse"
+          alt="Steel warehouse Chennai — HR CR GP coil sheets"
           fill
           priority
           sizes="100vw"

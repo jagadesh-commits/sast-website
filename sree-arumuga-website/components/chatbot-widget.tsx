@@ -473,7 +473,13 @@ export function ChatbotWidget() {
             <div className="flex items-center justify-between bg-[#1a3a8f] px-4 py-3 text-white">
               <div className="flex items-center gap-3">
                 <div className="grid h-10 w-10 place-items-center overflow-hidden rounded-full bg-white">
-                  <Image src="/Logo.png" alt="Sree Arumuga Steel" width={34} height={34} className="h-8 w-8 object-contain" />
+                  <Image
+                    src="/Logo.png"
+                    alt="Sree Arumuga Steel Trading Private Limited Logo"
+                    width={34}
+                    height={34}
+                    className="h-8 w-8 object-contain"
+                  />
                 </div>
                 <div>
                   <p className="text-sm font-bold leading-tight">Sree Arumuga Steel</p>
@@ -834,7 +840,7 @@ export function ChatbotWidget() {
         ) : (
           <img
             src="/Chat_bot_icon_image.png"
-            alt="Chatbot"
+            alt="Steel enquiry chatbot — Sree Arumuga Steel"
             width={60}
             height={60}
             draggable={false}
