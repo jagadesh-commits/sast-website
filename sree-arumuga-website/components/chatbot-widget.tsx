@@ -831,10 +831,29 @@ export function ChatbotWidget() {
           setOpen((value) => !value);
         }}
         aria-label={open ? "Close chatbot" : "Open chatbot"}
-        className="beat-glow-blue grid h-[60px] w-[60px] place-items-center rounded-full bg-transparent p-0 shadow-none"
+        className={
+          open
+            ? "grid place-items-center p-0 shadow-none"
+            : "beat-glow-blue grid h-[60px] w-[60px] place-items-center rounded-full bg-transparent p-0 shadow-none"
+        }
+        style={
+          open
+            ? {
+                background: "white",
+                color: "#1a3a8f",
+                border: "2px solid #1a3a8f",
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+                position: "fixed",
+                zIndex: 10000,
+              }
+            : undefined
+        }
       >
         {open ? (
-          <span className="text-4xl font-light leading-none text-[#1a3a8f]" aria-hidden="true">
+          <span className="text-3xl font-black leading-none" aria-hidden="true">
             ×
           </span>
         ) : (
