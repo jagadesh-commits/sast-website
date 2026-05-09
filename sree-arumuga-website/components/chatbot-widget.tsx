@@ -3,8 +3,12 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 const STORAGE_KEY = "sas-chatbot-session-v2";
+
+/** Visible pill + accessibility: structured quote flow, not WhatsApp chat. */
+const FAB_PRIMARY_LABEL = "Steel enquiry";
 /** Main site WhatsApp (Talk to Team, quick links inside chatbot info steps). */
 const WHATSAPP_NUMBER = "919940119914";
 /** Used ONLY when redirecting after successful chatbot enquiry submission. */
@@ -118,6 +122,7 @@ function createInitialMessages(): ChatMessage[] {
 
 export function ChatbotWidget() {
   const [open, setOpen] = useState(false);
+  const [tooltipVisible, setTooltipVisible] = useState(false);
   const [step, setStep] = useState<Step>("welcomeMenu");
   const [messages, setMessages] = useState<ChatMessage[]>(createInitialMessages);
   const [enquiry, setEnquiry] = useState<EnquiryState>(INITIAL_ENQUIRY);
@@ -135,6 +140,15 @@ export function ChatbotWidget() {
   const chatBodyRef = useRef<HTMLDivElement | null>(null);
   const typingTimerRef = useRef<number | null>(null);
   const delayedWelcomeRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setTooltipVisible(true), 3000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (open) setTooltipVisible(false);
+  }, [open]);
 
   useEffect(() => {
     try {
@@ -437,6 +451,7 @@ export function ChatbotWidget() {
     const ok = await submitToSheet(enquiry);
     if (ok) {
       openWhatsAppWithEnquiry(enquiry);
+      trackEvent("chatbot_enquiry_complete", { product: enquiry.product || "unknown" });
       addBotMessage(
         `✅ Thank you ${enquiry.name}!\nYour enquiry has been submitted.\nOur team will contact you within 2 hours.\n\nFor urgent enquiries:\n📞 +91 99401 19914`,
       );
@@ -460,8 +475,10 @@ export function ChatbotWidget() {
     void runWelcomeSequence();
   }, [open, messages.length]);
 
+  const showFabHint = tooltipVisible && !open;
+
   return (
-    <div className="fixed bottom-[90px] right-5 z-[94]">
+    <div className="fixed bottom-[90px] right-5 z-[94] flex flex-col items-end gap-2">
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -824,56 +841,83 @@ export function ChatbotWidget() {
         ) : null}
       </AnimatePresence>
 
-      <button
-        type="button"
-        onClick={() => {
-          markActivity();
-          setOpen((value) => !value);
-        }}
-        aria-label={open ? "Close chatbot" : "Open chatbot"}
-        className={
-          open
-            ? "grid place-items-center p-0 shadow-none"
-            : "beat-glow-blue grid h-[60px] w-[60px] place-items-center rounded-full bg-transparent p-0 shadow-none"
-        }
-        style={
-          open
-            ? {
-                background: "white",
-                color: "#1a3a8f",
-                border: "2px solid #1a3a8f",
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
-                position: "fixed",
-                zIndex: 10000,
-              }
-            : undefined
-        }
-      >
-        {open ? (
-          <span className="text-3xl font-black leading-none" aria-hidden="true">
-            ×
+      <div className="flex items-center gap-2">
+        <AnimatePresence>
+          {showFabHint ? (
+            <motion.div
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              className="steelbot-tooltip"
+              role="status"
+            >
+              <p className="leading-snug">👋 Need a steel quote? Chat with us!</p>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+        {!open ? (
+          <span
+            className="pointer-events-none max-w-[min(46vw,190px)] select-none flex-col rounded-full border border-[#1a3a8f]/20 bg-white px-2 py-1.5 text-right shadow-md sm:max-w-[min(42vw,200px)] sm:px-3"
+            aria-hidden="true"
+          >
+            <span className="text-[10px] font-bold leading-tight text-[#1a3a8f] sm:text-[11px]">{FAB_PRIMARY_LABEL}</span>
           </span>
-        ) : (
-          <img
-            src="/Chat_bot_icon_image.png"
-            alt="Steel enquiry chatbot — Sree Arumuga Steel"
-            width={60}
-            height={60}
-            draggable={false}
-            className="fab-glow-beat"
-            style={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "50%",
-              objectFit: "contain",
-              objectPosition: "center",
-            }}
-          />
-        )}
-      </button>
+        ) : null}
+        <button
+          type="button"
+          title="Quick steel quote (HR, CR, GP, coils). This assistant is not WhatsApp."
+          onClick={() => {
+            markActivity();
+            setOpen((value) => {
+              const next = !value;
+              return next;
+            });
+          }}
+          aria-label={open ? "Close quote assistant" : "Open steel quote assistant"}
+          className={
+            open
+              ? "grid place-items-center p-0 shadow-none"
+              : "beat-glow-blue grid h-[70px] w-[70px] shrink-0 place-items-center rounded-full bg-transparent p-0 shadow-none"
+          }
+          style={
+            open
+              ? {
+                  background: "#1a3a8f",
+                  color: "#ffffff",
+                  border: "2px solid rgba(255,255,255,0.9)",
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+                  position: "fixed",
+                  zIndex: 10000,
+                }
+              : undefined
+          }
+        >
+          {open ? (
+            <span className="text-3xl font-black leading-none" aria-hidden="true">
+              ×
+            </span>
+          ) : (
+            <img
+              src="/Chat_bot_icon_image.png"
+              alt=""
+              width={70}
+              height={70}
+              draggable={false}
+              className="fab-glow-beat"
+              style={{
+                width: "70px",
+                height: "70px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+          )}
+        </button>
+      </div>
     </div>
   );
 }

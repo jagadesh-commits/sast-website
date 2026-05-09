@@ -57,6 +57,30 @@ body {
   }
 }
 
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.steelbot-tooltip {
+  background: white;
+  color: #1a3a8f;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  animation: fadeInLeft 0.4s ease forwards;
+  margin-right: 10px;
+}
+
 .hero-grid {
   background-image: linear-gradient(rgba(26, 58, 143, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(26, 58, 143, 0.08) 1px, transparent 1px);
