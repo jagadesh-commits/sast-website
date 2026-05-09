@@ -851,18 +851,18 @@ export function ChatbotWidget() {
               className="steelbot-tooltip"
               role="status"
             >
-              <p className="leading-snug">👋 Need a steel quote? Chat with us!</p>
+              <span className="align-middle">👋 Need a steel quote? Chat with us!</span>{" "}
+              <button
+                type="button"
+                onClick={() => setTooltipVisible(false)}
+                aria-label="Dismiss tooltip"
+                className="align-middle text-[15px] font-semibold leading-none text-[#1a3a8f]/90 hover:text-[#1a3a8f]"
+              >
+                ×
+              </button>
             </motion.div>
           ) : null}
         </AnimatePresence>
-        {!open ? (
-          <span
-            className="pointer-events-none max-w-[min(46vw,190px)] select-none flex-col rounded-full border border-[#1a3a8f]/20 bg-white px-2 py-1.5 text-right shadow-md sm:max-w-[min(42vw,200px)] sm:px-3"
-            aria-hidden="true"
-          >
-            <span className="text-[10px] font-bold leading-tight text-[#1a3a8f] sm:text-[11px]">{FAB_PRIMARY_LABEL}</span>
-          </span>
-        ) : null}
         <button
           type="button"
           title="Quick steel quote (HR, CR, GP, coils). This assistant is not WhatsApp."
@@ -912,7 +912,8 @@ export function ChatbotWidget() {
                 height: "70px",
                 borderRadius: "50%",
                 objectFit: "cover",
-                objectPosition: "center",
+                objectPosition: "center top",
+                display: "block",
               }}
             />
           )}

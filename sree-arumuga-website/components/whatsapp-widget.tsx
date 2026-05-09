@@ -52,21 +52,22 @@ export function WhatsAppWidget() {
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-label="Open WhatsApp chat"
-        className="beat-glow-green grid h-[60px] w-[60px] place-items-center rounded-full bg-transparent p-0 shadow-none"
+        className="beat-glow-green grid h-[70px] w-[70px] place-items-center rounded-full bg-transparent p-0 shadow-none"
       >
         <img
           src="/whatsapp-icon.png"
           alt="WhatsApp steel enquiry +91 99401 19914"
-          width={60}
-          height={60}
+          width={70}
+          height={70}
           draggable={false}
           className="fab-glow-beat"
           style={{
-            width: "60px",
-            height: "60px",
+            width: "70px",
+            height: "70px",
             borderRadius: "50%",
-            objectFit: "contain",
-            objectPosition: "center",
+            objectFit: "cover",
+            objectPosition: "center top",
+            display: "block",
           }}
         />
       </button>
