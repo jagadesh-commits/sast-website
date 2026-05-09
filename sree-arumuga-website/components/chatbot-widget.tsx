@@ -1,7 +1,6 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
@@ -485,34 +484,78 @@ export function ChatbotWidget() {
             initial={{ opacity: 0, y: 14, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            className="mb-3 w-[min(92vw,360px)] overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl"
+            style={{
+              position: "fixed",
+              bottom: 100,
+              right: 24,
+              width: 380,
+              maxWidth: "min(380px, calc(100vw - 48px))",
+              height: 560,
+              maxHeight: "calc(100vh - 140px)",
+              borderRadius: 16,
+              overflow: "hidden",
+              zIndex: 9998,
+              display: "flex",
+              flexDirection: "column",
+              background: "#ffffff",
+              border: "1px solid rgb(228 228 231)",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+            }}
           >
-            <div className="flex items-center justify-between bg-[#1a3a8f] px-4 py-3 text-white">
-              <div className="flex items-center gap-3">
-                <div className="grid h-10 w-10 place-items-center overflow-hidden rounded-full bg-white">
-                  <Image
-                    src="/Logo.png"
-                    alt="Sree Arumuga Steel Trading Private Limited Logo"
-                    width={34}
-                    height={34}
-                    className="h-8 w-8 object-contain"
-                  />
-                </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                background: "#1a3a8f",
+                padding: "12px 16px",
+                borderRadius: "16px 16px 0 0",
+                flexShrink: 0,
+              }}
+            >
+              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                <img
+                  src="/Chat_bot_icon_image.png"
+                  alt=""
+                  style={{
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
                 <div>
-                  <p className="text-sm font-bold leading-tight">Sree Arumuga Steel</p>
-                  <p className="text-xs text-white/90">Typically replies instantly</p>
+                  <p style={{ color: "white", fontWeight: "600", fontSize: "14px", margin: 0 }}>
+                    Steel Assistant
+                  </p>
+                  <p style={{ color: "#90EE90", fontSize: "11px", margin: 0 }}>● Online</p>
                 </div>
               </div>
               <button
                 type="button"
-                onClick={restartConversation}
-                className="rounded-md border border-white/35 px-2 py-1 text-[11px] font-medium hover:bg-white/10"
+                onClick={() => setOpen(false)}
+                aria-label="Close chat"
+                style={{
+                  background: "white",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: 32,
+                  height: 32,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  color: "#1a3a8f",
+                  fontWeight: "bold",
+                  fontSize: 16,
+                  flexShrink: 0,
+                }}
               >
-                Restart
+                ✕
               </button>
             </div>
 
-            <div ref={chatBodyRef} className="h-[360px] max-h-[56vh] overflow-y-auto bg-white p-3">
+            <div ref={chatBodyRef} className="min-h-0 flex-1 overflow-y-auto bg-white p-3">
               <AnimatePresence initial={false}>
                 {messages.map((message) => (
                   <motion.div
@@ -550,7 +593,14 @@ export function ChatbotWidget() {
               </AnimatePresence>
             </div>
 
-            <div className="space-y-2 border-t border-zinc-200 bg-zinc-50 p-3">
+            <div className="shrink-0 space-y-2 border-t border-zinc-200 bg-zinc-50 p-3">
+              <button
+                type="button"
+                onClick={restartConversation}
+                className="w-full text-center text-[11px] font-medium text-[#1a3a8f]/80 underline hover:text-[#1a3a8f]"
+              >
+                Restart conversation
+              </button>
               {step === "welcomeMenu" ? (
                 <div className="grid gap-2">
                   <button
@@ -863,43 +913,17 @@ export function ChatbotWidget() {
             </motion.div>
           ) : null}
         </AnimatePresence>
-        <button
-          type="button"
-          title="Quick steel quote (HR, CR, GP, coils). This assistant is not WhatsApp."
-          onClick={() => {
-            markActivity();
-            setOpen((value) => {
-              const next = !value;
-              return next;
-            });
-          }}
-          aria-label={open ? "Close quote assistant" : "Open steel quote assistant"}
-          className={
-            open
-              ? "grid place-items-center p-0 shadow-none"
-              : "beat-glow-blue grid h-[70px] w-[70px] shrink-0 place-items-center rounded-full bg-transparent p-0 shadow-none"
-          }
-          style={
-            open
-              ? {
-                  background: "#1a3a8f",
-                  color: "#ffffff",
-                  border: "2px solid rgba(255,255,255,0.9)",
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
-                  position: "fixed",
-                  zIndex: 10000,
-                }
-              : undefined
-          }
-        >
-          {open ? (
-            <span className="text-3xl font-black leading-none" aria-hidden="true">
-              ×
-            </span>
-          ) : (
+        {!open ? (
+          <button
+            type="button"
+            title="Quick steel quote (HR, CR, GP, coils). This assistant is not WhatsApp."
+            onClick={() => {
+              markActivity();
+              setOpen(true);
+            }}
+            aria-label="Open steel quote assistant"
+            className="beat-glow-blue grid h-[70px] w-[70px] shrink-0 place-items-center rounded-full bg-transparent p-0 shadow-none"
+          >
             <img
               src="/Chat_bot_icon_image.png"
               alt=""
@@ -916,8 +940,8 @@ export function ChatbotWidget() {
                 display: "block",
               }}
             />
-          )}
-        </button>
+          </button>
+        ) : null}
       </div>
     </div>
   );
