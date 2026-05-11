@@ -67,6 +67,7 @@ export function TestimonialsCarousel() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
+  const isMobile = cardsPerView === 1;
   const slideCount = Math.max(1, Math.ceil(testimonials.length / cardsPerView));
 
   const measure = useCallback(() => {
@@ -74,7 +75,8 @@ export function TestimonialsCarousel() {
     if (!el) return;
     const w = el.getBoundingClientRect().width;
     setViewportW(w);
-    const perView = window.matchMedia("(min-width: 768px)").matches ? 2 : 1;
+    // Mobile is max-width: 768px → 1 card. Desktop starts at 769px → 2 cards.
+    const perView = window.matchMedia("(min-width: 769px)").matches ? 2 : 1;
     setCardsPerView(perView);
   }, []);
 
@@ -91,7 +93,7 @@ export function TestimonialsCarousel() {
   }, [measure]);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 769px)");
     const onChange = () => {
       measure();
       setSlideIndex(0);
@@ -167,7 +169,8 @@ export function TestimonialsCarousel() {
                       minWidth: cardWidth > 0 ? cardWidth : undefined,
                       overflow: "hidden",
                       wordWrap: "break-word",
-                      paddingRight: "16px",
+                      boxSizing: "border-box",
+                      ...(isMobile ? { padding: "24px 20px" } : null),
                     }}
                   >
                     <p className="text-4xl text-[var(--primary-blue)]">❝</p>
