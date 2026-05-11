@@ -568,8 +568,8 @@ export function ChatbotWidget() {
               right: 24,
               width: 380,
               maxWidth: "min(380px, calc(100vw - 48px))",
-              height: 560,
-              maxHeight: "calc(100vh - 140px)",
+              height: "600px",
+              maxHeight: "calc(100vh - 120px)",
               borderRadius: 16,
               overflow: "hidden",
               zIndex: 9998,
@@ -633,45 +633,50 @@ export function ChatbotWidget() {
               </button>
             </div>
 
-            <div ref={chatBodyRef} className="min-h-0 flex-1 overflow-y-auto bg-white p-3">
-              <AnimatePresence initial={false}>
-                {messages.map((message) => (
-                  <motion.div
-                    key={message.id}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 6 }}
-                    transition={{ duration: 0.2 }}
-                    className={`mb-2 flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div
-                      className={`max-w-[88%] whitespace-pre-line rounded-2xl px-3 py-2 text-sm ${
-                        message.sender === "user"
-                          ? "rounded-br-sm bg-[#1a3a8f] text-white"
-                          : "rounded-bl-sm border border-zinc-200 bg-white text-zinc-800"
-                      }`}
+            <div
+              ref={chatBodyRef}
+              className="min-h-0 flex flex-col bg-white"
+              style={{ overflowY: "auto", flex: 1 }}
+            >
+              <div className="p-3">
+                <AnimatePresence initial={false}>
+                  {messages.map((message) => (
+                    <motion.div
+                      key={message.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 6 }}
+                      transition={{ duration: 0.2 }}
+                      className={`mb-2 flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                     >
-                      {message.text}
-                    </div>
-                  </motion.div>
-                ))}
-                {botTyping ? (
-                  <motion.div
-                    key="typing"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 6 }}
-                    className="mb-2 flex justify-start"
-                  >
-                    <div className="rounded-2xl rounded-bl-sm border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-500">
-                      Typing...
-                    </div>
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
-            </div>
+                      <div
+                        className={`max-w-[88%] whitespace-pre-line rounded-2xl px-3 py-2 text-sm ${
+                          message.sender === "user"
+                            ? "rounded-br-sm bg-[#1a3a8f] text-white"
+                            : "rounded-bl-sm border border-zinc-200 bg-white text-zinc-800"
+                        }`}
+                      >
+                        {message.text}
+                      </div>
+                    </motion.div>
+                  ))}
+                  {botTyping ? (
+                    <motion.div
+                      key="typing"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 6 }}
+                      className="mb-2 flex justify-start"
+                    >
+                      <div className="rounded-2xl rounded-bl-sm border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-500">
+                        Typing...
+                      </div>
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
+              </div>
 
-            <div className="shrink-0 space-y-2 border-t border-zinc-200 bg-zinc-50 p-3">
+              <div className="shrink-0 space-y-2 border-t border-zinc-200 bg-zinc-50 p-3">
               <button
                 type="button"
                 onClick={restartConversation}
@@ -1016,6 +1021,7 @@ export function ChatbotWidget() {
                   Talk to Team
                 </a>
               ) : null}
+              </div>
             </div>
           </motion.div>
         ) : null}
