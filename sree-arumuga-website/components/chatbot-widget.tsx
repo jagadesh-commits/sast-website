@@ -44,7 +44,7 @@ type Step =
   | "submitting"
   | "completed";
 
-/** Options 1–9 in two columns; "Others" is separate full-width below. */
+/** First 8 products (2 columns); Colour Coated / Others / Talk to Team are full-width rows below. */
 const PRODUCT_GRID: { id: ProductType; label: string }[] = [
   { id: "HR", label: "HR (Hot Rolled)" },
   { id: "HRPO", label: "HRPO (Hot Rolled Pickled & Oiled)" },
@@ -54,7 +54,6 @@ const PRODUCT_GRID: { id: ProductType; label: string }[] = [
   { id: "EG", label: "EG (Electro Galvanized)" },
   { id: "PPGL", label: "PPGL (Pre-Painted Galvalume)" },
   { id: "MS Plates", label: "MS Plates" },
-  { id: "Colour Coated", label: "Colour Coated" },
 ];
 
 type ChatMessage = {
@@ -733,23 +732,36 @@ export function ChatbotWidget() {
               ) : null}
 
               {step === "product" ? (
-                <div className="space-y-2">
-                  <div className="grid grid-cols-2 gap-2">
-                    {PRODUCT_GRID.map((item) => (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => onSelectProduct(item)}
-                        className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                      >
-                        {item.label}
-                      </button>
-                    ))}
-                  </div>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "8px",
+                  }}
+                >
+                  {PRODUCT_GRID.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => onSelectProduct(item)}
+                      className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => onSelectProduct({ id: "Colour Coated", label: "Colour Coated" })}
+                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                    style={{ gridColumn: "span 2" }}
+                  >
+                    Colour Coated
+                  </button>
                   <button
                     type="button"
                     onClick={() => onSelectProduct({ id: "Others", label: "Others" })}
-                    className="w-full rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                    style={{ gridColumn: "span 2" }}
                   >
                     Others
                   </button>
@@ -757,7 +769,8 @@ export function ChatbotWidget() {
                     href={talkToTeamUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="block w-full rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-semibold text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                    className="block rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-semibold text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                    style={{ gridColumn: "span 2" }}
                   >
                     Talk to Team
                   </a>
