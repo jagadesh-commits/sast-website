@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 
 const PHONE = "919940119914";
-const TEMPLATE_MESSAGE = "Hi! I'm interested in your steel products. Can you help me?";
+const TEMPLATE_MESSAGE =
+  "Hi! I'm interested in purchasing steel products from Sree Arumuga Steel Trading. Please share your current price list for HR/CR/GP coils. Thank you.";
 
 export function WhatsAppWidget() {
   const [open, setOpen] = useState(false);
