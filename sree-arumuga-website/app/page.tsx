@@ -53,7 +53,10 @@ export default function Home() {
               <p data-hero-anim className="industrial-heading text-sm font-semibold tracking-[0.25em] text-white/90">
                 Trusted Since 1984
               </p>
-              <h1 data-hero-anim className="industrial-heading mt-4 text-6xl font-black leading-[0.9] text-white md:text-8xl">
+              <h1
+                data-hero-anim
+                className="industrial-heading mt-4 text-[clamp(2.5rem,10vw,5rem)] font-black leading-[0.9] text-white md:text-8xl"
+              >
                 STEEL THAT BUILDS INDIA
               </h1>
               <div data-hero-anim className="mt-5 h-1.5 w-44 rounded-full bg-[var(--primary-blue)]" />

@@ -12,7 +12,7 @@ export function WhatsAppWidget() {
   const waUrl = useMemo(() => `https://wa.me/${PHONE}?text=${encodeURIComponent(TEMPLATE_MESSAGE)}`, []);
 
   return (
-    <div className="fixed bottom-5 right-5 z-[95]">
+    <div className="whatsapp-fab-container fixed bottom-5 right-5 z-[95]">
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -52,7 +52,7 @@ export function WhatsAppWidget() {
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-label="Open WhatsApp chat"
-        className="beat-glow-green grid h-[70px] w-[70px] place-items-center rounded-full bg-transparent p-0 shadow-none"
+        className="whatsapp-button beat-glow-green grid h-[70px] w-[70px] place-items-center rounded-full bg-transparent p-0 shadow-none"
       >
         <img
           src="/whatsapp-icon.png"

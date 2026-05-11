@@ -81,6 +81,49 @@ body {
   margin-right: 10px;
 }
 
+@media (max-width: 768px) {
+  .steelbot-tooltip {
+    position: fixed;
+    bottom: 180px;
+    right: 80px;
+  }
+
+  /* Reduce floating button sizes + reposition on mobile */
+  .chatbot-trigger,
+  .whatsapp-button {
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .chatbot-fab-container {
+    bottom: 90px !important;
+    right: 16px !important;
+  }
+
+  .whatsapp-fab-container {
+    bottom: 24px !important;
+    right: 16px !important;
+  }
+
+  /* Prevent content hiding behind floating buttons */
+  main,
+  .page-content {
+    padding-bottom: 120px;
+  }
+
+  footer {
+    margin-bottom: 120px;
+  }
+
+  /* Fix testimonial card overflow */
+  .testimonial-card {
+    width: 100% !important;
+    overflow: hidden !important;
+    word-wrap: break-word !important;
+    padding-right: 16px !important;
+  }
+}
+
 .hero-grid {
   background-image: linear-gradient(rgba(26, 58, 143, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(26, 58, 143, 0.08) 1px, transparent 1px);

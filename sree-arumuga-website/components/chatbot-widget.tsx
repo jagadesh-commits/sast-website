@@ -555,7 +555,7 @@ export function ChatbotWidget() {
   const showFabHint = tooltipVisible && !open;
 
   return (
-    <div className="fixed bottom-[90px] right-5 z-[94] flex flex-col items-end gap-2">
+    <div className="chatbot-fab-container fixed bottom-[90px] right-5 z-[94] flex flex-col items-end gap-2">
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -1058,7 +1058,7 @@ export function ChatbotWidget() {
               setOpen(true);
             }}
             aria-label="Open steel quote assistant"
-            className="beat-glow-blue grid h-[70px] w-[70px] shrink-0 place-items-center rounded-full bg-transparent p-0 shadow-none"
+            className="chatbot-trigger beat-glow-blue grid h-[70px] w-[70px] shrink-0 place-items-center rounded-full bg-transparent p-0 shadow-none"
           >
             <img
               src="/Chat_bot_icon_image.png"

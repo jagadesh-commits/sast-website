@@ -161,10 +161,13 @@ export function TestimonialsCarousel() {
                 {testimonials.map((item) => (
                   <article
                     key={item.name}
-                    className="shrink-0 rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm"
+                    className="testimonial-card shrink-0 rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm"
                     style={{
                       width: cardWidth > 0 ? cardWidth : undefined,
                       minWidth: cardWidth > 0 ? cardWidth : undefined,
+                      overflow: "hidden",
+                      wordWrap: "break-word",
+                      paddingRight: "16px",
                     }}
                   >
                     <p className="text-4xl text-[var(--primary-blue)]">❝</p>
