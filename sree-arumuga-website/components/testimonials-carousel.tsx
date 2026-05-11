@@ -119,7 +119,16 @@ export function TestimonialsCarousel() {
       ? (viewportW - GAP_PX * (cardsPerView - 1)) / cardsPerView
       : 0;
 
-  const translateX = viewportW > 0 ? -slideIndex * viewportW : 0;
+  // When showing 1 card per view, the "start-to-start" distance includes the flex gap,
+  // otherwise we page by viewport width (2 cards + 1 gap == viewport width).
+  const pageStep =
+    viewportW > 0
+      ? cardsPerView === 1
+        ? (cardWidth > 0 ? cardWidth : viewportW) + GAP_PX
+        : viewportW
+      : 0;
+
+  const translateX = pageStep > 0 ? -slideIndex * pageStep : 0;
 
   const go = (dir: -1 | 1) => {
     setSlideIndex((prev) => {
