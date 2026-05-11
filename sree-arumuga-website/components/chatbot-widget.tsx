@@ -13,7 +13,17 @@ const WHATSAPP_NUMBER = "919940119914";
 /** Used ONLY when redirecting after successful chatbot enquiry submission. */
 const WHATSAPP_CHATBOT_SUBMIT_NUMBER = "919889883039";
 
-type ProductType = "HRPO" | "HR" | "CR" | "GP" | "Colour Coated";
+type ProductType =
+  | "HR"
+  | "HRPO"
+  | "CR"
+  | "GP"
+  | "GL"
+  | "EG"
+  | "PPGL"
+  | "MS Plates"
+  | "Colour Coated"
+  | "Others";
 type SheetType = "Sheet" | "Coil";
 type QuantityUnit = "Tons" | "Pieces";
 type Step =
@@ -21,6 +31,7 @@ type Step =
   | "infoProducts"
   | "infoContact"
   | "product"
+  | "othersDescribe"
   | "sheetType"
   | "brand"
   | "thickness"
@@ -32,6 +43,19 @@ type Step =
   | "confirm"
   | "submitting"
   | "completed";
+
+/** Options 1–9 in two columns; "Others" is separate full-width below. */
+const PRODUCT_GRID: { id: ProductType; label: string }[] = [
+  { id: "HR", label: "HR (Hot Rolled)" },
+  { id: "HRPO", label: "HRPO (Hot Rolled Pickled & Oiled)" },
+  { id: "CR", label: "CR (Cold Rolled)" },
+  { id: "GP", label: "GP (Galvanized Plain)" },
+  { id: "GL", label: "GL (Galvalume)" },
+  { id: "EG", label: "EG (Electro Galvanized)" },
+  { id: "PPGL", label: "PPGL (Pre-Painted Galvalume)" },
+  { id: "MS Plates", label: "MS Plates" },
+  { id: "Colour Coated", label: "Colour Coated" },
+];
 
 type ChatMessage = {
   id: string;
@@ -51,6 +75,8 @@ type EnquiryState = {
   quantityUnit: QuantityUnit;
   name: string;
   phone: string;
+  /** Filled when product is "Others" */
+  otherDescription: string;
 };
 
 type PersistedState = {
@@ -73,6 +99,7 @@ const INITIAL_ENQUIRY: EnquiryState = {
   quantityUnit: "Tons",
   name: "",
   phone: "",
+  otherDescription: "",
 };
 
 function makeId(prefix: string): string {
@@ -92,6 +119,13 @@ function getSpecPlaceholder(product: ProductType | ""): string {
 }
 
 function buildSummary(enquiry: EnquiryState): string {
+  if (enquiry.product === "Others") {
+    return `Please confirm your enquiry:
+📦 Product: Others
+📝 Your need: ${enquiry.otherDescription}
+👤 Name: ${enquiry.name}
+📞 Phone: ${enquiry.phone}`;
+  }
   return `Please confirm your enquiry:
 📦 Product: ${enquiry.product} ${enquiry.sheetType}
 🏷️ Brand: ${enquiry.brand}
@@ -104,6 +138,13 @@ function buildSummary(enquiry: EnquiryState): string {
 }
 
 function buildWhatsAppMessage(enquiry: EnquiryState): string {
+  if (enquiry.product === "Others") {
+    return `New Steel Enquiry from Website:
+Product: Others
+Description: ${enquiry.otherDescription}
+Name: ${enquiry.name}
+Phone: ${enquiry.phone}`;
+  }
   return `New Steel Enquiry from Website:
 Product: ${enquiry.product} ${enquiry.sheetType}
 Brand: ${enquiry.brand}
@@ -133,6 +174,7 @@ export function ChatbotWidget() {
   const [quantityInput, setQuantityInput] = useState("");
   const [nameInput, setNameInput] = useState("");
   const [phoneInput, setPhoneInput] = useState("");
+  const [othersDescriptionInput, setOthersDescriptionInput] = useState("");
   const [botTyping, setBotTyping] = useState(false);
   const [inactivityPrompted, setInactivityPrompted] = useState(false);
   const [lastActivityTs, setLastActivityTs] = useState<number>(Date.now());
@@ -247,6 +289,7 @@ export function ChatbotWidget() {
     setQuantityInput("");
     setNameInput("");
     setPhoneInput("");
+    setOthersDescriptionInput("");
     setMessages(createInitialMessages());
     setBotTyping(false);
     markActivity();
@@ -263,23 +306,24 @@ export function ChatbotWidget() {
 
   const submitToSheet = async (current: EnquiryState): Promise<boolean> => {
     const detailMessage = buildWhatsAppMessage(current);
+    const isOthers = current.product === "Others";
     const payload = {
       timestamp: new Date().toISOString(),
       name: current.name,
       phone: current.phone,
       productType: current.product,
-      sheetOrCoil: current.sheetType,
-      brand: current.brand,
-      thickness: current.thickness,
-      width: current.width,
-      length: current.length,
-      gradeGsmAz: current.spec,
-      quantity: `${current.quantityValue} ${current.quantityUnit}`,
+      sheetOrCoil: isOthers ? "—" : current.sheetType,
+      brand: isOthers ? "—" : current.brand,
+      thickness: isOthers ? "—" : current.thickness,
+      width: isOthers ? "—" : current.width,
+      length: isOthers ? "—" : current.length,
+      gradeGsmAz: isOthers ? current.otherDescription : current.spec,
+      quantity: isOthers ? "—" : `${current.quantityValue} ${current.quantityUnit}`,
       source: "Chatbot",
       // Backward compatibility for existing sheet handler
       email: "",
       message: detailMessage,
-      productInterest: `${current.product} ${current.sheetType}`,
+      productInterest: isOthers ? "Others (custom)" : `${current.product} ${current.sheetType}`,
     };
 
     try {
@@ -312,12 +356,47 @@ export function ChatbotWidget() {
     );
   };
 
-  const onSelectProduct = (value: ProductType) => {
+  const onSelectProduct = (item: { id: ProductType; label: string }) => {
     markActivity();
-    setEnquiry((prev) => ({ ...prev, product: value, spec: "" }));
-    addUserMessage(value);
+    if (item.id === "Others") {
+      setEnquiry((prev) => ({
+        ...prev,
+        product: "Others",
+        spec: "",
+        sheetType: "",
+        brand: "",
+        thickness: "",
+        width: "",
+        length: "",
+        quantityValue: "",
+        name: "",
+        phone: "",
+        otherDescription: "",
+      }));
+      addUserMessage(item.label);
+      void addBotMessageWithTyping(
+        "Please describe what steel product you are looking for and our team will get back to you with the right solution.",
+        400,
+      );
+      setStep("othersDescribe");
+      return;
+    }
+    setEnquiry((prev) => ({ ...prev, product: item.id, spec: "", otherDescription: "" }));
+    addUserMessage(item.label);
     addBotMessage("Please select the type:");
     setStep("sheetType");
+  };
+
+  const onSubmitOthersDescription = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const value = othersDescriptionInput.trim();
+    if (!value) return;
+    markActivity();
+    setEnquiry((prev) => ({ ...prev, otherDescription: value }));
+    addUserMessage(value);
+    addBotMessage("Your Name:");
+    setOthersDescriptionInput("");
+    setStep("name");
   };
 
   const onSelectWelcomeAction = (action: "enquiry" | "products" | "contact") => {
@@ -654,18 +733,54 @@ export function ChatbotWidget() {
               ) : null}
 
               {step === "product" ? (
-                <div className="grid grid-cols-2 gap-2">
-                  {(["HRPO", "HR", "CR", "GP", "Colour Coated"] as ProductType[]).map((item) => (
-                    <button
-                      key={item}
-                      type="button"
-                      onClick={() => onSelectProduct(item)}
-                      className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                    >
-                      {item}
-                    </button>
-                  ))}
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
+                    {PRODUCT_GRID.map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => onSelectProduct(item)}
+                        className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => onSelectProduct({ id: "Others", label: "Others" })}
+                    className="w-full rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                  >
+                    Others
+                  </button>
+                  <a
+                    href={talkToTeamUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block w-full rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-semibold text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                  >
+                    Talk to Team
+                  </a>
                 </div>
+              ) : null}
+
+              {step === "othersDescribe" ? (
+                <form onSubmit={onSubmitOthersDescription} className="space-y-2">
+                  <textarea
+                    required
+                    rows={3}
+                    value={othersDescriptionInput}
+                    onChange={(e) => {
+                      setOthersDescriptionInput(e.target.value);
+                      markActivity();
+                    }}
+                    placeholder="Describe the steel product you need…"
+                    className="w-full resize-none rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
+                  />
+                  <button type="submit" className="w-full rounded-lg bg-[#1a3a8f] px-3 py-2 text-sm font-semibold text-white">
+                    Send
+                  </button>
+                </form>
               ) : null}
 
               {step === "sheetType" ? (
@@ -878,14 +993,16 @@ export function ChatbotWidget() {
                 </div>
               ) : null}
 
-              <a
-                href={talkToTeamUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="block rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-              >
-                Talk to Team
-              </a>
+              {step !== "product" ? (
+                <a
+                  href={talkToTeamUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                >
+                  Talk to Team
+                </a>
+              ) : null}
             </div>
           </motion.div>
         ) : null}
