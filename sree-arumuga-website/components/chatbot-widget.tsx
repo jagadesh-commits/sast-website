@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { useChatbotOpen } from "@/components/chatbot-open-context";
 import { trackEvent } from "@/lib/analytics";
 
 const STORAGE_KEY = "sas-chatbot-session-v2";
@@ -160,7 +161,11 @@ function createInitialMessages(): ChatMessage[] {
 }
 
 export function ChatbotWidget() {
+  const { setChatbotOpen } = useChatbotOpen();
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    setChatbotOpen(open);
+  }, [open, setChatbotOpen]);
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [step, setStep] = useState<Step>("welcomeMenu");
   const [messages, setMessages] = useState<ChatMessage[]>(createInitialMessages);

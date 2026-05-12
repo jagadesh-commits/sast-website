@@ -88,11 +88,15 @@ body {
     right: 80px;
   }
 
-  /* Reduce floating button sizes + reposition on mobile */
-  .chatbot-trigger,
-  .whatsapp-button {
+  /* Reduce chatbot trigger on mobile; WhatsApp stays 64px */
+  .chatbot-trigger {
     width: 56px !important;
     height: 56px !important;
+  }
+
+  .whatsapp-button {
+    width: 64px !important;
+    height: 64px !important;
   }
 
   .chatbot-fab-container {
@@ -102,7 +106,7 @@ body {
 
   .whatsapp-fab-container {
     bottom: 24px !important;
-    right: 16px !important;
+    right: 24px !important;
   }
 
   /* Prevent content hiding behind floating buttons */

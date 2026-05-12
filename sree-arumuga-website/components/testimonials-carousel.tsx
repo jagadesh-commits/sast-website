@@ -78,6 +78,21 @@ export function TestimonialsCarousel() {
     // Mobile is max-width: 768px → 1 card. Desktop starts at 769px → 2 cards.
     const perView = window.matchMedia("(min-width: 769px)").matches ? 2 : 1;
     setCardsPerView(perView);
+    // #region agent log
+    fetch("http://127.0.0.1:7734/ingest/c439cf8e-d643-4685-858a-3d34dff60eb3", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "a439d7" },
+      body: JSON.stringify({
+        sessionId: "a439d7",
+        runId: "ui-audit-pre",
+        hypothesisId: "H2",
+        location: "testimonials-carousel.tsx:measure",
+        message: "carousel_measure",
+        data: { viewportElW: w, cardsPerView: perView, min769: window.matchMedia("(min-width: 769px)").matches },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
   }, []);
 
   useLayoutEffect(() => {

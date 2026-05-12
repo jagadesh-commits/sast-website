@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { BackToTopProgress } from "@/components/back-to-top-progress";
+import { ChatbotOpenProvider } from "@/components/chatbot-open-context";
 import { ChatbotWidget } from "@/components/chatbot-widget";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { ExitIntentPopup } from "@/components/exit-intent-popup";
@@ -48,6 +49,34 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       window.removeEventListener("click", onClick);
     };
   }, []);
+
+  // #region agent log
+  useEffect(() => {
+    const logProbe = (reason: string) => {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const min769 = window.matchMedia("(min-width: 769px)").matches;
+      const max768 = window.matchMedia("(max-width: 768px)").matches;
+      fetch("http://127.0.0.1:7734/ingest/c439cf8e-d643-4685-858a-3d34dff60eb3", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "a439d7" },
+        body: JSON.stringify({
+          sessionId: "a439d7",
+          runId: "ui-audit-pre",
+          hypothesisId: "H1-H5",
+          location: "site-chrome.tsx:uiProbe",
+          message: "viewport_route_breakpoints",
+          data: { reason, pathname, vw, vh, min769, max768 },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+    };
+    logProbe("pathname");
+    const onResize = () => logProbe("resize");
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [pathname]);
+  // #endregion
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
@@ -302,8 +331,10 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <QuoteModal show={showModal} onClose={() => setShowModal(false)} />
       <ExitIntentPopup />
       <BackToTopProgress />
-      <ChatbotWidget />
-      <WhatsAppWidget />
+      <ChatbotOpenProvider>
+        <ChatbotWidget />
+        <WhatsAppWidget />
+      </ChatbotOpenProvider>
     </div>
   );
 }
