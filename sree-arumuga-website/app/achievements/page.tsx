@@ -6,7 +6,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd | 40 Years Excellence Chennai",
   description:
-    "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 500+ customers across Tamil Nadu since 1984.",
+    "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 3000+ customers across Tamil Nadu since 1984.",
   keywords:
     "jsw steel dealer award, steel trading company achievements, sree arumuga steel trading, jsw distributor tamil nadu, steel supplier chennai 1984",
   alternates: { canonical: "https://sast-website.vercel.app/achievements" },
@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     url: "https://sast-website.vercel.app/achievements",
     title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd | 40 Years Excellence Chennai",
     description:
-      "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 500+ customers across Tamil Nadu since 1984.",
+      "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 3000+ customers across Tamil Nadu since 1984.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd | 40 Years Excellence Chennai",
     description:
-      "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 500+ customers across Tamil Nadu since 1984.",
+      "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 3000+ customers across Tamil Nadu since 1984.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
 };
@@ -54,8 +54,8 @@ export default function AchievementsPage() {
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-6 md:grid-cols-3">
           <CountUp end={40} label="Years in Business" />
-          <CountUp end={500} label="Happy Customers" />
-          <CountUp end={50000} label="Tons Supplied" />
+          <CountUp end={3000} label="Happy Customers" />
+          <CountUp end={500000} label="Tons Supplied" />
         </div>
         <Reveal className="mt-10 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
           <h2 className="text-3xl font-black text-[var(--primary-blue)]">Milestone Timeline</h2>
@@ -67,7 +67,7 @@ export default function AchievementsPage() {
               "2015: Crossed 10,000 tons annual supply milestone — serving industries across Tamil Nadu.",
               "2020: Recognized as Top Performing JSW Distributor in Tamil Nadu region.",
               "2023: Converted to Private Limited company — Sree Arumuga Steel Trading Private Limited incorporated.",
-              "2024: Launched digital platform and expanded to serve 500+ customers across Tamil Nadu.",
+              "2024: Launched digital platform and expanded to serve 3000+ customers across Tamil Nadu.",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
                 <span className="text-xl text-[var(--gold)]">🏆</span>
