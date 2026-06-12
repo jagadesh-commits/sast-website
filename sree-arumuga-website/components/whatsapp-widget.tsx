@@ -132,29 +132,22 @@ export function WhatsAppWidget() {
         ) : null}
       </AnimatePresence>
 
-      <div className="whatsapp-fab-container fixed bottom-6 right-6 z-[95]">
+      <div className="fab-stack-whatsapp">
         <button
           type="button"
           onClick={() => setWhatsappOpen((v) => !v)}
           aria-expanded={whatsappOpen}
           aria-label={whatsappOpen ? "Close WhatsApp preview" : "Open WhatsApp preview"}
-          className="whatsapp-button beat-glow-green grid h-16 w-16 place-items-center rounded-full bg-transparent p-0 shadow-none"
+          className="whatsapp-button beat-glow-green fab-stack-item grid place-items-center rounded-full bg-transparent p-0 shadow-none"
         >
           <img
             src="/whatsapp-icon.png"
             alt="WhatsApp steel enquiry +91 99401 19914"
-            width={64}
-            height={64}
+            width={56}
+            height={56}
             draggable={false}
-            className="fab-glow-beat"
-            style={{
-              width: "64px",
-              height: "64px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              objectPosition: "center top",
-              display: "block",
-            }}
+            className="fab-glow-beat h-full w-full rounded-full object-cover object-[center_top]"
+            style={{ display: "block" }}
           />
         </button>
       </div>

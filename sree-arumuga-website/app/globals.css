@@ -10,6 +10,47 @@
   --black: #0d0d0d;
   --gold: #d4af37;
   --silver: #b9c3d3;
+  --fab-size: 56px;
+  --fab-gap: 12px;
+  --fab-inset: 24px;
+}
+
+.fab-stack-item {
+  width: var(--fab-size);
+  height: var(--fab-size);
+}
+
+.fab-stack-whatsapp {
+  position: fixed;
+  bottom: var(--fab-inset);
+  right: var(--fab-inset);
+  z-index: 95;
+}
+
+.fab-stack-back-to-top {
+  position: fixed;
+  bottom: calc(var(--fab-inset) + 2 * (var(--fab-size) + var(--fab-gap)));
+  right: var(--fab-inset);
+  z-index: 96;
+}
+
+.chatbot-fab-anchor {
+  position: fixed;
+  bottom: calc(var(--fab-inset) + var(--fab-size) + var(--fab-gap));
+  right: var(--fab-inset);
+  z-index: 94;
+  width: var(--fab-size);
+  height: var(--fab-size);
+}
+
+.steelbot-tooltip-shell {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: max-content;
+  pointer-events: auto;
 }
 
 :root {
@@ -69,6 +110,7 @@ body {
 }
 
 .steelbot-tooltip {
+  position: relative;
   background: white;
   color: #1a3a8f;
   font-size: 13px;
@@ -77,46 +119,35 @@ body {
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
-  animation: fadeInLeft 0.4s ease forwards;
-  margin-right: 10px;
+  min-width: max-content;
+  width: max-content;
+}
+
+.steelbot-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -7px;
+  transform: translateY(-50%);
+  border-width: 7px 0 7px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent white;
 }
 
 @media (max-width: 768px) {
-  .steelbot-tooltip {
-    position: fixed;
-    bottom: 180px;
-    right: 80px;
-  }
-
-  /* Reduce chatbot trigger on mobile; WhatsApp stays 64px */
-  .chatbot-trigger {
-    width: 56px !important;
-    height: 56px !important;
-  }
-
-  .whatsapp-button {
-    width: 64px !important;
-    height: 64px !important;
-  }
-
-  .chatbot-fab-container {
-    bottom: 90px !important;
-    right: 16px !important;
-  }
-
-  .whatsapp-fab-container {
-    bottom: 24px !important;
-    right: 24px !important;
+  :root {
+    --fab-size: 48px;
+    --fab-inset: 16px;
   }
 
   /* Prevent content hiding behind floating buttons */
   main,
   .page-content {
-    padding-bottom: 120px;
+    padding-bottom: 200px;
   }
 
   footer {
-    margin-bottom: 120px;
+    margin-bottom: 200px;
   }
 
   /* Fix testimonial card overflow */

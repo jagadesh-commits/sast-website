@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react";
 
+const VIEW_SIZE = 56;
+const STROKE = 3;
+const RADIUS = (VIEW_SIZE - STROKE) / 2;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
 export function BackToTopProgress() {
   const [show, setShow] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -21,34 +26,42 @@ export function BackToTopProgress() {
 
   if (!show) return null;
 
-  const size = 45;
-  const stroke = 3.5;
-  const radius = (size - stroke) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const dashOffset = circumference * (1 - progress);
+  const dashOffset = CIRCUMFERENCE * (1 - progress);
+  const center = VIEW_SIZE / 2;
 
   return (
     <button
       type="button"
       aria-label="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-[160px] right-5 z-[96] grid h-[45px] w-[45px] place-items-center rounded-full bg-[#1a3a8f] text-white shadow-xl"
+      className="fab-stack-back-to-top fab-stack-item relative overflow-hidden rounded-full border-0 bg-[#1a3a8f] p-0 text-white shadow-xl"
     >
-      <svg width={size} height={size} className="absolute inset-0 -rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={radius} stroke="rgba(26,58,143,0.2)" strokeWidth={stroke} fill="none" />
+      <svg
+        viewBox={`0 0 ${VIEW_SIZE} ${VIEW_SIZE}`}
+        className="pointer-events-none absolute inset-0 h-full w-full -rotate-90"
+        aria-hidden
+      >
         <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          stroke="#1a3a8f"
-          strokeWidth={stroke}
+          cx={center}
+          cy={center}
+          r={RADIUS}
+          stroke="rgba(255, 255, 255, 0.25)"
+          strokeWidth={STROKE}
+          fill="none"
+        />
+        <circle
+          cx={center}
+          cy={center}
+          r={RADIUS}
+          stroke="#ffffff"
+          strokeWidth={STROKE}
           fill="none"
           strokeLinecap="round"
-          strokeDasharray={circumference}
+          strokeDasharray={CIRCUMFERENCE}
           strokeDashoffset={dashOffset}
         />
       </svg>
-      <span className="relative text-base font-semibold leading-none text-white">↑</span>
+      <span className="absolute inset-0 grid place-items-center text-lg font-semibold leading-none">↑</span>
     </button>
   );
 }

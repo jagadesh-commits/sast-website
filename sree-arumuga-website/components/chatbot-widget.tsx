@@ -560,7 +560,7 @@ export function ChatbotWidget() {
   const showFabHint = tooltipVisible && !open;
 
   return (
-    <div className="chatbot-fab-container fixed bottom-[90px] right-5 z-[94] flex flex-col items-end gap-2">
+    <>
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -1032,29 +1032,31 @@ export function ChatbotWidget() {
         ) : null}
       </AnimatePresence>
 
-      <div className="flex items-center gap-2">
-        <AnimatePresence>
-          {showFabHint ? (
-            <motion.div
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
-              className="steelbot-tooltip"
-              role="status"
-            >
-              <span className="align-middle">👋 Need a steel quote? Chat with us!</span>{" "}
-              <button
-                type="button"
-                onClick={() => setTooltipVisible(false)}
-                aria-label="Dismiss tooltip"
-                className="align-middle text-[15px] font-semibold leading-none text-[#1a3a8f]/90 hover:text-[#1a3a8f]"
-              >
-                ×
-              </button>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-        {!open ? (
+      {!open ? (
+        <div className="chatbot-fab-anchor">
+          <AnimatePresence>
+            {showFabHint ? (
+              <div className="steelbot-tooltip-shell">
+                <motion.div
+                  initial={{ opacity: 0, x: 6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 6 }}
+                  className="steelbot-tooltip whitespace-nowrap"
+                  role="status"
+                >
+                  <span className="align-middle">👋 Need a steel quote? Chat with us!</span>{" "}
+                  <button
+                    type="button"
+                    onClick={() => setTooltipVisible(false)}
+                    aria-label="Dismiss tooltip"
+                    className="align-middle text-[15px] font-semibold leading-none text-[#1a3a8f]/90 hover:text-[#1a3a8f]"
+                  >
+                    ×
+                  </button>
+                </motion.div>
+              </div>
+            ) : null}
+          </AnimatePresence>
           <button
             type="button"
             title="Quick steel quote (HR, CR, GP, coils). This assistant is not WhatsApp."
@@ -1063,27 +1065,20 @@ export function ChatbotWidget() {
               setOpen(true);
             }}
             aria-label="Open steel quote assistant"
-            className="chatbot-trigger beat-glow-blue grid h-[70px] w-[70px] shrink-0 place-items-center rounded-full bg-transparent p-0 shadow-none"
+            className="chatbot-trigger beat-glow-blue fab-stack-item grid shrink-0 place-items-center rounded-full bg-transparent p-0 shadow-none"
           >
             <img
               src="/Chat_bot_icon_image.png"
               alt=""
-              width={70}
-              height={70}
+              width={56}
+              height={56}
               draggable={false}
-              className="fab-glow-beat"
-              style={{
-                width: "70px",
-                height: "70px",
-                borderRadius: "50%",
-                objectFit: "cover",
-                objectPosition: "center top",
-                display: "block",
-              }}
+              className="fab-glow-beat h-full w-full rounded-full object-cover object-[center_top]"
+              style={{ display: "block" }}
             />
           </button>
-        ) : null}
-      </div>
-    </div>
+        </div>
+      ) : null}
+    </>
   );
 }
