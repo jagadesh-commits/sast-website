@@ -6,56 +6,18 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useChatbotOpen } from "@/components/chatbot-open-context";
 import { trackEvent } from "@/lib/analytics";
 
-const STORAGE_KEY = "sas-chatbot-session-v2";
+const STORAGE_KEY = "sas-chatbot-session-v3";
 
-/** Visible pill + accessibility: structured quote flow, not WhatsApp chat. */
-const FAB_PRIMARY_LABEL = "Steel enquiry";
-/** Main site WhatsApp (Talk to Team, quick links inside chatbot info steps). */
+/** Main site WhatsApp (Talk to Team fallback). */
 const WHATSAPP_NUMBER = "919940119914";
-/** Used ONLY when redirecting after successful chatbot enquiry submission. */
+/** Used ONLY when redirecting after a successful chatbot enquiry submission. */
 const WHATSAPP_CHATBOT_SUBMIT_NUMBER = "919889883039";
 
-type ProductType =
-  | "HR"
-  | "HRPO"
-  | "CR"
-  | "GP"
-  | "GL"
-  | "EG"
-  | "PPGL"
-  | "MS Plates"
-  | "Colour Coated"
-  | "Others";
-type SheetType = "Sheet" | "Coil";
-type QuantityUnit = "Tons" | "Pieces";
-type Step =
-  | "welcomeMenu"
-  | "infoProducts"
-  | "infoContact"
-  | "product"
-  | "othersDescribe"
-  | "sheetType"
-  | "brand"
-  | "thickness"
-  | "dimensions"
-  | "spec"
-  | "quantity"
-  | "name"
-  | "phone"
-  | "confirm"
-  | "submitting"
-  | "completed";
-
-/** First 8 products (2 columns); Colour Coated / Others / Talk to Team are full-width rows below. */
-const PRODUCT_GRID: { id: ProductType; label: string }[] = [
-  { id: "HR", label: "HR (Hot Rolled)" },
-  { id: "HRPO", label: "HRPO (Hot Rolled Pickled & Oiled)" },
-  { id: "CR", label: "CR (Cold Rolled)" },
-  { id: "GP", label: "GP (Galvanized Plain)" },
-  { id: "GL", label: "GL (Galvalume)" },
-  { id: "EG", label: "EG (Electro Galvanized)" },
-  { id: "PPGL", label: "PPGL (Pre-Painted Galvalume)" },
-  { id: "MS Plates", label: "MS Plates" },
+const SUGGESTIONS = [
+  "I need a quote",
+  "Tell me about your products",
+  "What thickness of GP sheets do you have?",
+  "Contact details",
 ];
 
 type ChatMessage = {
@@ -64,101 +26,107 @@ type ChatMessage = {
   text: string;
 };
 
+/** Mirrors the data needed to build the lead payload for the Google Sheet + WhatsApp. */
 type EnquiryState = {
-  product: ProductType | "";
-  sheetType: SheetType | "";
+  product: string;
+  sheetType: string;
   brand: string;
   thickness: string;
   width: string;
   length: string;
   spec: string;
   quantityValue: string;
-  quantityUnit: QuantityUnit;
+  quantityUnit: string;
   name: string;
   phone: string;
-  /** Filled when product is "Others" */
   otherDescription: string;
+};
+
+type EnquiryArgs = Partial<EnquiryState>;
+
+type ChatResponse = {
+  text?: string;
+  functionCall?: { name: string; args: EnquiryArgs };
+  error?: string;
 };
 
 type PersistedState = {
   open: boolean;
-  step: Step;
   messages: ChatMessage[];
-  enquiry: EnquiryState;
   inactivityPrompted: boolean;
-};
-
-const INITIAL_ENQUIRY: EnquiryState = {
-  product: "",
-  sheetType: "",
-  brand: "",
-  thickness: "",
-  width: "",
-  length: "",
-  spec: "",
-  quantityValue: "",
-  quantityUnit: "Tons",
-  name: "",
-  phone: "",
-  otherDescription: "",
 };
 
 function makeId(prefix: string): string {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
-function getSpecLabel(product: ProductType | ""): "Grade" | "GSM" | "AZ value" {
-  if (product === "GP") return "GSM";
-  if (product === "Colour Coated") return "AZ value";
-  return "Grade";
+function normalizeIndianMobile(raw: string): string {
+  let d = raw.replace(/\D/g, "");
+  if (d.length === 12 && d.startsWith("91")) d = d.slice(2);
+  else if (d.length === 11 && d.startsWith("0")) d = d.slice(1);
+  return d;
 }
 
-function getSpecPlaceholder(product: ProductType | ""): string {
-  if (product === "GP") return "e.g. 120, 180, 275";
-  if (product === "Colour Coated") return "e.g. AZ70, AZ150";
-  return "e.g. IS 513, IS 2062";
+function isValidIndianMobile(raw: string): boolean {
+  return /^[6-9]\d{9}$/.test(normalizeIndianMobile(raw));
 }
 
-function buildSummary(enquiry: EnquiryState): string {
-  if (enquiry.product === "Others") {
-    return `Please confirm your enquiry:
-📦 Product: Others
-📝 Your need: ${enquiry.otherDescription}
-👤 Name: ${enquiry.name}
-📞 Phone: ${enquiry.phone}`;
-  }
-  return `Please confirm your enquiry:
-📦 Product: ${enquiry.product} ${enquiry.sheetType}
-🏷️ Brand: ${enquiry.brand}
-📏 Thickness: ${enquiry.thickness} mm
-📐 Width x Length: ${enquiry.width} x ${enquiry.length} mm
-⚖️ Grade/GSM/AZ: ${enquiry.spec}
-🔢 Quantity: ${enquiry.quantityValue} ${enquiry.quantityUnit}
-👤 Name: ${enquiry.name}
-📞 Phone: ${enquiry.phone}`;
+function argsToEnquiry(args: EnquiryArgs): EnquiryState {
+  const hasDescription = Boolean(args.otherDescription && args.otherDescription.trim());
+  return {
+    product: args.product?.trim() || (hasDescription ? "Others" : ""),
+    sheetType: args.sheetType?.trim() || "",
+    brand: args.brand?.trim() || "",
+    thickness: args.thickness?.trim() || "",
+    width: args.width?.trim() || "",
+    length: args.length?.trim() || "",
+    spec: args.spec?.trim() || "",
+    quantityValue: args.quantityValue?.trim() || "",
+    quantityUnit: args.quantityUnit?.trim() || "Tons",
+    name: args.name?.trim() || "",
+    phone: normalizeIndianMobile(args.phone || ""),
+    otherDescription: args.otherDescription?.trim() || "",
+  };
 }
 
 function buildWhatsAppMessage(enquiry: EnquiryState): string {
-  if (enquiry.product === "Others") {
+  if (enquiry.product === "Others" || (!enquiry.sheetType && enquiry.otherDescription)) {
     return `New Steel Enquiry from Website:
 Product: Others
-Description: ${enquiry.otherDescription}
+Description: ${enquiry.otherDescription || "—"}
 Name: ${enquiry.name}
 Phone: ${enquiry.phone}`;
   }
   return `New Steel Enquiry from Website:
 Product: ${enquiry.product} ${enquiry.sheetType}
-Brand: ${enquiry.brand}
-Thickness: ${enquiry.thickness}mm
-Width x Length: ${enquiry.width}x${enquiry.length}mm
-Grade/GSM/AZ: ${enquiry.spec}
-Quantity: ${enquiry.quantityValue} ${enquiry.quantityUnit}
+Brand: ${enquiry.brand || "—"}
+Thickness: ${enquiry.thickness ? `${enquiry.thickness}mm` : "—"}
+Width x Length: ${enquiry.width && enquiry.length ? `${enquiry.width}x${enquiry.length}mm` : "—"}
+Grade/GSM/AZ: ${enquiry.spec || "—"}
+Quantity: ${enquiry.quantityValue ? `${enquiry.quantityValue} ${enquiry.quantityUnit}` : "—"}
 Name: ${enquiry.name}
 Phone: ${enquiry.phone}`;
 }
 
-function createInitialMessages(): ChatMessage[] {
-  return [];
+/** Minimal markdown rendering for bold (**text**) and bullet lines. */
+function renderRichText(text: string) {
+  return text.split("\n").map((line, lineIndex) => {
+    const trimmed = line.trimStart();
+    const isBullet = trimmed.startsWith("* ") || trimmed.startsWith("- ") || trimmed.startsWith("• ");
+    const content = isBullet ? trimmed.slice(2) : line;
+    const segments = content.split(/(\*\*[^*]+\*\*)/g).map((seg, segIndex) => {
+      if (seg.startsWith("**") && seg.endsWith("**")) {
+        return <strong key={segIndex}>{seg.slice(2, -2)}</strong>;
+      }
+      return <span key={segIndex}>{seg}</span>;
+    });
+    return (
+      <div key={lineIndex} className={isBullet ? "flex gap-1.5" : undefined}>
+        {isBullet ? <span aria-hidden>•</span> : null}
+        <span>{segments}</span>
+      </div>
+    );
+  });
 }
 
 export function ChatbotWidget() {
@@ -168,24 +136,14 @@ export function ChatbotWidget() {
     setChatbotOpen(open);
   }, [open, setChatbotOpen]);
   const [tooltipVisible, setTooltipVisible] = useState(false);
-  const [step, setStep] = useState<Step>("welcomeMenu");
-  const [messages, setMessages] = useState<ChatMessage[]>(createInitialMessages);
-  const [enquiry, setEnquiry] = useState<EnquiryState>(INITIAL_ENQUIRY);
-  const [brandInput, setBrandInput] = useState("");
-  const [thicknessInput, setThicknessInput] = useState("");
-  const [widthInput, setWidthInput] = useState("");
-  const [lengthInput, setLengthInput] = useState("");
-  const [specInput, setSpecInput] = useState("");
-  const [quantityInput, setQuantityInput] = useState("");
-  const [nameInput, setNameInput] = useState("");
-  const [phoneInput, setPhoneInput] = useState("");
-  const [othersDescriptionInput, setOthersDescriptionInput] = useState("");
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [input, setInput] = useState("");
   const [botTyping, setBotTyping] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [inactivityPrompted, setInactivityPrompted] = useState(false);
   const [lastActivityTs, setLastActivityTs] = useState<number>(Date.now());
   const chatBodyRef = useRef<HTMLDivElement | null>(null);
-  const typingTimerRef = useRef<number | null>(null);
-  const delayedWelcomeRef = useRef<number | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setTooltipVisible(true), 3000);
@@ -203,10 +161,7 @@ export function ChatbotWidget() {
       const parsed = JSON.parse(raw) as PersistedState;
       if (!parsed || !Array.isArray(parsed.messages)) return;
       setOpen(Boolean(parsed.open));
-      const persistedStep = (parsed as { step?: Step }).step ?? "welcomeMenu";
-      setStep(persistedStep);
-      setMessages(parsed.messages.length ? parsed.messages : createInitialMessages());
-      setEnquiry({ ...INITIAL_ENQUIRY, ...parsed.enquiry });
+      setMessages(parsed.messages);
       setInactivityPrompted(Boolean(parsed.inactivityPrompted));
     } catch {
       // Ignore corrupted session data
@@ -214,15 +169,9 @@ export function ChatbotWidget() {
   }, []);
 
   useEffect(() => {
-    const payload: PersistedState = {
-      open,
-      step,
-      messages,
-      enquiry,
-      inactivityPrompted,
-    };
+    const payload: PersistedState = { open, messages, inactivityPrompted };
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-  }, [open, step, messages, enquiry, inactivityPrompted]);
+  }, [open, messages, inactivityPrompted]);
 
   useEffect(() => {
     if (!open) return;
@@ -232,28 +181,21 @@ export function ChatbotWidget() {
         behavior: "smooth",
       });
     }
-  }, [messages, open]);
-
-  useEffect(() => {
-    return () => {
-      if (typingTimerRef.current) window.clearTimeout(typingTimerRef.current);
-      if (delayedWelcomeRef.current) window.clearTimeout(delayedWelcomeRef.current);
-    };
-  }, []);
+  }, [messages, open, botTyping]);
 
   useEffect(() => {
     if (!open) return;
-    if (step === "submitting" || step === "completed") return;
+    if (submitting) return;
     const timer = window.setTimeout(() => {
       if (inactivityPrompted) return;
       setMessages((prev) => [
         ...prev,
-        { id: makeId("bot"), sender: "bot", text: "Still there? Need any help?" },
+        { id: makeId("bot"), sender: "bot", text: "Still there? Ask me anything about our steel products or request a quote." },
       ]);
       setInactivityPrompted(true);
     }, 30000);
     return () => window.clearTimeout(timer);
-  }, [open, step, lastActivityTs, inactivityPrompted]);
+  }, [open, lastActivityTs, inactivityPrompted, submitting]);
 
   const talkToTeamUrl = useMemo(
     () => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi! I need help with a steel enquiry.")}`,
@@ -269,66 +211,39 @@ export function ChatbotWidget() {
     setMessages((prev) => [...prev, { id: makeId("bot"), sender: "bot", text }]);
   };
 
-  const addBotMessageWithTyping = (text: string, delayMs = 700): Promise<void> =>
-    new Promise((resolve) => {
-      setBotTyping(true);
-      typingTimerRef.current = window.setTimeout(() => {
-        addBotMessage(text);
-        setBotTyping(false);
-        resolve();
-      }, delayMs);
-    });
-
-  const addUserMessage = (text: string) => {
-    setMessages((prev) => [...prev, { id: makeId("user"), sender: "user", text }]);
-  };
-
   const restartConversation = () => {
-    setStep("welcomeMenu");
-    setEnquiry(INITIAL_ENQUIRY);
-    setBrandInput("");
-    setThicknessInput("");
-    setWidthInput("");
-    setLengthInput("");
-    setSpecInput("");
-    setQuantityInput("");
-    setNameInput("");
-    setPhoneInput("");
-    setOthersDescriptionInput("");
-    setMessages(createInitialMessages());
+    setMessages([
+      {
+        id: makeId("bot"),
+        sender: "bot",
+        text: "👋 Welcome to Sree Arumuga Steel Trading — trusted since 1984!\n\nI'm your Steel Assistant. Ask me about our products or tell me what you need a quote for.",
+      },
+    ]);
+    setInput("");
     setBotTyping(false);
+    setSubmitting(false);
     markActivity();
-    void runWelcomeSequence();
-  };
-
-  const runWelcomeSequence = async () => {
-    setStep("welcomeMenu");
-    addBotMessageWithTyping("👋 Hello! Welcome to\nSree Arumuga Steel Trading!\nTrusted Since 1984 🏭", 350);
-    delayedWelcomeRef.current = window.setTimeout(() => {
-      void addBotMessageWithTyping("I'm your Steel Enquiry Assistant.\nHow can I help you today?", 450);
-    }, 1000);
   };
 
   const submitToSheet = async (current: EnquiryState): Promise<boolean> => {
     const detailMessage = buildWhatsAppMessage(current);
-    const isOthers = current.product === "Others";
+    const isOthers = current.product === "Others" || (!current.sheetType && Boolean(current.otherDescription));
     const payload = {
       timestamp: new Date().toISOString(),
       name: current.name,
       phone: current.phone,
-      productType: current.product,
-      sheetOrCoil: isOthers ? "—" : current.sheetType,
-      brand: isOthers ? "—" : current.brand,
-      thickness: isOthers ? "—" : current.thickness,
-      width: isOthers ? "—" : current.width,
-      length: isOthers ? "—" : current.length,
-      gradeGsmAz: isOthers ? current.otherDescription : current.spec,
-      quantity: isOthers ? "—" : `${current.quantityValue} ${current.quantityUnit}`,
-      source: "Chatbot",
-      // Backward compatibility for existing sheet handler
+      productType: current.product || "Others",
+      sheetOrCoil: isOthers ? "—" : current.sheetType || "—",
+      brand: isOthers ? "—" : current.brand || "—",
+      thickness: isOthers ? "—" : current.thickness || "—",
+      width: isOthers ? "—" : current.width || "—",
+      length: isOthers ? "—" : current.length || "—",
+      gradeGsmAz: isOthers ? current.otherDescription : current.spec || "—",
+      quantity: isOthers ? "—" : current.quantityValue ? `${current.quantityValue} ${current.quantityUnit}` : "—",
+      source: "Chatbot (AI)",
       email: "",
       message: detailMessage,
-      productInterest: isOthers ? "Others (custom)" : `${current.product} ${current.sheetType}`,
+      productInterest: isOthers ? "Others (custom)" : `${current.product} ${current.sheetType}`.trim(),
     };
 
     try {
@@ -361,204 +276,82 @@ export function ChatbotWidget() {
     );
   };
 
-  const onSelectProduct = (item: { id: ProductType; label: string }) => {
-    markActivity();
-    if (item.id === "Others") {
-      setEnquiry((prev) => ({
-        ...prev,
-        product: "Others",
-        spec: "",
-        sheetType: "",
-        brand: "",
-        thickness: "",
-        width: "",
-        length: "",
-        quantityValue: "",
-        name: "",
-        phone: "",
-        otherDescription: "",
-      }));
-      addUserMessage(item.label);
-      void addBotMessageWithTyping(
-        "Please describe what steel product you are looking for and our team will get back to you with the right solution.",
-        400,
-      );
-      setStep("othersDescribe");
+  const handleEnquirySubmission = async (args: EnquiryArgs) => {
+    const enquiry = argsToEnquiry(args);
+    if (!isValidIndianMobile(enquiry.phone)) {
+      addBotMessage("That phone number doesn't look right. Please share a valid 10-digit Indian mobile number (starting with 6-9).");
       return;
     }
-    setEnquiry((prev) => ({ ...prev, product: item.id, spec: "", otherDescription: "" }));
-    addUserMessage(item.label);
-    addBotMessage("Please select the type:");
-    setStep("sheetType");
-  };
-
-  const onSubmitOthersDescription = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const value = othersDescriptionInput.trim();
-    if (!value) return;
-    markActivity();
-    setEnquiry((prev) => ({ ...prev, otherDescription: value }));
-    addUserMessage(value);
-    addBotMessage("Your Name:");
-    setOthersDescriptionInput("");
-    setStep("name");
-  };
-
-  const onSelectWelcomeAction = (action: "enquiry" | "products" | "contact") => {
-    markActivity();
-    if (action === "enquiry") {
-      addUserMessage("1️⃣ Steel Enquiry");
-      void addBotMessageWithTyping("Please select your product:", 350);
-      setStep("product");
-      return;
-    }
-
-    if (action === "products") {
-      addUserMessage("2️⃣ Product Information");
-      void addBotMessageWithTyping(
-        "We deal in the following products:\n• HRPO Sheets & Coils\n• HR Sheets & Coils\n• CR Sheets & Coils\n• GP Sheets & Coils\n• Colour Coated Sheets & Coils\n\nAll products are from trusted brands like JSW Steel.\n\nWould you like to place an enquiry?",
-        400,
-      );
-      setStep("infoProducts");
-      return;
-    }
-
-    addUserMessage("3️⃣ Contact Us");
-    void addBotMessageWithTyping(
-      "📞 Phone: +91 99401 19914\n📧 Email: sree.arumuga@gmail.com\n📍 D-196, Sathangadu Iron & Steel \nMarket, Manali, Chennai - 600068\n\n🕐 Working Hours:\nMon-Sat: 9AM - 6PM\n\nOr chat with us directly on WhatsApp!",
-      400,
-    );
-    setStep("infoContact");
-  };
-
-  const onSelectSheetType = (value: SheetType) => {
-    markActivity();
-    setEnquiry((prev) => ({ ...prev, sheetType: value }));
-    addUserMessage(value);
-    addBotMessage("Please enter your preferred brand:");
-    setStep("brand");
-  };
-
-  const onSubmitBrand = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const value = brandInput.trim();
-    if (!value) return;
-    markActivity();
-    setEnquiry((prev) => ({ ...prev, brand: value }));
-    addUserMessage(value);
-    addBotMessage("Please enter thickness (in mm):");
-    setBrandInput("");
-    setStep("thickness");
-  };
-
-  const onSubmitThickness = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const value = thicknessInput.trim();
-    if (!value) return;
-    markActivity();
-    setEnquiry((prev) => ({ ...prev, thickness: value }));
-    addUserMessage(`${value} mm`);
-    addBotMessage("Please enter Width x Length (in mm):");
-    setThicknessInput("");
-    setStep("dimensions");
-  };
-
-  const onSubmitDimensions = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const width = widthInput.trim();
-    const length = lengthInput.trim();
-    if (!width || !length) return;
-    markActivity();
-    setEnquiry((prev) => ({ ...prev, width, length }));
-    addUserMessage(`${width} x ${length} mm`);
-    const specLabel = getSpecLabel(enquiry.product);
-    addBotMessage(`Please enter ${specLabel}:`);
-    setWidthInput("");
-    setLengthInput("");
-    setStep("spec");
-  };
-
-  const onSubmitSpec = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const value = specInput.trim();
-    if (!value) return;
-    markActivity();
-    setEnquiry((prev) => ({ ...prev, spec: value }));
-    addUserMessage(value);
-    addBotMessage("Please enter quantity required:");
-    setSpecInput("");
-    setStep("quantity");
-  };
-
-  const onSubmitQuantity = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const value = quantityInput.trim();
-    if (!value) return;
-    markActivity();
-    setEnquiry((prev) => ({ ...prev, quantityValue: value }));
-    addUserMessage(`${value} ${enquiry.quantityUnit}`);
-    addBotMessage("Almost done! Please share your details:\nYour Name:");
-    setQuantityInput("");
-    setStep("name");
-  };
-
-  const onSubmitName = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const value = nameInput.trim();
-    if (!value) return;
-    markActivity();
-    setEnquiry((prev) => ({ ...prev, name: value }));
-    addUserMessage(value);
-    addBotMessage("Your Phone Number:");
-    setNameInput("");
-    setStep("phone");
-  };
-
-  const onSubmitPhone = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const value = phoneInput.trim();
-    if (!value) return;
-    markActivity();
-    const nextEnquiry = { ...enquiry, phone: value };
-    setEnquiry(nextEnquiry);
-    addUserMessage(value);
-    addBotMessage(buildSummary(nextEnquiry));
-    setPhoneInput("");
-    setStep("confirm");
-  };
-
-  const onConfirm = async () => {
-    markActivity();
-    setStep("submitting");
-    addUserMessage("✅ Confirm");
+    setSubmitting(true);
     const ok = await submitToSheet(enquiry);
+    setSubmitting(false);
     if (ok) {
       openWhatsAppWithEnquiry(enquiry);
       trackEvent("chatbot_enquiry_complete", { product: enquiry.product || "unknown" });
       addBotMessage(
-        `✅ Thank you ${enquiry.name}!\nYour enquiry has been submitted.\nOur team will contact you within 2 hours.\n\nFor urgent enquiries:\n📞 +91 99401 19914`,
+        `✅ Thank you${enquiry.name ? ` ${enquiry.name}` : ""}!\nYour enquiry has been submitted. Our team will contact you within 2 hours.\n\nFor urgent enquiries: 📞 +91 99401 19914`,
       );
-      setStep("completed");
       return;
     }
-    addBotMessage("We could not submit right now. Please tap Talk to Team or try Confirm again.");
-    setStep("confirm");
+    addBotMessage("I couldn't submit your enquiry just now. Please tap \"Talk to Team\" below, or try again in a moment.");
   };
 
-  const onEdit = () => {
+  const sendMessage = async (rawText: string) => {
+    const text = rawText.trim();
+    if (!text || botTyping || submitting) return;
     markActivity();
-    addUserMessage("✏️ Edit");
-    addBotMessage("No problem. Let's update your enquiry from the beginning. Please select your product:");
-    setStep("product");
+    const userMessage: ChatMessage = { id: makeId("user"), sender: "user", text };
+    const history = [...messages, userMessage];
+    setMessages(history);
+    setInput("");
+    setBotTyping(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: history.map((m) => ({ role: m.sender, text: m.text })),
+        }),
+      });
+
+      if (!res.ok) {
+        setBotTyping(false);
+        addBotMessage(
+          "Sorry, I'm having trouble right now. You can reach our team directly on WhatsApp using the button below, or call +91 99401 19914.",
+        );
+        return;
+      }
+
+      const data = (await res.json()) as ChatResponse;
+      setBotTyping(false);
+
+      if (data.text) addBotMessage(data.text);
+      if (data.functionCall?.name === "submit_enquiry") {
+        await handleEnquirySubmission(data.functionCall.args);
+      }
+    } catch {
+      setBotTyping(false);
+      addBotMessage(
+        "Sorry, something went wrong. Please use the \"Talk to Team\" button below, or call +91 99401 19914.",
+      );
+    }
+  };
+
+  const onSubmitInput = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    void sendMessage(input);
   };
 
   useEffect(() => {
     if (!open) return;
     if (messages.length > 0) return;
-    void runWelcomeSequence();
+    restartConversation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, messages.length]);
 
   const showFabHint = tooltipVisible && !open;
+  const showSuggestions = messages.length <= 1 && !botTyping && !submitting;
 
   return (
     <>
@@ -601,12 +394,7 @@ export function ChatbotWidget() {
                 <img
                   src="/Chat_bot_icon_image.png"
                   alt=""
-                  style={{
-                    width: "44px",
-                    height: "44px",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
+                  style={{ width: "44px", height: "44px", borderRadius: "50%", objectFit: "cover" }}
                 />
                 <div>
                   <p style={{ color: "white", fontWeight: "600", fontSize: "14px", margin: 0 }}>
@@ -639,11 +427,7 @@ export function ChatbotWidget() {
               </button>
             </div>
 
-            <div
-              ref={chatBodyRef}
-              className="min-h-0 flex flex-col bg-white"
-              style={{ overflowY: "auto", flex: 1 }}
-            >
+            <div ref={chatBodyRef} className="min-h-0 flex-1 overflow-y-auto bg-white">
               <div className="p-3">
                 <AnimatePresence initial={false}>
                   {messages.map((message) => (
@@ -662,11 +446,11 @@ export function ChatbotWidget() {
                             : "rounded-bl-sm border border-zinc-200 bg-white text-zinc-800"
                         }`}
                       >
-                        {message.text}
+                        {message.sender === "bot" ? renderRichText(message.text) : message.text}
                       </div>
                     </motion.div>
                   ))}
-                  {botTyping ? (
+                  {botTyping || submitting ? (
                     <motion.div
                       key="typing"
                       initial={{ opacity: 0, y: 8 }}
@@ -675,358 +459,67 @@ export function ChatbotWidget() {
                       className="mb-2 flex justify-start"
                     >
                       <div className="rounded-2xl rounded-bl-sm border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-500">
-                        Typing...
+                        {submitting ? "Submitting your enquiry..." : "Typing..."}
                       </div>
                     </motion.div>
                   ) : null}
                 </AnimatePresence>
               </div>
+            </div>
 
-              <div className="shrink-0 space-y-2 border-t border-zinc-200 bg-zinc-50 p-3">
-              <button
-                type="button"
-                onClick={restartConversation}
-                className="w-full text-center text-[11px] font-medium text-[#1a3a8f]/80 underline hover:text-[#1a3a8f]"
-              >
-                Restart conversation
-              </button>
-              {step === "welcomeMenu" ? (
-                <div className="grid gap-2">
-                  <button
-                    type="button"
-                    onClick={() => onSelectWelcomeAction("enquiry")}
-                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                  >
-                    1️⃣ Steel Enquiry
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => onSelectWelcomeAction("products")}
-                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                  >
-                    2️⃣ Product Information
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => onSelectWelcomeAction("contact")}
-                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                  >
-                    3️⃣ Contact Us
-                  </button>
+            <div className="shrink-0 space-y-2 border-t border-zinc-200 bg-zinc-50 p-3">
+              {showSuggestions ? (
+                <div className="flex flex-wrap gap-1.5">
+                  {SUGGESTIONS.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => void sendMessage(s)}
+                      className="rounded-full border border-[#1a3a8f]/25 bg-white px-3 py-1 text-xs font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                    >
+                      {s}
+                    </button>
+                  ))}
                 </div>
               ) : null}
 
-              {step === "infoProducts" ? (
-                <button
-                  type="button"
-                  onClick={() => {
+              <form onSubmit={onSubmitInput} className="flex gap-2">
+                <input
+                  ref={inputRef}
+                  value={input}
+                  onChange={(e) => {
+                    setInput(e.target.value);
                     markActivity();
-                    addUserMessage("Start Enquiry");
-                    void addBotMessageWithTyping("Please select your product:", 300);
-                    setStep("product");
                   }}
-                  className="w-full rounded-lg bg-[#1a3a8f] px-3 py-2 text-sm font-semibold text-white"
+                  placeholder="Type your message…"
+                  aria-label="Type your message"
+                  className="flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  disabled={botTyping || submitting || !input.trim()}
+                  className="rounded-lg bg-[#1a3a8f] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
                 >
-                  Start Enquiry
+                  Send
                 </button>
-              ) : null}
+              </form>
 
-              {step === "infoContact" ? (
-                <a
-                  href={talkToTeamUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block w-full rounded-lg bg-[#25D366] px-3 py-2 text-center text-sm font-semibold text-white"
-                >
-                  Open WhatsApp
-                </a>
-              ) : null}
-
-              {step === "product" ? (
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "8px",
-                  }}
-                >
-                  {PRODUCT_GRID.map((item) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => onSelectProduct(item)}
-                      className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-left text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={() => onSelectProduct({ id: "Colour Coated", label: "Colour Coated" })}
-                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                    style={{ gridColumn: "span 2" }}
-                  >
-                    Colour Coated
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => onSelectProduct({ id: "Others", label: "Others" })}
-                    className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                    style={{ gridColumn: "span 2" }}
-                  >
-                    Others
-                  </button>
-                  <a
-                    href={talkToTeamUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-semibold text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                    style={{ gridColumn: "span 2" }}
-                  >
-                    Talk to Team
-                  </a>
-                </div>
-              ) : null}
-
-              {step === "othersDescribe" ? (
-                <form onSubmit={onSubmitOthersDescription} className="space-y-2">
-                  <textarea
-                    required
-                    rows={3}
-                    value={othersDescriptionInput}
-                    onChange={(e) => {
-                      setOthersDescriptionInput(e.target.value);
-                      markActivity();
-                    }}
-                    placeholder="Describe the steel product you need…"
-                    className="w-full resize-none rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
-                  />
-                  <button type="submit" className="w-full rounded-lg bg-[#1a3a8f] px-3 py-2 text-sm font-semibold text-white">
-                    Send
-                  </button>
-                </form>
-              ) : null}
-
-              {step === "sheetType" ? (
-                <div className="grid grid-cols-2 gap-2">
-                  {(["Sheet", "Coil"] as SheetType[]).map((item) => (
-                    <button
-                      key={item}
-                      type="button"
-                      onClick={() => onSelectSheetType(item)}
-                      className="rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
-                    >
-                      {item}
-                    </button>
-                  ))}
-                </div>
-              ) : null}
-
-              {step === "brand" ? (
-                <form onSubmit={onSubmitBrand} className="flex gap-2">
-                  <input
-                    required
-                    value={brandInput}
-                    onChange={(e) => {
-                      setBrandInput(e.target.value);
-                      markActivity();
-                    }}
-                    placeholder="e.g. JSW, Tata, SAIL"
-                    className="flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
-                  />
-                  <button type="submit" className="rounded-lg bg-[#1a3a8f] px-4 py-2 text-sm font-semibold text-white">
-                    Send
-                  </button>
-                </form>
-              ) : null}
-
-              {step === "thickness" ? (
-                <form onSubmit={onSubmitThickness} className="flex gap-2">
-                  <input
-                    required
-                    type="number"
-                    step="0.1"
-                    value={thicknessInput}
-                    onChange={(e) => {
-                      setThicknessInput(e.target.value);
-                      markActivity();
-                    }}
-                    placeholder="e.g. 1.6"
-                    className="flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
-                  />
-                  <button type="submit" className="rounded-lg bg-[#1a3a8f] px-4 py-2 text-sm font-semibold text-white">
-                    Send
-                  </button>
-                </form>
-              ) : null}
-
-              {step === "dimensions" ? (
-                <form onSubmit={onSubmitDimensions} className="grid grid-cols-2 gap-2">
-                  <input
-                    required
-                    type="number"
-                    value={widthInput}
-                    onChange={(e) => {
-                      setWidthInput(e.target.value);
-                      markActivity();
-                    }}
-                    placeholder="Width e.g. 1250"
-                    className="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
-                  />
-                  <input
-                    required
-                    type="number"
-                    value={lengthInput}
-                    onChange={(e) => {
-                      setLengthInput(e.target.value);
-                      markActivity();
-                    }}
-                    placeholder="Length e.g. 2500"
-                    className="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
-                  />
-                  <button type="submit" className="col-span-2 rounded-lg bg-[#1a3a8f] px-4 py-2 text-sm font-semibold text-white">
-                    Send
-                  </button>
-                </form>
-              ) : null}
-
-              {step === "spec" ? (
-                <form onSubmit={onSubmitSpec} className="flex gap-2">
-                  <input
-                    required
-                    type={enquiry.product === "GP" ? "number" : "text"}
-                    value={specInput}
-                    onChange={(e) => {
-                      setSpecInput(e.target.value);
-                      markActivity();
-                    }}
-                    placeholder={getSpecPlaceholder(enquiry.product)}
-                    className="flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
-                  />
-                  <button type="submit" className="rounded-lg bg-[#1a3a8f] px-4 py-2 text-sm font-semibold text-white">
-                    Send
-                  </button>
-                </form>
-              ) : null}
-
-              {step === "quantity" ? (
-                <form onSubmit={onSubmitQuantity} className="space-y-2">
-                  <div className="grid grid-cols-2 gap-2">
-                    {(["Tons", "Pieces"] as QuantityUnit[]).map((unit) => (
-                      <button
-                        key={unit}
-                        type="button"
-                        onClick={() => {
-                          setEnquiry((prev) => ({ ...prev, quantityUnit: unit }));
-                          markActivity();
-                        }}
-                        className={`rounded-lg border px-3 py-2 text-sm font-medium ${
-                          enquiry.quantityUnit === unit
-                            ? "border-[#1a3a8f] bg-[#1a3a8f] text-white"
-                            : "border-[#1a3a8f]/25 bg-white text-[#1a3a8f]"
-                        }`}
-                      >
-                        {unit}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <input
-                      required
-                      type="number"
-                      value={quantityInput}
-                      onChange={(e) => {
-                        setQuantityInput(e.target.value);
-                        markActivity();
-                      }}
-                      placeholder={`Enter ${enquiry.quantityUnit.toLowerCase()}`}
-                      className="flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
-                    />
-                    <button type="submit" className="rounded-lg bg-[#1a3a8f] px-4 py-2 text-sm font-semibold text-white">
-                      Send
-                    </button>
-                  </div>
-                </form>
-              ) : null}
-
-              {step === "name" ? (
-                <form onSubmit={onSubmitName} className="flex gap-2">
-                  <input
-                    required
-                    value={nameInput}
-                    onChange={(e) => {
-                      setNameInput(e.target.value);
-                      markActivity();
-                    }}
-                    placeholder="Your Name"
-                    className="flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
-                  />
-                  <button type="submit" className="rounded-lg bg-[#1a3a8f] px-4 py-2 text-sm font-semibold text-white">
-                    Send
-                  </button>
-                </form>
-              ) : null}
-
-              {step === "phone" ? (
-                <form onSubmit={onSubmitPhone} className="flex gap-2">
-                  <input
-                    required
-                    type="tel"
-                    value={phoneInput}
-                    onChange={(e) => {
-                      setPhoneInput(e.target.value);
-                      markActivity();
-                    }}
-                    placeholder="Your Phone Number"
-                    className="flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-[#1a3a8f] focus:outline-none"
-                  />
-                  <button type="submit" className="rounded-lg bg-[#1a3a8f] px-4 py-2 text-sm font-semibold text-white">
-                    Send
-                  </button>
-                </form>
-              ) : null}
-
-              {step === "confirm" ? (
-                <div className="grid grid-cols-2 gap-2">
-                  <button type="button" onClick={onConfirm} className="rounded-lg bg-[#1a3a8f] px-3 py-2 text-sm font-semibold text-white">
-                    ✅ Confirm
-                  </button>
-                  <button
-                    type="button"
-                    onClick={onEdit}
-                    className="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm font-semibold text-zinc-700"
-                  >
-                    ✏️ Edit
-                  </button>
-                </div>
-              ) : null}
-
-              {step === "completed" ? (
+              <div className="flex items-center justify-between gap-2">
                 <button
                   type="button"
                   onClick={restartConversation}
-                  className="w-full rounded-lg bg-[#1a3a8f] px-3 py-2 text-sm font-semibold text-white"
+                  className="text-[11px] font-medium text-[#1a3a8f]/80 underline hover:text-[#1a3a8f]"
                 >
-                  Start New Enquiry
+                  Restart conversation
                 </button>
-              ) : null}
-
-              {step === "submitting" ? (
-                <div className="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-center text-sm text-zinc-600">
-                  Submitting your enquiry...
-                </div>
-              ) : null}
-
-              {step !== "product" ? (
                 <a
                   href={talkToTeamUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="block rounded-lg border border-[#1a3a8f]/25 bg-white px-3 py-2 text-center text-sm font-medium text-[#1a3a8f] hover:bg-[#1a3a8f]/5"
+                  className="rounded-lg border border-[#25D366] bg-white px-3 py-1 text-xs font-semibold text-[#1a8f4f] hover:bg-[#25D366]/10"
                 >
                   Talk to Team
                 </a>
-              ) : null}
               </div>
             </div>
           </motion.div>
@@ -1060,12 +553,12 @@ export function ChatbotWidget() {
           </AnimatePresence>
           <button
             type="button"
-            title="Quick steel quote (HR, CR, GP, coils). This assistant is not WhatsApp."
+            title="Chat with our AI Steel Assistant (HR, CR, GP, coils and more)."
             onClick={() => {
               markActivity();
               setOpen(true);
             }}
-            aria-label="Open steel quote assistant"
+            aria-label="Open steel assistant"
             className="chatbot-trigger fab-stack-item relative grid shrink-0 place-items-center overflow-visible rounded-full bg-transparent p-0 shadow-none"
           >
             <span
