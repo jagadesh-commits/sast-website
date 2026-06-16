@@ -11,6 +11,7 @@
   --gold: #d4af37;
   --silver: #b9c3d3;
   --fab-size: 56px;
+  --fab-chatbot-size: 72px;
   --fab-gap: 12px;
   --fab-inset: 24px;
 }
@@ -29,7 +30,7 @@
 
 .fab-stack-back-to-top {
   position: fixed;
-  bottom: calc(var(--fab-inset) + 2 * (var(--fab-size) + var(--fab-gap)));
+  bottom: calc(var(--fab-inset) + var(--fab-size) + var(--fab-gap) + var(--fab-chatbot-size) + var(--fab-gap));
   right: var(--fab-inset);
   z-index: 96;
 }
@@ -39,8 +40,13 @@
   bottom: calc(var(--fab-inset) + var(--fab-size) + var(--fab-gap));
   right: var(--fab-inset);
   z-index: 94;
-  width: var(--fab-size);
-  height: var(--fab-size);
+  width: var(--fab-chatbot-size);
+  height: var(--fab-chatbot-size);
+}
+
+.chatbot-trigger.fab-stack-item {
+  width: var(--fab-chatbot-size);
+  height: var(--fab-chatbot-size);
 }
 
 .steelbot-tooltip-shell {
@@ -137,6 +143,7 @@ body {
 @media (max-width: 768px) {
   :root {
     --fab-size: 48px;
+    --fab-chatbot-size: 60px;
     --fab-inset: 16px;
   }
 

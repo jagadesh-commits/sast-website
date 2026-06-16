@@ -1,5 +1,6 @@
 "use client";
 
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useChatbotOpen } from "@/components/chatbot-open-context";
@@ -1065,17 +1066,15 @@ export function ChatbotWidget() {
               setOpen(true);
             }}
             aria-label="Open steel quote assistant"
-            className="chatbot-trigger beat-glow-blue fab-stack-item grid shrink-0 place-items-center rounded-full bg-transparent p-0 shadow-none"
+            className="chatbot-trigger fab-stack-item relative grid shrink-0 place-items-center overflow-visible rounded-full bg-transparent p-0 shadow-none"
           >
-            <img
-              src="/Chat_bot_icon_image.png"
-              alt=""
-              width={56}
-              height={56}
-              draggable={false}
-              className="fab-glow-beat h-full w-full rounded-full object-cover object-[center_top]"
-              style={{ display: "block" }}
+            <span
+              className="pointer-events-none absolute inset-0 rounded-full bg-amber-400 opacity-60 animate-ping"
+              aria-hidden
             />
+            <div className="relative z-10 h-full w-full overflow-hidden rounded-full">
+              <DotLottieReact src="/Chatbot.json" loop autoplay className="h-full w-full" />
+            </div>
           </button>
         </div>
       ) : null}
