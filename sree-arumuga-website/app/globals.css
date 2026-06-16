@@ -11,7 +11,7 @@
   --gold: #d4af37;
   --silver: #b9c3d3;
   --fab-size: 56px;
-  --fab-chatbot-size: 72px;
+  --fab-chatbot-size: 88px;
   --fab-gap: 12px;
   --fab-inset: 24px;
 }
@@ -143,18 +143,18 @@ body {
 @media (max-width: 768px) {
   :root {
     --fab-size: 48px;
-    --fab-chatbot-size: 60px;
+    --fab-chatbot-size: 72px;
     --fab-inset: 16px;
   }
 
   /* Prevent content hiding behind floating buttons */
   main,
   .page-content {
-    padding-bottom: 200px;
+    padding-bottom: 220px;
   }
 
   footer {
-    margin-bottom: 200px;
+    margin-bottom: 220px;
   }
 
   /* Fix testimonial card overflow */
