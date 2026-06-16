@@ -1073,7 +1073,18 @@ export function ChatbotWidget() {
               aria-hidden
             />
             <div className="relative z-10 h-full w-full overflow-hidden rounded-full">
-              <DotLottieReact src="/Chatbot.json" loop autoplay className="h-full w-full" />
+              <DotLottieReact
+                src="/Chatbot.json"
+                loop
+                autoplay
+                useFrameInterpolation
+                renderConfig={{
+                  devicePixelRatio: typeof window !== "undefined" ? Math.max(3, window.devicePixelRatio || 1) : 3,
+                  autoResize: true,
+                  quality: 100,
+                }}
+                className="h-full w-full"
+              />
             </div>
           </button>
         </div>
