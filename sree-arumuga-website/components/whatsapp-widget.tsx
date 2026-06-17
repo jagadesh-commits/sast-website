@@ -138,7 +138,7 @@ export function WhatsAppWidget() {
           onClick={() => setWhatsappOpen((v) => !v)}
           aria-expanded={whatsappOpen}
           aria-label={whatsappOpen ? "Close WhatsApp preview" : "Open WhatsApp preview"}
-          className="whatsapp-button beat-glow-green fab-stack-item grid place-items-center rounded-full bg-transparent p-0 shadow-none"
+          className="whatsapp-button beat-glow-green fab-stack-item grid cursor-pointer place-items-center rounded-full bg-transparent p-0 shadow-none"
         >
           <img
             src="/whatsapp-icon.png"

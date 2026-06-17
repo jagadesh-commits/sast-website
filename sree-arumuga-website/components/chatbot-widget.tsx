@@ -559,7 +559,7 @@ export function ChatbotWidget() {
               setOpen(true);
             }}
             aria-label="Open steel assistant"
-            className="chatbot-trigger fab-stack-item relative grid shrink-0 place-items-center overflow-visible rounded-full bg-transparent p-0 shadow-none"
+            className="chatbot-trigger fab-stack-item relative grid shrink-0 cursor-pointer place-items-center overflow-visible rounded-full bg-transparent p-0 shadow-none"
           >
             <span
               className="pointer-events-none absolute inset-0 rounded-full bg-amber-400 opacity-60 animate-ping"

@@ -34,7 +34,7 @@ export function BackToTopProgress() {
       type="button"
       aria-label="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fab-stack-back-to-top fab-stack-item relative overflow-hidden rounded-full border-0 bg-[#1a3a8f] p-0 text-white shadow-xl"
+      className="fab-stack-back-to-top fab-stack-item relative cursor-pointer overflow-hidden rounded-full border-0 bg-[#1a3a8f] p-0 text-white shadow-xl"
     >
       <svg
         viewBox={`0 0 ${VIEW_SIZE} ${VIEW_SIZE}`}
