@@ -4,7 +4,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FormEvent, useEffect, useState } from "react";
 import { buildWhatsAppQuoteUrl, submitEnquiryToSheet } from "@/lib/enquiry-api";
 
-const KEY = "sas-exit-popup-shown";
+/** Permanent flag (localStorage). Set ONLY after a successful form submission. */
+const SUBMITTED_KEY = "sast_quote_submitted";
+
+function hasSubmittedQuote(): boolean {
+  try {
+    return localStorage.getItem(SUBMITTED_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
 
 export function ExitIntentPopup() {
   const [ready, setReady] = useState(false);
@@ -20,17 +29,28 @@ export function ExitIntentPopup() {
 
   useEffect(() => {
     if (!ready) return;
-    if (sessionStorage.getItem(KEY) === "1") return;
+    // Never show again once the user has successfully submitted the quote form.
+    if (hasSubmittedQuote()) return;
 
-    const onMove = (event: MouseEvent) => {
-      if (event.clientY <= 10) {
-        setShow(true);
-        sessionStorage.setItem(KEY, "1");
-      }
+    const trigger = () => {
+      if (hasSubmittedQuote()) return;
+      setShow(true);
     };
 
-    document.addEventListener("mousemove", onMove);
-    return () => document.removeEventListener("mousemove", onMove);
+    // Mouse leaving through the top of the viewport (toward tabs / close / back).
+    const onMouseOut = (event: MouseEvent) => {
+      if (!event.relatedTarget && event.clientY <= 0) trigger();
+    };
+    const onMouseMove = (event: MouseEvent) => {
+      if (event.clientY <= 10) trigger();
+    };
+
+    document.addEventListener("mouseout", onMouseOut);
+    document.addEventListener("mousemove", onMouseMove);
+    return () => {
+      document.removeEventListener("mouseout", onMouseOut);
+      document.removeEventListener("mousemove", onMouseMove);
+    };
   }, [ready]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -47,6 +67,11 @@ export function ExitIntentPopup() {
     const ok = await submitEnquiryToSheet(payload);
     setSubmitting(false);
     if (ok) {
+      try {
+        localStorage.setItem(SUBMITTED_KEY, "true");
+      } catch {
+        // Ignore storage write failures (e.g. private mode); popup just stays eligible.
+      }
       window.open(buildWhatsAppQuoteUrl(payload.name, payload.phone, payload.email, payload.message), "_blank", "noopener,noreferrer");
       setShow(false);
     }
