@@ -67,11 +67,11 @@ export function ExitIntentPopup() {
             <form className="mt-5 grid gap-3" onSubmit={onSubmit}>
               <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" className="rounded-xl border border-white/25 bg-white/10 px-4 py-3 placeholder:text-white/70" />
               <input required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone" className="rounded-xl border border-white/25 bg-white/10 px-4 py-3 placeholder:text-white/70" />
-              <button type="submit" disabled={submitting} className="mt-2 rounded-full bg-white px-5 py-3 font-semibold text-[var(--primary-blue)] transition hover:bg-[var(--primary-red)] hover:text-white">
+              <button type="submit" disabled={submitting} className="mt-2 cursor-pointer rounded-full bg-white px-5 py-3 font-semibold text-[var(--primary-blue)] transition hover:bg-[var(--primary-red)] hover:text-white">
                 {submitting ? "Submitting..." : "Get My Free Quote"}
               </button>
             </form>
-            <button type="button" onClick={() => setShow(false)} className="mt-4 text-xs text-white/80 underline underline-offset-4">
+            <button type="button" onClick={() => setShow(false)} className="mt-4 cursor-pointer text-xs text-white/80 underline underline-offset-4">
               No thanks
             </button>
           </motion.div>
