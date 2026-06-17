@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
+import { ManagingDirectorCard } from "@/components/managing-director-card";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -172,32 +173,14 @@ export default function AboutPage() {
       <section className="mx-auto max-w-7xl px-6 py-20">
         <Reveal><h2 className="text-4xl font-black text-[var(--primary-blue)]">Leadership</h2></Reveal>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {[
-            { role: "Managing Director", name: "P.A. JAGADESH", image: "/leadership/jagadesh-md.png" },
-            { role: "Operations Head", name: null, image: null },
-            { role: "Sales Director", name: null, image: null },
-          ].map((leader) => (
-            <Reveal key={leader.role} className="premium-card rounded-3xl border border-zinc-200 p-6 transition hover:-translate-y-2 hover:shadow-xl">
+          <ManagingDirectorCard />
+          {["Operations Head", "Sales Director"].map((role) => (
+            <Reveal key={role} className="premium-card rounded-3xl border border-zinc-200 p-6 transition hover:-translate-y-2 hover:shadow-xl">
               <div className="relative h-36 overflow-hidden rounded-2xl">
-                <Image
-                  src={leader.image ?? "/warehouse_2.png"}
-                  alt={leader.name ? `${leader.name} — ${leader.role}` : ""}
-                  fill
-                  sizes="200px"
-                  className={leader.image ? "object-cover object-top" : "object-cover"}
-                />
+                <Image src="/warehouse_2.png" alt="" fill sizes="200px" className="object-cover" />
               </div>
-              {leader.name ? (
-                <>
-                  <p className="mt-4 text-lg font-bold text-[var(--primary-blue)]">{leader.name}</p>
-                  <p className="text-sm text-zinc-500">{leader.role}</p>
-                </>
-              ) : (
-                <>
-                  <p className="mt-4 text-lg font-bold text-[var(--primary-blue)]">{leader.role}</p>
-                  <p className="text-sm text-zinc-500">Leadership profile coming soon.</p>
-                </>
-              )}
+              <p className="mt-4 text-lg font-bold text-[var(--primary-blue)]">{role}</p>
+              <p className="text-sm text-zinc-500">Leadership profile coming soon.</p>
             </Reveal>
           ))}
         </div>
