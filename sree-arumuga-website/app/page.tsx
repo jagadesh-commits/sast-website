@@ -213,8 +213,8 @@ export default function Home() {
 
       <section className="bg-white px-6 py-20">
         <div className="mx-auto max-w-7xl">
-          <p className="industrial-heading text-sm font-semibold text-zinc-500">Testimonials</p>
-          <h2 className="industrial-heading mt-2 text-5xl font-black text-zinc-900">What Our Clients Say</h2>
+          <p className="industrial-heading text-sm font-semibold text-[var(--primary-blue)]">Blog</p>
+          <h2 className="industrial-heading mt-2 text-5xl font-black text-zinc-900">Latest Insights</h2>
           <div className="mt-8 overflow-hidden rounded-3xl bg-[#1d1f24] text-white">
             <div className="grid md:grid-cols-2">
               <div className="p-8 md:p-12">
