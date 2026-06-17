@@ -84,7 +84,7 @@ export function ManagingDirectorCard() {
               </button>
 
               <div className="grid md:grid-cols-[minmax(0,38%)_1fr]">
-                <div className="relative min-h-[280px] bg-[var(--primary-blue)] md:min-h-full">
+                <div className="relative h-72 w-full bg-[var(--primary-blue)] md:h-auto md:min-h-[460px]">
                   <Image
                     src={PHOTO}
                     alt={`${NAME} — ${TITLE}`}
