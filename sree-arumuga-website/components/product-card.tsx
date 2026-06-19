@@ -42,13 +42,14 @@ export function ProductCard({ product }: { product: ProductCardData }) {
     <Reveal className="h-full">
       <article className="premium-card flex h-full flex-col rounded-3xl border border-zinc-200 p-6 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
         {imageSrc ? (
-          <div className="relative mb-4 flex h-44 max-h-44 w-full items-center justify-center overflow-hidden rounded-2xl bg-zinc-50 sm:h-48 sm:max-h-48">
+          <div className="relative -mx-6 mb-4 w-[calc(100%+3rem)] overflow-hidden rounded-t-2xl">
             <Image
               src={imageSrc}
               alt={`${product.title} — ${product.images ? variant : "product"} infographic`}
-              fill
+              width={1024}
+              height={682}
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-contain p-1"
+              className="h-auto w-full"
             />
           </div>
         ) : null}
