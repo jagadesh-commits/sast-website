@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
 import { LeadershipBioCard } from "@/components/leadership-bio-card";
+import { FaUserTie } from "react-icons/fa";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -191,8 +192,8 @@ export default function AboutPage() {
           />
           {["Operations Head", "Sales Director"].map((role) => (
             <Reveal key={role} className="premium-card rounded-3xl border border-zinc-200 p-6 transition hover:-translate-y-2 hover:shadow-xl">
-              <div className="relative h-36 overflow-hidden rounded-2xl">
-                <Image src="/warehouse_2.png" alt="" fill sizes="200px" className="object-cover" />
+              <div className="flex h-36 items-center justify-center overflow-hidden rounded-2xl bg-zinc-100">
+                <FaUserTie className="text-5xl text-[var(--primary-blue)]/30" aria-hidden />
               </div>
               <p className="mt-4 text-lg font-bold text-[var(--primary-blue)]">{role}</p>
               <p className="text-sm text-zinc-500">Leadership profile coming soon.</p>
