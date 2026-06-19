@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
-import { ManagingDirectorCard } from "@/components/managing-director-card";
+import { LeadershipBioCard } from "@/components/leadership-bio-card";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -173,7 +173,22 @@ export default function AboutPage() {
       <section className="mx-auto max-w-7xl px-6 py-20">
         <Reveal><h2 className="text-4xl font-black text-[var(--primary-blue)]">Leadership</h2></Reveal>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          <ManagingDirectorCard />
+          <LeadershipBioCard
+            photo="/leadership/arumugam-founder.png"
+            cardName="Mr. P. G. Arumugam"
+            cardTitle="Founder"
+            modalName="Mr. P. G. Arumugam"
+            modalTitle="Founder"
+            bio="Mr. P. G. Arumugam founded Sree Arumuga Steel Trading in 1984, laying the foundation for what has grown into one of South India's leading steel distribution companies. His commitment to quality, integrity, and customer trust shaped the core values that continue to guide the company today."
+          />
+          <LeadershipBioCard
+            photo="/leadership/jagadesh-md.png"
+            cardName="P.A. JAGADESH"
+            cardTitle="Managing Director"
+            modalName="Mr. P. A. Jagadesh"
+            modalTitle="Director"
+            bio="P. A. Jagadesh leads Sree Arumuga Steel Trading Private Limited as Director, steering the company through its most significant transformation yet — the transition from a proprietorship firm to a Private Limited Company in 2026. Building on a foundation laid in 1984, he has driven the expansion of operations, strengthened customer relationships, and introduced modern business practices to a four-decade legacy in the steel trading industry. Under his leadership, the company has cemented its position as an Exclusive Distributor of JSW Steel and one of South India's leading steel distributors, with an annual turnover exceeding Rs. 350 Crores. He combines deep industry knowledge with a forward-looking approach, ensuring the company stays true to its founding values of trust and reliability while scaling for the future."
+          />
           {["Operations Head", "Sales Director"].map((role) => (
             <Reveal key={role} className="premium-card rounded-3xl border border-zinc-200 p-6 transition hover:-translate-y-2 hover:shadow-xl">
               <div className="relative h-36 overflow-hidden rounded-2xl">
