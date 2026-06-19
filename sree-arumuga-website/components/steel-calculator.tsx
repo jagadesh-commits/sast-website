@@ -9,9 +9,11 @@ type Props = {
   compact?: boolean;
   /** Optional product value to pre-select (e.g. from a ?product= query param). */
   initialProduct?: string;
+  /** Optional sheet/coil variant from ?type= query param (reserved for future use). */
+  initialType?: "sheet" | "coil";
 };
 
-export function SteelCalculator({ compact = false, initialProduct }: Props) {
+export function SteelCalculator({ compact = false, initialProduct, initialType: _initialType }: Props) {
   const [product, setProduct] = useState<string>(
     initialProduct && CALCULATOR_PRODUCTS.some((item) => item.value === initialProduct)
       ? initialProduct

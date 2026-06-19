@@ -9,13 +9,15 @@ export const metadata: Metadata = {
 export default async function CalculatorPage({
   searchParams,
 }: {
-  searchParams: Promise<{ product?: string }>;
+  searchParams: Promise<{ product?: string; type?: string }>;
 }) {
   const params = await searchParams;
   const initialProduct = typeof params.product === "string" ? params.product : undefined;
+  const initialType =
+    params.type === "sheet" || params.type === "coil" ? params.type : undefined;
   return (
     <div className="mx-auto max-w-7xl px-6 py-20">
-      <SteelCalculator compact initialProduct={initialProduct} />
+      <SteelCalculator compact initialProduct={initialProduct} initialType={initialType} />
     </div>
   );
 }
