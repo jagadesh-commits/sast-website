@@ -17,6 +17,8 @@ type LeadershipBioCardProps = {
   modalTitle: string;
   /** Bio paragraph shown in the modal */
   bio: string;
+  /** Optional object-position utility for the grid card thumbnail (defaults to "object-top"). */
+  cardImagePosition?: string;
 };
 
 export function LeadershipBioCard({
@@ -26,6 +28,7 @@ export function LeadershipBioCard({
   modalName,
   modalTitle,
   bio,
+  cardImagePosition = "object-top",
 }: LeadershipBioCardProps) {
   const [open, setOpen] = useState(false);
 
@@ -64,7 +67,7 @@ export function LeadershipBioCard({
         transition={{ duration: 0.7 }}
       >
         <div className="relative h-36 overflow-hidden rounded-2xl">
-          <Image src={photo} alt={`${modalName} — ${modalTitle}`} fill sizes="200px" className="object-cover object-top" />
+          <Image src={photo} alt={`${modalName} — ${modalTitle}`} fill sizes="200px" className={`object-cover ${cardImagePosition}`} />
         </div>
         <p className="mt-4 text-lg font-bold text-[var(--primary-blue)]">{cardName}</p>
         <p className="text-sm text-zinc-500">{cardTitle}</p>

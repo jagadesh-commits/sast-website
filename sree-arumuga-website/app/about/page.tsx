@@ -178,6 +178,7 @@ export default function AboutPage() {
             photo="/leadership/arumugam-founder.png"
             cardName="Mr. P. G. Arumugam"
             cardTitle="Founder"
+            cardImagePosition="object-[center_35%]"
             modalName="Mr. P. G. Arumugam"
             modalTitle="Founder"
             bio="P. G. Arumugam founded Sree Arumuga Steel Trading in 1984, laying the foundation for what would grow into one of South India's leading steel distribution businesses. Starting operations from Sathangadu Iron & Steel Market in Manali, Chennai, he built the company on a simple promise — reliable supply and honest service — and has not rested a single day since, a relentless work ethic that became the backbone of the business. His commitment to trust and consistency earned the company its standing among customers across Tamil Nadu, setting the foundation that the next generation of leadership continues to build on today."
