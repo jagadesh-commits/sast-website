@@ -2,6 +2,7 @@
 
 import { Reveal } from "@/components/reveal";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 const items = [
@@ -143,6 +144,7 @@ export default function ProductsPage() {
                   "Hot Rolled steel sheets and coils are the foundation of industrial manufacturing. Ideal for fabrication, automotive components, pipes, tubes, and general engineering applications. Available in thicknesses from 1.6mm to 16mm.",
                 apps: "Fabrication, Automotive, Pipes & Tubes, General Engineering",
                 brand: "JSW Steel",
+                calc: "HR Sheets",
               },
               {
                 title: "HRPO Sheets & Coils (Hot Rolled Pickled & Oiled)",
@@ -150,6 +152,7 @@ export default function ProductsPage() {
                   "HRPO sheets offer a cleaner, scale-free surface compared to standard HR. Perfect for applications requiring better surface finish before further processing. Available in thicknesses from 1.6mm to 6mm.",
                 apps: "Automotive parts, White goods, Press components",
                 brand: "JSW Steel",
+                calc: "HR Sheets",
               },
               {
                 title: "CR Sheets & Coils (Cold Rolled)",
@@ -157,6 +160,7 @@ export default function ProductsPage() {
                   "Cold Rolled steel offers superior surface finish, tighter thickness tolerances and excellent formability. Widely used in automotive, appliances, and precision engineering. Available from 0.4mm to 3.15mm.",
                 apps: "Automotive, Home appliances, Precision components",
                 brand: "JSW Steel",
+                calc: "CR Sheets",
               },
               {
                 title: "GP Sheets & Coils (Galvanized Plain)",
@@ -164,6 +168,7 @@ export default function ProductsPage() {
                   "Galvanized Plain sheets provide excellent corrosion resistance through hot-dip zinc coating. Ideal for roofing, cladding, ducts and agricultural equipment. Available from 0.14mm to 3.15mm.",
                 apps: "Roofing, Cladding, Ducts, Agricultural equipment",
                 brand: "JSW Steel",
+                calc: "GP Sheets",
               },
               {
                 title: "GL Sheets & Coils (Galvalume)",
@@ -171,6 +176,7 @@ export default function ProductsPage() {
                   "Galvalume sheets combine zinc and aluminum coating for superior corrosion and heat resistance compared to standard GP. Perfect for industrial roofing and long-life structural applications.",
                 apps: "Industrial roofing, Long-life structures, Pre-engineered buildings",
                 brand: "JSW Steel",
+                calc: "GL Sheets",
               },
               {
                 title: "EG Sheets & Coils (Electro Galvanized)",
@@ -178,6 +184,7 @@ export default function ProductsPage() {
                   "Electro Galvanized sheets offer a thin, uniform zinc coating applied through electroplating. Ideal for applications requiring excellent paintability and surface quality.",
                 apps: "Automotive body panels, Appliances, Painted components",
                 brand: "JSW Steel",
+                calc: "EG Sheets",
               },
               {
                 title: "PPGL Sheets (Pre-Painted Galvalume)",
@@ -185,6 +192,7 @@ export default function ProductsPage() {
                   "Pre-Painted Galvalume sheets come with factory-applied paint coating over Galvalume base. Available in multiple colors. Perfect for roofing, wall cladding and architectural applications.",
                 apps: "Roofing, Wall cladding, Architectural panels, Pre-engineered buildings",
                 brand: "JSW Colour ON+, JSW Radiance, Colourshine Spectrum, Colourshine Pratham",
+                calc: "PPGL Sheets",
               },
               {
                 title: "MS Plates (Mild Steel)",
@@ -192,10 +200,11 @@ export default function ProductsPage() {
                   "Mild Steel plates are essential for heavy structural and engineering applications. High tensile strength and weldability make them ideal for bridges, ships, pressure vessels and construction.",
                 apps: "Bridges, Shipbuilding, Pressure vessels, Heavy construction",
                 brand: "JSW Steel / Jindal India",
+                calc: "MS Plates",
               },
             ].map((p) => (
-              <Reveal key={p.title}>
-                <article className="premium-card rounded-3xl border border-zinc-200 p-6 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+              <Reveal key={p.title} className="h-full">
+                <article className="premium-card flex h-full flex-col rounded-3xl border border-zinc-200 p-6 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
                   <p className="text-xs font-semibold uppercase tracking-wide text-[var(--primary-blue)]">Product</p>
                   <h3 className="mt-2 text-xl font-bold text-[var(--primary-blue)]">{p.title}</h3>
                   <p className="mt-3 text-sm text-zinc-700">{p.desc}</p>
@@ -205,12 +214,21 @@ export default function ProductsPage() {
                   <p className="mt-1 text-sm text-zinc-600">
                     <span className="font-semibold text-zinc-800">Brand:</span> {p.brand}
                   </p>
-                  <button
-                    data-open-quote="true"
-                    className="mt-5 rounded-full bg-[var(--primary-blue)] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[var(--primary-red)] active:bg-[var(--primary-red)]"
-                  >
-                    Request Quote
-                  </button>
+                  <div className="mt-auto flex flex-col items-start gap-2 pt-5">
+                    <button
+                      data-open-quote="true"
+                      className="rounded-full bg-[var(--primary-blue)] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[var(--primary-red)] active:bg-[var(--primary-red)]"
+                    >
+                      Request Quote
+                    </button>
+                    <Link
+                      href={`/calculator?product=${encodeURIComponent(p.calc)}`}
+                      className="rounded-full border border-[var(--primary-blue)] bg-white px-5 py-2 text-sm font-semibold text-[var(--primary-blue)] transition hover:bg-[var(--primary-blue)]/5"
+                    >
+                      Calculate Weight &amp; Price
+                    </Link>
+                    <p className="text-xs text-zinc-400">* Prices may vary daily. Contact us for exact pricing.</p>
+                  </div>
                 </article>
               </Reveal>
             ))}

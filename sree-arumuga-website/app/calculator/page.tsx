@@ -6,10 +6,16 @@ export const metadata: Metadata = {
   description: "Calculate steel sheet, plate, and coil weight with indicative pricing.",
 };
 
-export default function CalculatorPage() {
+export default async function CalculatorPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialProduct = typeof params.product === "string" ? params.product : undefined;
   return (
     <div className="mx-auto max-w-7xl px-6 py-20">
-      <SteelCalculator compact />
+      <SteelCalculator compact initialProduct={initialProduct} />
     </div>
   );
 }

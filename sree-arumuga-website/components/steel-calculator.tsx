@@ -7,10 +7,16 @@ import { CALCULATOR_PRODUCTS, computeSteelWeight } from "@/lib/steel-weight";
 
 type Props = {
   compact?: boolean;
+  /** Optional product value to pre-select (e.g. from a ?product= query param). */
+  initialProduct?: string;
 };
 
-export function SteelCalculator({ compact = false }: Props) {
-  const [product, setProduct] = useState<string>(CALCULATOR_PRODUCTS[0].value);
+export function SteelCalculator({ compact = false, initialProduct }: Props) {
+  const [product, setProduct] = useState<string>(
+    initialProduct && CALCULATOR_PRODUCTS.some((item) => item.value === initialProduct)
+      ? initialProduct
+      : CALCULATOR_PRODUCTS[0].value,
+  );
   const [thickness, setThickness] = useState("1.2");
   const [length, setLength] = useState("2500");
   const [width, setWidth] = useState("1250");
