@@ -10,6 +10,9 @@ const PRODUCT_CARDS: ProductCardData[] = [
     title: "HR Sheets & Coils (Hot Rolled)",
     brand: "JSW Steel",
     calc: "HR Sheets",
+    simplified: true,
+    tagline: "High strength hot rolled steel for fabrication and engineering.",
+    images: { sheet: "/products/hr-sheet.png", coil: "/products/hr-coil.png" },
     sheet: {
       description:
         "Hot Rolled steel sheets and coils are the foundation of industrial manufacturing. Ideal for fabrication, automotive components, pipes, tubes, and general engineering applications. Available in thicknesses from 1.6mm to 16mm.",
@@ -25,6 +28,9 @@ const PRODUCT_CARDS: ProductCardData[] = [
     title: "HRPO Sheets & Coils (Hot Rolled Pickled & Oiled)",
     brand: "JSW Steel",
     calc: "HR Sheets",
+    simplified: true,
+    tagline: "Cleaner, scale-free hot rolled steel with superior surface finish.",
+    images: { sheet: "/products/hrpo-sheet.png", coil: "/products/hrpo-coil.png" },
     sheet: {
       description:
         "HRPO sheets offer a cleaner, scale-free surface compared to standard HR. Perfect for applications requiring better surface finish before further processing. Available in thicknesses from 1.6mm to 6mm.",
@@ -40,6 +46,9 @@ const PRODUCT_CARDS: ProductCardData[] = [
     title: "CR Sheets & Coils (Cold Rolled)",
     brand: "JSW Steel",
     calc: "CR Sheets",
+    simplified: true,
+    tagline: "Superior surface finish and excellent formability for precision applications.",
+    images: { sheet: "/products/cr-sheet.png", coil: "/products/cr-coil.png" },
     sheet: {
       description:
         "Cold Rolled steel offers superior surface finish, tighter thickness tolerances and excellent formability. Widely used in automotive, appliances, and precision engineering. Available from 0.4mm to 3.15mm.",
@@ -55,6 +64,9 @@ const PRODUCT_CARDS: ProductCardData[] = [
     title: "GP Sheets & Coils (Galvanized Plain)",
     brand: "JSW Steel",
     calc: "GP Sheets",
+    simplified: true,
+    tagline: "Hot-dip galvanized steel with excellent corrosion resistance.",
+    images: { sheet: "/products/gp-sheet.png", coil: "/products/gp-coil.png" },
     sheet: {
       description:
         "Galvanized Plain sheets provide excellent corrosion resistance through hot-dip zinc coating. Ideal for roofing, cladding, ducts and agricultural equipment. Available from 0.14mm to 3.15mm.",
@@ -100,6 +112,7 @@ const PRODUCT_CARDS: ProductCardData[] = [
     title: "PPGL Sheets (Pre-Painted Galvalume)",
     brand: "JSW Colour ON+, JSW Radiance, Colourshine Spectrum, Colourshine Pratham",
     calc: "PPGL Sheets",
+    image: "/products/ppgl-coil.png",
     sheet: {
       description:
         "Pre-Painted Galvalume sheets come with factory-applied paint coating over Galvalume base. Available in multiple colors. Perfect for roofing, wall cladding and architectural applications.",
