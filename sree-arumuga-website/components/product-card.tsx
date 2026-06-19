@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/reveal";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -42,15 +43,36 @@ export function ProductCard({ product }: { product: ProductCardData }) {
     <Reveal className="h-full">
       <article className="premium-card flex h-full flex-col rounded-3xl border border-zinc-200 p-6 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
         {imageSrc ? (
-          <div className="relative -mx-6 mb-4 w-[calc(100%+3rem)] overflow-hidden rounded-t-2xl">
-            <Image
-              src={imageSrc}
-              alt={`${product.title} — ${product.images ? variant : "product"} infographic`}
-              width={1024}
-              height={682}
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="h-auto w-full"
-            />
+          <div className="relative -mx-6 mb-4 aspect-[1024/682] w-[calc(100%+3rem)] overflow-hidden rounded-t-2xl">
+            {product.images ? (
+              <AnimatePresence mode="sync" initial={false}>
+                <motion.div
+                  key={variant}
+                  initial={{ opacity: 0, scale: 1.02 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.28, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={variant === "sheet" ? product.images.sheet : product.images.coil}
+                    alt={`${product.title} — ${variant} infographic`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            ) : (
+              <Image
+                src={imageSrc}
+                alt={`${product.title} — product infographic`}
+                width={1024}
+                height={682}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="h-auto w-full"
+              />
+            )}
           </div>
         ) : null}
 
