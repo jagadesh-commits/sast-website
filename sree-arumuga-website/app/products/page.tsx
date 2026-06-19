@@ -79,6 +79,24 @@ const PRODUCT_CARDS: ProductCardData[] = [
     },
   },
   {
+    title: "BGL Sheets & Coils (Bare Galvalume)",
+    brand: "JSW Steel (Silveron & Galvos)",
+    calc: "bgl",
+    simplified: true,
+    tagline: "Premium Al-Zn coated steel for superior corrosion resistance and longer life.",
+    images: { sheet: "/products/bgl-sheet.png", coil: "/products/bgl-coil.png" },
+    sheet: {
+      description:
+        "Bare Galvalume sheets offer premium aluminium-zinc alloy coating for superior corrosion resistance and longer service life. Ideal for solar, roofing, and infrastructure applications.",
+      applications: "Solar structures, Industrial roofing, PEB buildings, Infrastructure",
+    },
+    coil: {
+      description:
+        "Bare Galvalume coils offer premium aluminium-zinc alloy coating for superior corrosion resistance and longer service life. Ideal for solar, roofing, and infrastructure applications.",
+      applications: "Solar structures, Industrial roofing, PEB buildings, Infrastructure",
+    },
+  },
+  {
     title: "GL Sheets & Coils (Galvalume)",
     brand: "JSW Steel",
     calc: "GL Sheets",
