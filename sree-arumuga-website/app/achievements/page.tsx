@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CountUp } from "@/components/count-up";
+import { MilestoneTimeline } from "@/components/milestone-timeline";
 import { Reveal } from "@/components/reveal";
 import Image from "next/image";
 
@@ -58,23 +59,7 @@ export default function AchievementsPage() {
           <CountUp end={500000} label="Tons Supplied" />
         </div>
         <Reveal className="mt-10 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
-          <h2 className="text-3xl font-black text-[var(--primary-blue)]">Milestone Timeline</h2>
-          <div className="mt-6 space-y-4">
-            {[
-              "1984: Founded as Sree Arumuga Steel Traders — started operations in Sathangadu Iron & Steel Market, Manali, Chennai.",
-              "1995: Expanded product range to include GP and CR sheets — serving 100+ customers across Chennai.",
-              "2005: Became authorized JSW Steel distributor — a major milestone in our growth journey.",
-              "2015: Crossed 10,000 tons annual supply milestone — serving industries across Tamil Nadu.",
-              "2020: Recognized as Top Performing JSW Distributor in Tamil Nadu region.",
-              "2023: Converted to Private Limited company — Sree Arumuga Steel Trading Private Limited incorporated.",
-              "2024: Launched digital platform and expanded to serve 3000+ customers across Tamil Nadu.",
-            ].map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <span className="text-xl text-[var(--gold)]">🏆</span>
-                <p className="text-sm text-zinc-700">{item}</p>
-              </div>
-            ))}
-          </div>
+          <MilestoneTimeline />
         </Reveal>
       </section>
     </div>
