@@ -107,15 +107,20 @@ function MilestoneCard({
       />
 
       <div className="flex items-start gap-4">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] transition-colors group-hover:bg-[var(--primary-blue)] group-hover:text-white">
+        <div
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-blue)]/10 text-[var(--primary-blue)] transition-colors group-hover:bg-[var(--primary-blue)] group-hover:text-white"
+          aria-hidden="true"
+        >
           <Icon className="h-5 w-5" aria-hidden />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--gold)]">
-            {milestone.year}
-          </p>
-          <h3 className="mt-1 text-lg font-black text-[var(--primary-blue)]">
-            {milestone.title}
+          <h3 className="m-0">
+            <span className="block text-xs font-bold uppercase tracking-[0.2em] text-[var(--gold)]">
+              {milestone.year}
+            </span>
+            <span className="mt-1 block text-lg font-black text-[var(--primary-blue)]">
+              {milestone.title}
+            </span>
           </h3>
         </div>
       </div>
@@ -139,10 +144,10 @@ function MilestoneCard({
         <div
           className="mt-5 flex aspect-[4/3] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-[var(--gold)]/50 bg-[var(--primary-blue)]/[0.03]"
           role="img"
-          aria-label="Award certificate photo"
+          aria-label="JSW Top Performing Distributor Tamil Nadu 2020 award certificate"
         >
           <FaImage className="h-8 w-8 text-[var(--gold)]/60" aria-hidden />
-          <span className="text-xs font-medium text-zinc-400">
+          <span className="text-xs font-medium text-zinc-400" aria-hidden="true">
             Certificate photo coming soon
           </span>
         </div>
@@ -153,7 +158,7 @@ function MilestoneCard({
 
 export function MilestoneTimeline() {
   return (
-    <div>
+    <section aria-label="Company Milestones">
       <h2 className="text-3xl font-black text-[var(--primary-blue)]">
         Milestone Timeline
       </h2>
@@ -219,12 +224,14 @@ export function MilestoneTimeline() {
           </defs>
         </svg>
 
-        <div className="relative z-10 grid grid-cols-1 gap-8 pl-8 md:grid-cols-2 md:pl-0 lg:grid-cols-3">
+        <ol className="relative z-10 m-0 grid list-none grid-cols-1 gap-8 p-0 pl-8 md:grid-cols-2 md:pl-0 lg:grid-cols-3">
           {MILESTONES.map((milestone, index) => (
-            <MilestoneCard key={milestone.year} milestone={milestone} index={index} />
+            <li key={milestone.year}>
+              <MilestoneCard milestone={milestone} index={index} />
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
-    </div>
+    </section>
   );
 }

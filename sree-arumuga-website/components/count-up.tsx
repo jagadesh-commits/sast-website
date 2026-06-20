@@ -45,9 +45,14 @@ export function CountUp({ end, suffix = "+", label, dark = false, className }: C
 
   return (
     <div ref={ref} className={className ?? "premium-card rounded-3xl p-6 text-center"}>
-      <p className={`text-5xl font-black ${dark ? "text-white" : "text-[var(--primary-blue)]"}`}>
-        {value}
-        <span className={dark ? "text-[var(--gold)]" : ""}>{suffix}</span>
+      <p
+        className={`text-5xl font-black ${dark ? "text-white" : "text-[var(--primary-blue)]"}`}
+        aria-label={`${end.toLocaleString()}${suffix} ${label}`}
+      >
+        <span aria-hidden="true">
+          {value}
+          <span className={dark ? "text-[var(--gold)]" : ""}>{suffix}</span>
+        </span>
       </p>
       <p className={`mt-2 text-sm ${dark ? "text-white/80" : "text-zinc-600"}`}>{label}</p>
     </div>

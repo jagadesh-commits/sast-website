@@ -35,13 +35,14 @@ export default function AchievementsPage() {
       <section className="relative overflow-hidden px-6 py-20 text-white">
         <Image
           src="/warehouse_1.png"
-          alt="Warehouse achievement background"
+          alt=""
           fill
           priority
           sizes="100vw"
           className="object-cover"
+          aria-hidden
         />
-        <div className="absolute inset-0 bg-[var(--primary-blue)]/75" />
+        <div className="absolute inset-0 bg-[var(--primary-blue)]/75" aria-hidden="true" />
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <h1 className="text-5xl font-black md:text-6xl">Our Achievements</h1>
@@ -52,8 +53,8 @@ export default function AchievementsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="grid gap-6 md:grid-cols-3">
+      <section className="mx-auto max-w-7xl px-6 py-20" aria-label="Achievement statistics and milestones">
+        <div className="grid gap-6 md:grid-cols-3" role="group" aria-label="Company achievement statistics">
           <CountUp end={40} label="Years in Business" />
           <CountUp end={3000} label="Happy Customers" />
           <CountUp end={500000} label="Tons Supplied" />

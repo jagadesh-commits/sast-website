@@ -98,7 +98,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             <Link href="/" className="flex items-center gap-3">
               <Image
                 src="/Logo.png"
-                alt="Sree Arumuga Steel Trading Private Limited Logo"
+                alt="Sree Arumuga Steel Trading Private Limited logo"
                 width={60}
                 height={60}
                 className="h-12 w-12 md:h-14 md:w-14"
@@ -171,7 +171,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             >
               <div className="flex items-center justify-between px-5 py-5">
                 <Link href="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
-                  <Image src="/Logo.png" alt="Sree Arumuga Logo" width={46} height={46} className="h-11 w-11 rounded-full bg-white/85 p-1" />
+                  <Image src="/Logo.png" alt="Sree Arumuga Steel Trading Private Limited logo" width={46} height={46} className="h-11 w-11 rounded-full bg-white/85 p-1" />
                   <p className="industrial-heading text-sm font-bold text-white">Sree Arumuga</p>
                 </Link>
                 <button
@@ -242,7 +242,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <footer className="mt-24 bg-[var(--primary-blue)] text-white">
         <div className="mx-auto max-w-7xl px-6 py-14">
           <div className="mb-8 flex items-center gap-3">
-            <Image src="/Logo.png" alt="Sree Arumuga Logo" width={52} height={52} className="h-12 w-12" />
+            <Image src="/Logo.png" alt="Sree Arumuga Steel Trading Private Limited logo" width={52} height={52} className="h-12 w-12" />
             <div>
               <p className="industrial-heading text-lg font-black">Sree Arumuga Steel Trading Private Limited</p>
               <p className="text-sm text-white/80">Trusted Since 1984</p>
