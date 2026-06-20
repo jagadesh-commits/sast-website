@@ -6,7 +6,6 @@ export const CALCULATOR_PRODUCTS = [
   { value: "CR Sheets", label: "CR Sheets" },
   { value: "GP Sheets", label: "GP Sheets" },
   { value: "GL Sheets", label: "GL Sheets" },
-  { value: "EG Sheets", label: "EG Sheets" },
   { value: "PPGL Sheets", label: "PPGL Sheets" },
   { value: "MS Plates", label: "MS Plates" },
   { value: "Coils (General)", label: "Coils (General)" },

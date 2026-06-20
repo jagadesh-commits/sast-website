@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Sree Arumuga Steel Trading",
   },
   description:
-    "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+    "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, PPGL sheets, plates and coils. Get instant quote.",
   robots: {
     index: true,
     follow: true,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Sree Arumuga Steel Trading",
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
     description:
-      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, PPGL sheets, plates and coils. Get instant quote.",
     images: [{ url: "https://sast-website.vercel.app/og-image.jpg", width: 1200, height: 630, alt: "Sree Arumuga Steel Trading" }],
     locale: "en_IN",
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
     description:
-      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, EG, PPGL sheets, plates and coils. Get instant quote.",
+      "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, PPGL sheets, plates and coils. Get instant quote.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   category: "business",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     address: true,
   },
   keywords:
-    "steel trading Chennai, JSW distributor Chennai, HR sheets Chennai, CR coils Chennai, GP sheets Chennai, steel plates Chennai, PPGL sheets, EG sheets, steel supplier Chennai, Manali steel market",
+    "steel trading Chennai, JSW distributor Chennai, HR sheets Chennai, CR coils Chennai, GP sheets Chennai, steel plates Chennai, PPGL sheets, steel supplier Chennai, Manali steel market",
   other: {
     "geo.region": "IN-TN",
     "geo.placename": "Chennai",

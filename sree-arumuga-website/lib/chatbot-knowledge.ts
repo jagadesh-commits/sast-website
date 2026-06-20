@@ -51,19 +51,13 @@ PRODUCTS WE DEAL IN (all from trusted brands, primarily JSW Steel):
    - Applications: Industrial roofing, Long-life structures, Pre-engineered buildings
    - Brand: JSW Steel
 
-6. EG Sheets & Coils (Electro Galvanized)
-   - Thickness: 0.5mm - 2mm
-   - Thin, uniform zinc coating; excellent paintability
-   - Applications: Automotive body panels, Appliances, Painted components
-   - Brand: JSW Steel
-
-7. PPGL Sheets (Pre-Painted Galvalume)
+6. PPGL Sheets (Pre-Painted Galvalume)
    - Thickness: 0.35mm - 1mm
    - Factory-applied paint over Galvalume base; multiple colours; specified by AZ value (e.g. AZ70, AZ150)
    - Applications: Roofing, Wall cladding, Architectural panels, Pre-engineered buildings
    - Brand: JSW Colour ON+, JSW Radiance, Colourshine Spectrum, Colourshine Pratham
 
-8. MS Plates (Mild Steel)
+7. MS Plates (Mild Steel)
    - Thickness: 6mm - 100mm
    - High tensile strength and weldability
    - Applications: Bridges, Shipbuilding, Pressure vessels, Heavy construction
@@ -120,7 +114,7 @@ export const SUBMIT_ENQUIRY_TOOL = {
           product: {
             type: "STRING",
             description:
-              "Product type, e.g. HR, HRPO, CR, GP, GL, EG, PPGL, MS Plates, Colour Coated, or Others.",
+              "Product type, e.g. HR, HRPO, CR, GP, GL, PPGL, MS Plates, Colour Coated, or Others.",
           },
           sheetType: {
             type: "STRING",

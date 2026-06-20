@@ -12,7 +12,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
   description:
-    "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price in Tamil Nadu.",
+    "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, PPGL sheets and MS plates at best price in Tamil Nadu.",
   keywords:
     "jsw steel dealers chennai, hr coil chennai, cr coil chennai, gp coil chennai, hrpo sheet chennai, steel supplier chennai, jsw distributors tamil nadu, steel trading company manali chennai",
   alternates: { canonical: "https://sast-website.vercel.app/" },
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     url: "https://sast-website.vercel.app/",
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
     description:
-      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price in Tamil Nadu.",
+      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, PPGL sheets and MS plates at best price in Tamil Nadu.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
     description:
-      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price in Tamil Nadu.",
+      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, PPGL sheets and MS plates at best price in Tamil Nadu.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
 };
@@ -65,7 +65,7 @@ export default function Home() {
               </h1>
               <div data-hero-anim className="mt-5 h-1.5 w-44 rounded-full bg-[var(--primary-blue)]" />
               <p data-hero-anim className="mt-6 max-w-2xl text-lg text-zinc-300">
-                Trusted steel trading solutions since 1984. Premium HR, CR, GP, GL, EG &amp; PPGL sheets, plates and
+                Trusted steel trading solutions since 1984. Premium HR, CR, GP, GL &amp; PPGL sheets, plates and
                 coils for infrastructure, fabrication and industrial growth.
               </p>
               <div data-hero-anim className="mt-10 flex flex-wrap gap-4">
@@ -100,7 +100,6 @@ export default function Home() {
             ["GP Coil", "INR 83,000 / ton"],
             ["GL Coil", "INR 86,000 / ton"],
             ["PPGL", "INR 89,000 / ton"],
-            ["EG Coil", "INR 86,000 / ton"],
             ["HR Coil", "INR 60,000 / ton"],
             ["MS Plate", "INR 62,000 / ton"],
             ["HRPO", "INR 65,000 / ton"],
@@ -108,7 +107,6 @@ export default function Home() {
             ["GP Coil", "INR 83,000 / ton"],
             ["GL Coil", "INR 86,000 / ton"],
             ["PPGL", "INR 89,000 / ton"],
-            ["EG Coil", "INR 86,000 / ton"],
           ].map(([name, price], index) => (
             <span key={`${name}-${index}`}>
               <span className="mr-2 font-semibold text-white">{name}</span>
@@ -129,7 +127,7 @@ export default function Home() {
             <p className="mt-5 text-zinc-600">
               Sree Arumuga Steel Trading Private Limited has been serving Tamil Nadu&apos;s industrial sector for over
               four decades. As an exclusive JSW Steel distributor in Chennai, we supply premium HR, HRPO, CR, GP,
-              GL, EG and PPGL sheets, plates and coils to fabricators, contractors, and industries across the region.
+              GL and PPGL sheets, plates and coils to fabricators, contractors, and industries across the region.
               Our commitment to quality, transparent pricing, and on-time delivery has made us the most trusted
               steel trading company in the Sathangadu Iron &amp; Steel Market, Manali, Chennai.
             </p>
@@ -174,7 +172,7 @@ export default function Home() {
           {[
             {
               name: "Steel Sheets",
-              text: "High precision HR, CR, GP, GL, EG and PPGL sheets for fabrication, roofing, automotive and industrial use.",
+              text: "High precision HR, CR, GP, GL and PPGL sheets for fabrication, roofing, automotive and industrial use.",
             },
             {
               name: "Steel Plates",

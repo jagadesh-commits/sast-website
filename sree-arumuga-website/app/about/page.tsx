@@ -7,7 +7,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "About Us | Sree Arumuga Steel Trading Pvt Ltd | JSW Distributor Chennai Since 1984",
   description:
-    "Sree Arumuga Steel Trading Private Limited — JSW exclusive steel distributor in Chennai since 1984. Supplying HR, CR, GP, HRPO, GL, EG, PPGL sheets and coils across Tamil Nadu.",
+    "Sree Arumuga Steel Trading Private Limited — JSW exclusive steel distributor in Chennai since 1984. Supplying HR, CR, GP, HRPO, GL, PPGL sheets and coils across Tamil Nadu.",
   keywords:
     "jsw steel distributor chennai, jsw distributors tamil nadu, steel trading company chennai, sree arumuga steel, jsw steel dealership, steel supplier sathangadu manali chennai",
   alternates: { canonical: "https://sast-website.vercel.app/about" },
@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     url: "https://sast-website.vercel.app/about",
     title: "About Us | Sree Arumuga Steel Trading Pvt Ltd | JSW Distributor Chennai Since 1984",
     description:
-      "Sree Arumuga Steel Trading Private Limited — JSW exclusive steel distributor in Chennai since 1984. Supplying HR, CR, GP, HRPO, GL, EG, PPGL sheets and coils across Tamil Nadu.",
+      "Sree Arumuga Steel Trading Private Limited — JSW exclusive steel distributor in Chennai since 1984. Supplying HR, CR, GP, HRPO, GL, PPGL sheets and coils across Tamil Nadu.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About Us | Sree Arumuga Steel Trading Pvt Ltd | JSW Distributor Chennai Since 1984",
     description:
-      "Sree Arumuga Steel Trading Private Limited — JSW exclusive steel distributor in Chennai since 1984. Supplying HR, CR, GP, HRPO, GL, EG, PPGL sheets and coils across Tamil Nadu.",
+      "Sree Arumuga Steel Trading Private Limited — JSW exclusive steel distributor in Chennai since 1984. Supplying HR, CR, GP, HRPO, GL, PPGL sheets and coils across Tamil Nadu.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
 };
@@ -64,7 +64,7 @@ export default function AboutPage() {
             </p>
             <p className="mt-3 text-zinc-600">
               Today, as an exclusive JSW Steel distributor in Chennai, we supply HR sheets, HRPO sheets, CR sheets,
-              GP sheets, GL sheets, EG sheets, PPGL sheets, MS plates and steel coils to hundreds of fabricators,
+              GP sheets, GL sheets, PPGL sheets, MS plates and steel coils to hundreds of fabricators,
               contractors, manufacturers and industries across Tamil Nadu.
             </p>
             <p className="mt-3 text-zinc-600">
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 },
                 {
                   title: "Wide Product Range",
-                  desc: "HR, HRPO, CR, GP, GL, EG, PPGL sheets, MS plates and coils — all under one roof in Manali, Chennai.",
+                  desc: "HR, HRPO, CR, GP, GL, PPGL sheets, MS plates and coils — all under one roof in Manali, Chennai.",
                 },
                 {
                   title: "Competitive Pricing",

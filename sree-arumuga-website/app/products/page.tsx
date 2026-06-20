@@ -112,21 +112,6 @@ const PRODUCT_CARDS: ProductCardData[] = [
     },
   },
   {
-    title: "EG Sheets & Coils (Electro Galvanized)",
-    brand: "JSW Steel",
-    calc: "EG Sheets",
-    sheet: {
-      description:
-        "Electro Galvanized sheets offer a thin, uniform zinc coating applied through electroplating. Ideal for applications requiring excellent paintability and surface quality.",
-      applications: "Automotive body panels, Appliances, Painted components",
-    },
-    coil: {
-      description:
-        "Electro Galvanized sheets offer a thin, uniform zinc coating applied through electroplating. Ideal for applications requiring excellent paintability and surface quality.",
-      applications: "Automotive body panels, Appliances, Painted components",
-    },
-  },
-  {
     title: "PPGL Sheets (Pre-Painted Galvalume)",
     brand: "JSW Colour ON+, JSW Radiance, Colourshine Spectrum, Colourshine Pratham",
     calc: "PPGL Sheets",
@@ -191,12 +176,6 @@ const items = [
     useCase: "Roofing, Cladding",
   },
   {
-    name: "EG Sheets (Electro Galvanized)",
-    category: "Sheets",
-    thickness: "0.5mm - 2mm",
-    useCase: "Automotive, Electronics",
-  },
-  {
     name: "PPGL Sheets (Pre Painted Galvalume)",
     category: "Sheets",
     thickness: "0.35mm - 1mm",
@@ -256,7 +235,7 @@ export default function ProductsPage() {
       "@type": "Organization",
       name: "Sree Arumuga Steel Trading Private Limited",
     },
-    category: "HR, HRPO, CR, GP, GL, EG, PPGL Steel Sheets and Coils",
+    category: "HR, HRPO, CR, GP, GL, PPGL Steel Sheets and Coils",
     url: "https://sast-website.vercel.app/products",
   };
 
