@@ -235,8 +235,8 @@ export default function Home() {
               </div>
               <div className="relative min-h-[260px]">
                 <Image
-                  src="/macchine_warehouse1.png"
-                  alt="Industrial steel feature"
+                  src={featuredPost.image}
+                  alt={featuredPost.imageAlt}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"

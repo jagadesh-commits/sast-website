@@ -45,7 +45,7 @@ export function BlogGrid({ posts }: { posts: BlogPost[] }) {
             className="premium-card rounded-3xl border border-zinc-200 p-5 transition duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(26,58,143,0.16)]"
           >
             <div className="relative h-44 overflow-hidden rounded-2xl">
-              <Image src="/machine2.png" alt="" fill sizes="(max-width:768px)100vw,33vw" className="object-cover" />
+              <Image src={post.image} alt={post.imageAlt} fill sizes="(max-width:768px)100vw,33vw" className="object-cover" />
             </div>
             <span className="mt-4 inline-flex rounded-full bg-[var(--primary-blue)]/10 px-3 py-1 text-xs font-bold text-[var(--primary-blue)]">
               {post.category}

@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const featuredPost = blogPosts[0];
+
   return (
     <div>
       <section className="bg-[var(--primary-blue)] px-6 py-20 text-white">
@@ -28,8 +30,8 @@ export default function BlogPage() {
       <section className="mx-auto max-w-7xl px-6 py-20">
         <article className="relative mb-12 overflow-hidden rounded-3xl text-white">
           <Image
-            src="/macchine_warehouse1.png"
-            alt="Steel warehouse Chennai — HR CR GP coil sheets"
+            src={featuredPost.image}
+            alt={featuredPost.imageAlt}
             fill
             sizes="100vw"
             className="object-cover"
@@ -37,10 +39,10 @@ export default function BlogPage() {
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative p-8 md:p-12">
             <p className="text-xs uppercase tracking-widest text-zinc-300">Featured Post</p>
-            <h2 className="mt-3 text-3xl font-black md:text-4xl">{blogPosts[0]?.title}</h2>
-            <p className="mt-3 max-w-2xl text-zinc-200">{blogPosts[0]?.excerpt}</p>
+            <h2 className="mt-3 text-3xl font-black md:text-4xl">{featuredPost.title}</h2>
+            <p className="mt-3 max-w-2xl text-zinc-200">{featuredPost.excerpt}</p>
             <Link
-              href={`/blog/${blogPosts[0]?.slug ?? ""}`}
+              href={`/blog/${featuredPost.slug}`}
               className="mt-6 inline-block rounded-full border border-white px-6 py-2 text-sm font-semibold"
             >
               Read More
