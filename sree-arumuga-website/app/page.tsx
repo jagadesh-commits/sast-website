@@ -4,6 +4,7 @@ import { Reveal } from "@/components/reveal";
 import { HeroGsap } from "@/components/hero-gsap";
 import { SteelCalculator } from "@/components/steel-calculator";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
+import { BlogPostImage } from "@/components/blog-post-image";
 import { blogPosts } from "@/lib/blog-data";
 import Image from "next/image";
 import Link from "next/link";
@@ -233,15 +234,12 @@ export default function Home() {
                   Read More
                 </Link>
               </div>
-              <div className="relative min-h-[260px]">
-                <Image
-                  src={featuredPost.image}
-                  alt={featuredPost.imageAlt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
+              <BlogPostImage
+                src={featuredPost.image}
+                alt={featuredPost.imageAlt}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="h-full w-full"
+              />
             </div>
           </div>
         </div>

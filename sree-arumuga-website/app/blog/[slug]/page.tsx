@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { BlogPostImage } from "@/components/blog-post-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/lib/blog-data";
@@ -63,9 +63,13 @@ export default async function SingleBlogPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <div className="mx-auto max-w-4xl px-6 py-16">
-        <div className="relative h-[340px] overflow-hidden rounded-3xl">
-          <Image src={post.image} alt={post.imageAlt} fill sizes="100vw" className="object-cover" priority />
-        </div>
+        <BlogPostImage
+          src={post.image}
+          alt={post.imageAlt}
+          sizes="100vw"
+          priority
+          className="rounded-3xl"
+        />
 
         <span className="mt-8 inline-flex rounded-full bg-[var(--primary-blue)]/10 px-3 py-1 text-xs font-bold text-[var(--primary-blue)]">
           {post.category}

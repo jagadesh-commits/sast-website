@@ -1,7 +1,7 @@
 "use client";
 
 import { BlogCategory, BlogPost } from "@/lib/blog-data";
-import Image from "next/image";
+import { BlogPostImage } from "@/components/blog-post-image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
@@ -44,9 +44,12 @@ export function BlogGrid({ posts }: { posts: BlogPost[] }) {
             transition={{ duration: 0.35 }}
             className="premium-card rounded-3xl border border-zinc-200 p-5 transition duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(26,58,143,0.16)]"
           >
-            <div className="relative h-44 overflow-hidden rounded-2xl">
-              <Image src={post.image} alt={post.imageAlt} fill sizes="(max-width:768px)100vw,33vw" className="object-cover" />
-            </div>
+            <BlogPostImage
+              src={post.image}
+              alt={post.imageAlt}
+              sizes="(max-width:768px)100vw,33vw"
+              className="rounded-2xl"
+            />
             <span className="mt-4 inline-flex rounded-full bg-[var(--primary-blue)]/10 px-3 py-1 text-xs font-bold text-[var(--primary-blue)]">
               {post.category}
             </span>

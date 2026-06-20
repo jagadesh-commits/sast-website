@@ -29,24 +29,26 @@ export default function BlogPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20">
         <article className="relative mb-12 overflow-hidden rounded-3xl text-white">
-          <Image
-            src={featuredPost.image}
-            alt={featuredPost.imageAlt}
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="relative p-8 md:p-12">
-            <p className="text-xs uppercase tracking-widest text-zinc-300">Featured Post</p>
-            <h2 className="mt-3 text-3xl font-black md:text-4xl">{featuredPost.title}</h2>
-            <p className="mt-3 max-w-2xl text-zinc-200">{featuredPost.excerpt}</p>
-            <Link
-              href={`/blog/${featuredPost.slug}`}
-              className="mt-6 inline-block rounded-full border border-white px-6 py-2 text-sm font-semibold"
-            >
-              Read More
-            </Link>
+          <div className="relative aspect-[1024/682] w-full">
+            <Image
+              src={featuredPost.image}
+              alt={featuredPost.imageAlt}
+              fill
+              sizes="100vw"
+              className="object-contain"
+            />
+            <div className="absolute inset-0 bg-black/60" />
+            <div className="absolute inset-0 p-8 md:p-12">
+              <p className="text-xs uppercase tracking-widest text-zinc-300">Featured Post</p>
+              <h2 className="mt-3 text-3xl font-black md:text-4xl">{featuredPost.title}</h2>
+              <p className="mt-3 max-w-2xl text-zinc-200">{featuredPost.excerpt}</p>
+              <Link
+                href={`/blog/${featuredPost.slug}`}
+                className="mt-6 inline-block rounded-full border border-white px-6 py-2 text-sm font-semibold"
+              >
+                Read More
+              </Link>
+            </div>
           </div>
         </article>
         <BlogGrid posts={blogPosts} />

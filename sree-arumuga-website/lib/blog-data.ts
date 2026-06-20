@@ -25,7 +25,7 @@ export const blogPosts: BlogPost[] = [
     date: "May 15, 2026",
     readTime: "6 min read",
     image: "/blog/steel-price-trends-2026.png",
-    imageAlt: "Steel market price trends analysis India 2026 with analyst reviewing charts and warehouse coils",
+    imageAlt: "Steel price trends India 2026 infographic",
     quote: "Price awareness is now a strategic advantage for every steel buyer.",
     content: [
       "Steel prices in India have firmed up through the first half of 2026. HR coil is currently trading between ₹54,800 and ₹60,450 per metric tonne, while CR coil remains in the ₹58-66 per kg range, depending on grade and city.",
@@ -43,7 +43,7 @@ export const blogPosts: BlogPost[] = [
     date: "February 02, 2024",
     readTime: "4 min read",
     image: "/blog/jsw-exclusive-distributor.png",
-    imageAlt: "Sree Arumuga Steel Trading becomes JSW Exclusive Distributor partnership announcement",
+    imageAlt: "Sree Arumuga becomes JSW Exclusive Distributor announcement infographic",
     quote: "This recognition strengthens our promise of reliability and product confidence.",
     content: [
       "Our exclusive distributor recognition reflects long-term credibility, market trust, and customer-first operations.",
@@ -60,7 +60,7 @@ export const blogPosts: BlogPost[] = [
     date: "April 10, 2026",
     readTime: "7 min read",
     image: "/blog/choosing-steel-grade.png",
-    imageAlt: "Guide to choosing the right steel grade with HR, CR, GI and SS sheet samples",
+    imageAlt: "How to choose the right steel grade infographic guide",
     quote: "Correct grade selection prevents rework, delays, and lifecycle failures.",
     content: [
       "Choosing the right steel grade remains one of the most common questions we get from fabricators and contractors in 2026. Here's an updated practical checklist based on current JSW product specifications.",
@@ -79,7 +79,7 @@ export const blogPosts: BlogPost[] = [
     date: "March 20, 2026",
     readTime: "5 min read",
     image: "/blog/tamil-nadu-infrastructure-2026.png",
-    imageAlt: "Tamil Nadu infrastructure construction site with steel building frame driving steel demand in 2026",
+    imageAlt: "Tamil Nadu infrastructure steel demand 2026 infographic",
     quote: "Regional growth is translating directly into sustained steel demand.",
     content: [
       "Tamil Nadu's infrastructure momentum has carried strongly into 2026. Transport corridor expansions, industrial park development, and continued real estate recovery are keeping steel demand elevated across the state.",
@@ -96,7 +96,7 @@ export const blogPosts: BlogPost[] = [
     date: "November 08, 2023",
     readTime: "5 min read",
     image: "/blog/40-years-steel-excellence.png",
-    imageAlt: "Sree Arumuga Steel Trading 40 years of steel excellence anniversary celebration",
+    imageAlt: "Sree Arumuga 40 years of steel excellence anniversary infographic",
     quote: "Our progress is built on trust, consistency, and customer partnerships.",
     content: [
       "Since 1984, we have grown by combining deep market knowledge with service discipline.",
@@ -113,7 +113,7 @@ export const blogPosts: BlogPost[] = [
     date: "April 25, 2026",
     readTime: "8 min read",
     image: "/blog/hr-vs-cr-sheets-guide.png",
-    imageAlt: "Hot rolled versus cold rolled steel sheets comparison guide showing surface finish differences",
+    imageAlt: "HR vs CR steel sheets complete comparison guide infographic",
     quote: "Material selection should align with both performance and process requirements.",
     content: [
       "Understanding the difference between hot-rolled and cold-rolled steel sheets is essential for procurement decisions in 2026's competitive steel market. Here's a complete, updated comparison.",
