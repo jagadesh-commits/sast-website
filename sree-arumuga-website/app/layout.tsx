@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/site-chrome";
+import {
+  PHONE_PRIMARY_E164,
+  PHONE_SECONDARY_E164,
+} from "@/lib/company-contact";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -77,7 +81,21 @@ export default function RootLayout({
     name: "Sree Arumuga Steel Trading Private Limited",
     image: "https://sast-website.vercel.app/og-image.jpg",
     url: "https://sast-website.vercel.app",
-    telephone: "+919840036010",
+    telephone: PHONE_PRIMARY_E164,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: PHONE_PRIMARY_E164,
+        contactType: "customer service",
+        availableLanguage: ["English", "Tamil"],
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: PHONE_SECONDARY_E164,
+        contactType: "customer service",
+        availableLanguage: ["English", "Tamil"],
+      },
+    ],
     email: "sree.arumuga@gmail.com",
     address: {
       "@type": "PostalAddress",

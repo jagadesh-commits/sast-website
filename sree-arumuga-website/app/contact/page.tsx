@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { Reveal } from "@/components/reveal";
+import { PHONE_PRIMARY, PHONES_DISPLAY, WHATSAPP_NUMBER_DIGITS } from "@/lib/company-contact";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Contact | Sree Arumuga Steel Trading Chennai | +91 98400 36010 | JSW Steel Dealer",
+  title: "Contact | Sree Arumuga Steel Trading Chennai | JSW Steel Dealer",
   description:
-    "Contact Sree Arumuga Steel Trading Pvt Ltd. D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. Call +91 98400 36010. JSW steel dealer near you in Chennai.",
+    "Contact Sree Arumuga Steel Trading Pvt Ltd. D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. JSW steel dealer near you in Chennai.",
   keywords:
     "steel supplier near me chennai, jsw steel dealers near me, steel trading company manali, sathangadu steel market, steel dealer contact chennai, hr coil dealer chennai",
   alternates: { canonical: "https://sast-website.vercel.app/contact" },
@@ -14,16 +15,16 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Sree Arumuga Steel Trading",
     url: "https://sast-website.vercel.app/contact",
-    title: "Contact | Sree Arumuga Steel Trading Chennai | +91 98400 36010 | JSW Steel Dealer",
+    title: "Contact | Sree Arumuga Steel Trading Chennai | JSW Steel Dealer",
     description:
-      "Contact Sree Arumuga Steel Trading Pvt Ltd. D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. Call +91 98400 36010. JSW steel dealer near you in Chennai.",
+      "Contact Sree Arumuga Steel Trading Pvt Ltd. D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. JSW steel dealer near you in Chennai.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact | Sree Arumuga Steel Trading Chennai | +91 98400 36010 | JSW Steel Dealer",
+    title: "Contact | Sree Arumuga Steel Trading Chennai | JSW Steel Dealer",
     description:
-      "Contact Sree Arumuga Steel Trading Pvt Ltd. D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. Call +91 98400 36010. JSW steel dealer near you in Chennai.",
+      "Contact Sree Arumuga Steel Trading Pvt Ltd. D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. JSW steel dealer near you in Chennai.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
 };
@@ -55,12 +56,12 @@ export default function ContactPage() {
           <p className="mt-4 text-sm text-zinc-600">
             Address: D-196, Sathangadu Iron &amp; Steel Market, Manali, Chennai - 600068, Tamil Nadu, India
           </p>
-          <p className="mt-2 text-sm text-zinc-600">Phone: +91 98400 36010</p>
-          <p className="text-sm text-zinc-600">WhatsApp: +91 99401 19914</p>
+          <p className="mt-2 text-sm text-zinc-600">Phone: {PHONES_DISPLAY}</p>
+          <p className="text-sm text-zinc-600">WhatsApp: {PHONE_PRIMARY}</p>
           <p className="text-sm text-zinc-600">Email: sree.arumuga@gmail.com</p>
           <p className="mt-2 text-sm text-zinc-600">Hours: Monday to Saturday: 9:00 AM - 6:00 PM</p>
           <p className="text-sm text-zinc-600">GST: 33ABSCS3792H1ZS</p>
-          <a href="https://wa.me/919940119914" target="_blank" rel="noreferrer" className="mt-6 inline-block rounded-full bg-[#25D366] px-5 py-3 font-semibold text-white">
+          <a href={`https://wa.me/${WHATSAPP_NUMBER_DIGITS}`} target="_blank" rel="noreferrer" className="mt-6 inline-block rounded-full bg-[#25D366] px-5 py-3 font-semibold text-white">
             WhatsApp
           </a>
           <div className="mt-6 overflow-hidden rounded-2xl border border-zinc-200">

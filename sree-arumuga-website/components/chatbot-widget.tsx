@@ -3,13 +3,14 @@
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { PHONES_DISPLAY, WHATSAPP_NUMBER_DIGITS } from "@/lib/company-contact";
 import { useChatbotOpen } from "@/components/chatbot-open-context";
 import { trackEvent } from "@/lib/analytics";
 
 const STORAGE_KEY = "sas-chatbot-session-v3";
 
 /** Main site WhatsApp (Talk to Team fallback). */
-const WHATSAPP_NUMBER = "919940119914";
+const WHATSAPP_NUMBER = WHATSAPP_NUMBER_DIGITS;
 /** Used ONLY when redirecting after a successful chatbot enquiry submission. */
 const WHATSAPP_CHATBOT_SUBMIT_NUMBER = "919889883039";
 
@@ -289,7 +290,7 @@ export function ChatbotWidget() {
       openWhatsAppWithEnquiry(enquiry);
       trackEvent("chatbot_enquiry_complete", { product: enquiry.product || "unknown" });
       addBotMessage(
-        `✅ Thank you${enquiry.name ? ` ${enquiry.name}` : ""}!\nYour enquiry has been submitted. Our team will contact you within 2 hours.\n\nFor urgent enquiries: 📞 +91 99401 19914`,
+        `✅ Thank you${enquiry.name ? ` ${enquiry.name}` : ""}!\nYour enquiry has been submitted. Our team will contact you within 2 hours.\n\nFor urgent enquiries: 📞 ${PHONES_DISPLAY}`,
       );
       return;
     }
@@ -318,7 +319,7 @@ export function ChatbotWidget() {
       if (!res.ok) {
         setBotTyping(false);
         addBotMessage(
-          "Sorry, I'm having trouble right now. You can reach our team directly on WhatsApp using the button below, or call +91 99401 19914.",
+          `Sorry, I'm having trouble right now. You can reach our team directly on WhatsApp using the button below, or call ${PHONES_DISPLAY}.`,
         );
         return;
       }
@@ -333,7 +334,7 @@ export function ChatbotWidget() {
     } catch {
       setBotTyping(false);
       addBotMessage(
-        "Sorry, something went wrong. Please use the \"Talk to Team\" button below, or call +91 99401 19914.",
+        `Sorry, something went wrong. Please use the "Talk to Team" button below, or call ${PHONES_DISPLAY}.`,
       );
     }
   };

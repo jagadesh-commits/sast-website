@@ -4,13 +4,14 @@ import { Reveal } from "@/components/reveal";
 import { HeroGsap } from "@/components/hero-gsap";
 import { SteelCalculator } from "@/components/steel-calculator";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
+import { blogPosts } from "@/lib/blog-data";
 import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
   description:
-    "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price. Call +91 98400 36010.",
+    "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price in Tamil Nadu.",
   keywords:
     "jsw steel dealers chennai, hr coil chennai, cr coil chennai, gp coil chennai, hrpo sheet chennai, steel supplier chennai, jsw distributors tamil nadu, steel trading company manali chennai",
   alternates: { canonical: "https://sast-website.vercel.app/" },
@@ -20,19 +21,21 @@ export const metadata: Metadata = {
     url: "https://sast-website.vercel.app/",
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
     description:
-      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price. Call +91 98400 36010.",
+      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price in Tamil Nadu.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
     description:
-      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price. Call +91 98400 36010.",
+      "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, EG, PPGL sheets and MS plates at best price in Tamil Nadu.",
     images: ["https://sast-website.vercel.app/og-image.jpg"],
   },
 };
 
 export default function Home() {
+  const featuredPost = blogPosts[0];
+
   return (
     <div>
       <section
@@ -218,13 +221,13 @@ export default function Home() {
           <div className="mt-8 overflow-hidden rounded-3xl bg-[#1d1f24] text-white">
             <div className="grid md:grid-cols-2">
               <div className="p-8 md:p-12">
-                <p className="text-xs uppercase tracking-widest text-zinc-400">April 10, 2026 | Industry News | Market Desk</p>
-                <h3 className="industrial-heading mt-4 text-4xl font-black">Steel Price Trends in India 2024</h3>
-                <p className="mt-4 text-zinc-300">
-                  Market movement analysis, demand signals, and procurement guidance for industrial buyers.
+                <p className="text-xs uppercase tracking-widest text-zinc-400">
+                  {featuredPost.date} | {featuredPost.category} | {featuredPost.author}
                 </p>
+                <h3 className="industrial-heading mt-4 text-4xl font-black">{featuredPost.title}</h3>
+                <p className="mt-4 text-zinc-300">{featuredPost.excerpt}</p>
                 <Link
-                  href="/blog/steel-price-trends-india-2024"
+                  href={`/blog/${featuredPost.slug}`}
                   className="industrial-heading mt-7 inline-block rounded-full border border-sky-300/60 px-6 py-2 text-sm font-bold text-sky-200 transition hover:border-sky-100 hover:bg-white/10 hover:text-white"
                 >
                   Read More

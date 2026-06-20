@@ -13,6 +13,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { RouteLoader } from "@/components/route-loader";
 import { WhatsAppWidget } from "@/components/whatsapp-widget";
+import { PHONE_PRIMARY, PHONES_DISPLAY, WHATSAPP_NUMBER_DIGITS } from "@/lib/company-contact";
 
 const links = [
   { href: "/", label: "Home" },
@@ -84,7 +85,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         <div className="bg-[#141414] px-6 py-2 text-xs text-white">
           <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-1">
             <p>Mon-Sat: 9AM - 6PM</p>
-            <p>☎ +91 99401 19914</p>
+            <p>☎ {PHONE_PRIMARY}</p>
             <p>✉ sree.arumuga@gmail.com</p>
             <p>📍 Manali, Chennai</p>
           </div>
@@ -214,7 +215,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   Request Quote
                 </button>
                 <a
-                  href="https://wa.me/919940119914"
+                  href={`https://wa.me/${WHATSAPP_NUMBER_DIGITS}`}
                   target="_blank"
                   rel="noreferrer"
                   className="block w-full rounded-full bg-[#25D366] px-5 py-3 text-center text-sm font-semibold text-white"
@@ -276,7 +277,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </div>
           <div>
             <p className="font-semibold text-[var(--gold)]">Contact</p>
-            <p className="mt-3 text-sm text-white/80">+91 99401 19914</p>
+            <p className="mt-3 text-sm text-white/80">{PHONES_DISPLAY}</p>
             <p className="text-sm text-white/80">sree.arumuga@gmail.com</p>
             <p className="mt-2 text-sm text-white/80">
               D-196, Sathangadu Iron & Steel Market, Manali, Chennai - 600068
@@ -311,7 +312,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               </a>
 
               <a
-                href="https://wa.me/919940119914"
+                href={`https://wa.me/${WHATSAPP_NUMBER_DIGITS}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon social-whatsapp"

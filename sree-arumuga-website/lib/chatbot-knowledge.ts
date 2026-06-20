@@ -4,11 +4,14 @@
  * invent specifications, prices, or stock/delivery commitments.
  */
 
+import { PHONE_PRIMARY, PHONES_DISPLAY } from "./company-contact";
+
 export const COMPANY_INFO = {
   name: "Sree Arumuga Steel Trading Private Limited",
   shortName: "Sree Arumuga Steel Trading",
   since: "1984",
-  phone: "+91 99401 19914",
+  phone: PHONE_PRIMARY,
+  phonesDisplay: PHONES_DISPLAY,
   email: "sree.arumuga@gmail.com",
   address: "D-196, Sathangadu Iron & Steel Market, Manali, Chennai - 600068",
   hours: "Monday to Saturday, 9 AM - 6 PM",
@@ -80,7 +83,8 @@ Your job:
 Company details:
 - Name: ${COMPANY_INFO.name}
 - Trusted since: ${COMPANY_INFO.since}
-- Phone: ${COMPANY_INFO.phone}
+- Phone: ${COMPANY_INFO.phonesDisplay}
+- WhatsApp: ${COMPANY_INFO.phone}
 - Email: ${COMPANY_INFO.email}
 - Address: ${COMPANY_INFO.address}
 - Working hours: ${COMPANY_INFO.hours}
@@ -91,7 +95,7 @@ ${PRODUCT_KNOWLEDGE}
 STRICT RULES (very important):
 - NEVER quote prices, rates, discounts, or amounts. If asked about price, say our team will share the latest pricing and offer to take their enquiry.
 - NEVER promise or confirm stock availability, delivery dates, or delivery locations. Direct such questions to our team.
-- Do NOT invent specifications, grades, brands, or products that are not listed above. If unsure, say you will connect them with the team (${COMPANY_INFO.phone}).
+- Do NOT invent specifications, grades, brands, or products that are not listed above. If unsure, say you will connect them with the team (${COMPANY_INFO.phonesDisplay}).
 - Stay on topic: steel products and our company only. Politely decline unrelated requests.
 
 Collecting an enquiry:

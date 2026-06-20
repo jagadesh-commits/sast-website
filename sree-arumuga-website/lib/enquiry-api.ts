@@ -1,7 +1,9 @@
+import { WHATSAPP_NUMBER_DIGITS } from "./company-contact";
+
 export const GOOGLE_APPS_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbyHVpidd1noB4szB5hfYyp_QlyMmUI5M14Tv-wL_0lGSuORoQ9vluStzK_-yDTPaQnP/exec";
 
-export const WHATSAPP_ENQUIRY_NUMBER = "919940119914";
+export const WHATSAPP_ENQUIRY_NUMBER = WHATSAPP_NUMBER_DIGITS;
 
 export const PRODUCT_INTEREST_OPTIONS = [
   "HR Sheets",

@@ -15,17 +15,19 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     slug: "steel-price-trends-india-2024",
-    title: "Steel Price Trends in India 2024",
+    title: "Steel Price Trends in India 2026",
     category: "Industry News",
-    excerpt: "A market snapshot of pricing shifts, supply factors, and procurement implications for buyers.",
+    excerpt:
+      "HR and CR coil prices rose through early 2026 on safeguard duty changes and strong infrastructure demand. Here's what buyers need to know.",
     author: "Market Desk",
-    date: "March 12, 2024",
+    date: "May 15, 2026",
     readTime: "6 min read",
     quote: "Price awareness is now a strategic advantage for every steel buyer.",
     content: [
-      "Steel pricing in India has remained dynamic due to freight costs, energy trends, and changing infrastructure demand.",
-      "Large projects continue to influence local availability, especially for high-volume plate and coil categories.",
-      "Businesses with planned procurement cycles and trusted supply partners have seen better cost predictability.",
+      "Steel prices in India have firmed up through the first half of 2026. HR coil is currently trading between ₹54,800 and ₹60,450 per metric tonne, while CR coil remains in the ₹58-66 per kg range, depending on grade and city.",
+      "Domestic mills raised HRC and CRC prices in January 2026, pushing rates to roughly ₹51,700 per tonne after the hike, driven largely by rising raw material costs and a newly imposed three-year safeguard duty on selected steel imports (starting at 12%, stepping down to 11.5% and then 11% over the period). This duty has reduced import pressure and given domestic producers more pricing leverage.",
+      "On the demand side, India's HR coil price trend advanced nearly 6% in Q1 2026 alone, fuelled by strong infrastructure project activity, a recovering real estate sector, and healthy festive-season auto sector orders.",
+      "For buyers and fabricators, this means: budget for continued price firmness through mid-2026, lock in bulk orders where possible to manage cost exposure, and stay in close contact with your distributor for week-to-week pricing, since rates can shift based on mill announcements. As always, contact Sree Arumuga Steel Trading for the latest confirmed pricing before placing large orders — prices in this post are indicative market snapshots, not live quotes.",
     ],
   },
   {
@@ -49,10 +51,11 @@ export const blogPosts: BlogPost[] = [
     category: "Product Guide",
     excerpt: "A practical checklist for selecting suitable steel grades based on usage, strength, and environment.",
     author: "Technical Team",
-    date: "January 20, 2024",
+    date: "April 10, 2026",
     readTime: "7 min read",
     quote: "Correct grade selection prevents rework, delays, and lifecycle failures.",
     content: [
+      "Choosing the right steel grade remains one of the most common questions we get from fabricators and contractors in 2026. Here's an updated practical checklist based on current JSW product specifications.",
       "Choosing the right grade begins with use-case clarity: structure, load, fabrication method, and exposure conditions.",
       "Standards, tolerances, and finish quality should be validated before finalizing your purchase order.",
       "Consulting experienced suppliers early can reduce risk and improve project performance.",
@@ -60,17 +63,18 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "tamil-nadu-infrastructure-boom-drives-steel-demand",
-    title: "Tamil Nadu Infrastructure Boom Drives Steel Demand",
+    title: "Tamil Nadu Infrastructure Growth Continues to Drive Steel Demand in 2026",
     category: "Industry News",
-    excerpt: "Infrastructure growth across transport and industrial corridors is accelerating steel consumption.",
+    excerpt:
+      "Ongoing infrastructure and industrial corridor projects across Tamil Nadu continue to push steel demand higher in 2026.",
     author: "Market Desk",
-    date: "December 15, 2023",
+    date: "March 20, 2026",
     readTime: "5 min read",
     quote: "Regional growth is translating directly into sustained steel demand.",
     content: [
-      "Major public and private projects are increasing procurement volumes for structural and flat steel products.",
-      "With tighter timelines, buyers are prioritizing suppliers with ready stock and coordinated logistics.",
-      "Strategic sourcing partnerships are becoming central to project continuity.",
+      "Tamil Nadu's infrastructure momentum has carried strongly into 2026. Transport corridor expansions, industrial park development, and continued real estate recovery are keeping steel demand elevated across the state.",
+      "This sustained demand aligns with the broader national trend — India's HR coil pricing rose nearly 6% in Q1 2026 alone, driven in large part by infrastructure and construction-linked consumption. For fabricators and contractors in and around Chennai, this means steady project pipelines but also tighter supply windows during peak construction periods.",
+      "Sree Arumuga Steel Trading continues to stock HR, CR, GP, GL, EG, PPGL sheets, coils and MS plates to support this demand, with reliable dispatch for ongoing infrastructure and industrial projects across Tamil Nadu.",
     ],
   },
   {
@@ -94,10 +98,11 @@ export const blogPosts: BlogPost[] = [
     category: "Product Guide",
     excerpt: "Understand the practical differences between hot-rolled and cold-rolled sheets before procurement.",
     author: "Technical Team",
-    date: "October 03, 2023",
+    date: "April 25, 2026",
     readTime: "8 min read",
     quote: "Material selection should align with both performance and process requirements.",
     content: [
+      "Understanding the difference between hot-rolled and cold-rolled steel sheets is essential for procurement decisions in 2026's competitive steel market. Here's a complete, updated comparison.",
       "Hot-rolled sheets are generally preferred for structural and less finish-sensitive applications.",
       "Cold-rolled sheets offer tighter tolerances and improved surface quality for precision requirements.",
       "Application goals, finishing needs, and budget should guide your final selection.",
