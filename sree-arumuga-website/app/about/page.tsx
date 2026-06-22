@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
+import { FoundersMessage } from "@/components/founders-message";
 import { LeadershipBioCard } from "@/components/leadership-bio-card";
 import Image from "next/image";
 
@@ -80,6 +81,8 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+
+      <FoundersMessage />
 
       <section className="bg-[#f9f9f9] px-6 py-20">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 md:items-center">
