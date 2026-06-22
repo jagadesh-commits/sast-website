@@ -204,16 +204,8 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20">
         <Reveal><h2 className="text-4xl font-black text-[var(--primary-blue)]">Leadership</h2></Reveal>
-        <div className="mx-auto mt-8 grid max-w-4xl gap-6 md:grid-cols-2">
-          <LeadershipBioCard
-            photo="/leadership/arumugam-founder.png"
-            cardName="Mr. P. G. Arumugam"
-            cardTitle="Founder"
-            cardImagePosition="object-[center_35%]"
-            modalName="Mr. P. G. Arumugam"
-            modalTitle="Founder"
-            bio="P. G. Arumugam founded Sree Arumuga Steel Trading in 1984, laying the foundation for what would grow into one of South India's leading steel distribution businesses. Starting operations from Sathangadu Iron & Steel Market in Manali, Chennai, he built the company on a simple promise — reliable supply and honest service — and has not rested a single day since, a relentless work ethic that became the backbone of the business. His commitment to trust and consistency earned the company its standing among customers across Tamil Nadu, setting the foundation that the next generation of leadership continues to build on today."
-          />
+        <div className="mx-auto mt-8 flex justify-center">
+          <div className="w-full max-w-md">
           <LeadershipBioCard
             photo="/leadership/jagadesh-md.png"
             cardName="P.A. JAGADESH"
@@ -222,6 +214,7 @@ export default function AboutPage() {
             modalTitle="Director"
             bio="P. A. Jagadesh leads Sree Arumuga Steel Trading Private Limited as Director, steering the company through its most significant transformation yet — the transition from a proprietorship firm to a Private Limited Company in 2026. Building on a foundation laid in 1984, he has driven the expansion of operations, strengthened customer relationships, and introduced modern business practices to a four-decade legacy in the steel trading industry. Under his leadership, the company has cemented its position as an Exclusive Distributor of JSW Steel and one of South India's leading steel distributors, with an annual turnover exceeding Rs. 350 Crores. He combines deep industry knowledge with a forward-looking approach, ensuring the company stays true to its founding values of trust and reliability while scaling for the future."
           />
+          </div>
         </div>
       </section>
 
