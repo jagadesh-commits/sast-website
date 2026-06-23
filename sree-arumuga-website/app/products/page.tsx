@@ -97,18 +97,23 @@ const PRODUCT_CARDS: ProductCardData[] = [
     },
   },
   {
-    title: "GL Sheets & Coils (Galvalume)",
+    title: "JSW Galvos (Gl)",
     brand: "JSW Steel",
     calc: "GL Sheets",
+    simplified: true,
+    tagline: "Premium Al-Zn coated steel for superior corrosion resistance and long-lasting performance.",
+    images: { sheet: "/products/gl-sheet.png", coil: "/products/gl-coil.png" },
     sheet: {
       description:
-        "Galvalume sheets combine zinc and aluminum coating for superior corrosion and heat resistance compared to standard GP. Perfect for industrial roofing and long-life structural applications.",
-      applications: "Industrial roofing, Long-life structures, Pre-engineered buildings",
+        "JSW Galvos GL Sheets are Aluminium-Zinc alloy coated steel sheets that offer excellent corrosion resistance, superior reflectivity and outstanding durability. Available from 0.30 mm to 2.00 mm thickness.",
+      applications:
+        "Roofing & wall cladding, PEB buildings, HVAC ducting, solar structures, electrical enclosures, fencing & fabrication",
     },
     coil: {
       description:
-        "Galvalume sheets combine zinc and aluminum coating for superior corrosion and heat resistance compared to standard GP. Perfect for industrial roofing and long-life structural applications.",
-      applications: "Industrial roofing, Long-life structures, Pre-engineered buildings",
+        "JSW Galvos GL Coils are Aluminium-Zinc alloy coated steel coils designed for excellent corrosion resistance, high reflectivity and long-lasting performance. Available from 0.30 mm to 2.00 mm thickness.",
+      applications:
+        "Solar module mounting, roofing & cladding, PEB buildings, HVAC ducting, agricultural applications, fencing & fabrication",
     },
   },
   {
@@ -172,7 +177,7 @@ const items = [
     useCase: "Roofing, Construction",
   },
   {
-    name: "GL Sheets (Galvalume)",
+    name: "JSW Galvos GL Sheets",
     category: "Sheets",
     thickness: "0.35mm - 1.6mm",
     useCase: "Roofing, Cladding",
