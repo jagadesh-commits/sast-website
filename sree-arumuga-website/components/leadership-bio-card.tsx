@@ -67,7 +67,14 @@ export function LeadershipBioCard({
         transition={{ duration: 0.7 }}
       >
         <div className="relative h-36 overflow-hidden rounded-2xl">
-          <Image src={photo} alt={`${modalName} — ${modalTitle}`} fill sizes="200px" className={`object-cover ${cardImagePosition}`} />
+          <Image
+            src={photo}
+            alt={`${modalName} — ${cardTitle}`}
+            width={400}
+            height={300}
+            sizes="(max-width: 768px) 100vw, 360px"
+            className={`h-full w-full object-cover ${cardImagePosition}`}
+          />
         </div>
         <p className="mt-4 text-lg font-bold text-[var(--primary-blue)]">{cardName}</p>
         <p className="text-sm text-zinc-500">{cardTitle}</p>
