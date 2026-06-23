@@ -205,11 +205,12 @@ export default function AboutPage() {
       <section className="mx-auto max-w-7xl px-6 py-20">
         <Reveal><h2 className="text-4xl font-black text-[var(--primary-blue)]">Leadership</h2></Reveal>
         <div className="mx-auto mt-8 flex justify-center">
-          <div className="w-full max-w-md">
+          <div className="w-full max-w-[360px]">
           <LeadershipBioCard
             photo="/leadership/jagadesh-md.png"
             cardName="P.A. JAGADESH"
             cardTitle="Managing Director"
+            cardImagePosition="object-[center_38%]"
             modalName="Mr. P. A. Jagadesh"
             modalTitle="Director"
             bio="P. A. Jagadesh leads Sree Arumuga Steel Trading Private Limited as Director, steering the company through its most significant transformation yet — the transition from a proprietorship firm to a Private Limited Company in 2026. Building on a foundation laid in 1984, he has driven the expansion of operations, strengthened customer relationships, and introduced modern business practices to a four-decade legacy in the steel trading industry. Under his leadership, the company has cemented its position as an Exclusive Distributor of JSW Steel and one of South India's leading steel distributors, with an annual turnover exceeding Rs. 350 Crores. He combines deep industry knowledge with a forward-looking approach, ensuring the company stays true to its founding values of trust and reliability while scaling for the future."
