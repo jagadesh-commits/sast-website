@@ -204,7 +204,7 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20">
         <Reveal><h2 className="text-4xl font-black text-[var(--primary-blue)]">Leadership</h2></Reveal>
-        <div className="mx-auto mt-8 flex justify-center">
+        <div className="mt-8 flex justify-start">
           <div className="w-full max-w-[360px]">
           <LeadershipBioCard
             photo="/leadership/jagadesh-md.png"

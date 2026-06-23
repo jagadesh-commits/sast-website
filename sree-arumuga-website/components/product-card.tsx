@@ -25,6 +25,8 @@ export type ProductCardData = {
   images?: { sheet: string; coil: string };
   /** Single infographic image (does not switch with toggle). */
   image?: string;
+  /** When true, hide the coil toggle and always use sheet variant. */
+  sheetOnly?: boolean;
 };
 
 type Variant = "sheet" | "coil";
@@ -95,22 +97,24 @@ export function ProductCard({ product }: { product: ProductCardData }) {
         </p>
 
         <div className="mt-auto flex flex-col items-start gap-2 pt-5">
-          <div className="flex flex-wrap gap-2">
-            {(["sheet", "coil"] as const).map((v) => (
-              <button
-                key={v}
-                type="button"
-                onClick={() => setVariant(v)}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold capitalize transition ${
-                  variant === v
-                    ? "bg-[var(--primary-blue)] text-white"
-                    : "border border-[var(--primary-blue)]/30 bg-white text-[var(--primary-blue)] hover:bg-[var(--primary-blue)]/5"
-                }`}
-              >
-                {v}
-              </button>
-            ))}
-          </div>
+          {!product.sheetOnly ? (
+            <div className="flex flex-wrap gap-2">
+              {(["sheet", "coil"] as const).map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  onClick={() => setVariant(v)}
+                  className={`rounded-full px-3.5 py-1.5 text-xs font-semibold capitalize transition ${
+                    variant === v
+                      ? "bg-[var(--primary-blue)] text-white"
+                      : "border border-[var(--primary-blue)]/30 bg-white text-[var(--primary-blue)] hover:bg-[var(--primary-blue)]/5"
+                  }`}
+                >
+                  {v}
+                </button>
+              ))}
+            </div>
+          ) : null}
           <button
             data-open-quote="true"
             className="rounded-full bg-[var(--primary-blue)] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[var(--primary-red)] active:bg-[var(--primary-red)]"
@@ -118,7 +122,7 @@ export function ProductCard({ product }: { product: ProductCardData }) {
             Request Quote
           </button>
           <Link
-            href={`/calculator?product=${encodeURIComponent(product.calc)}&type=${variant}`}
+            href={`/calculator?product=${encodeURIComponent(product.calc)}&type=${product.sheetOnly ? "sheet" : variant}`}
             className="rounded-full border border-[var(--primary-blue)] bg-white px-5 py-2 text-sm font-semibold text-[var(--primary-blue)] transition hover:bg-[var(--primary-blue)]/5"
           >
             Calculate Weight &amp; Price

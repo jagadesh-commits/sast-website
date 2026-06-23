@@ -131,6 +131,8 @@ const PRODUCT_CARDS: ProductCardData[] = [
     title: "MS Plates (Mild Steel)",
     brand: "JSW Steel / Jindal India",
     calc: "MS Plates",
+    image: "/products/ms-plates.png",
+    sheetOnly: true,
     sheet: {
       description:
         "Mild Steel plates are essential for heavy structural and engineering applications. High tensile strength and weldability make them ideal for bridges, ships, pressure vessels and construction.",
