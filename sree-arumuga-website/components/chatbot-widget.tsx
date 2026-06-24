@@ -362,67 +362,31 @@ export function ChatbotWidget() {
             initial={{ opacity: 0, y: 14, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            style={{
-              position: "fixed",
-              bottom: 100,
-              right: 24,
-              width: 380,
-              maxWidth: "min(380px, calc(100vw - 48px))",
-              height: "600px",
-              maxHeight: "calc(100vh - 120px)",
-              borderRadius: 16,
-              overflow: "hidden",
-              zIndex: 9998,
-              display: "flex",
-              flexDirection: "column",
-              background: "#ffffff",
-              border: "1px solid rgb(228 228 231)",
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-            }}
+            className="chatbot-panel fixed z-[9998] flex flex-col overflow-hidden border border-zinc-200 bg-white shadow-2xl
+              bottom-[100px] right-6 h-[600px] w-[380px] max-h-[calc(100vh-120px)] max-w-[min(380px,calc(100vw-48px))] rounded-2xl
+              max-md:inset-x-0 max-md:bottom-0 max-md:right-0 max-md:h-[min(92dvh,100%)] max-md:max-h-[92dvh] max-md:w-full max-md:max-w-none max-md:rounded-b-none max-md:rounded-t-2xl"
+            style={{ paddingBottom: "max(0px, env(safe-area-inset-bottom))" }}
           >
             <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                background: "#1a3a8f",
-                padding: "12px 16px",
-                borderRadius: "16px 16px 0 0",
-                flexShrink: 0,
-              }}
+              className="relative z-20 flex shrink-0 items-center justify-between gap-3 rounded-t-2xl bg-[#1a3a8f] px-4 py-3"
+              style={{ paddingTop: "max(12px, env(safe-area-inset-top))" }}
             >
-              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <div className="flex min-w-0 flex-1 items-center gap-2.5">
                 <img
                   src="/Chat_bot_icon_image.png"
                   alt=""
-                  style={{ width: "44px", height: "44px", borderRadius: "50%", objectFit: "cover" }}
+                  className="h-11 w-11 shrink-0 rounded-full object-cover"
                 />
-                <div>
-                  <p style={{ color: "white", fontWeight: "600", fontSize: "14px", margin: 0 }}>
-                    Steel Assistant
-                  </p>
-                  <p style={{ color: "#90EE90", fontSize: "11px", margin: 0 }}>● Online</p>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold text-white">Steel Assistant</p>
+                  <p className="text-[11px] text-[#90EE90]">● Online</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="Close chat"
-                style={{
-                  background: "white",
-                  border: "none",
-                  borderRadius: "50%",
-                  width: 32,
-                  height: 32,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  color: "#1a3a8f",
-                  fontWeight: "bold",
-                  fontSize: 16,
-                  flexShrink: 0,
-                }}
+                className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-0 bg-white text-base font-bold text-[#1a3a8f] shadow-sm"
               >
                 ✕
               </button>
