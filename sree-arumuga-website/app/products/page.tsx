@@ -253,22 +253,28 @@ export default function ProductsPage() {
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
       />
-      <section className="relative overflow-hidden px-6 py-20 text-white">
+      <section className="relative min-h-[220px] overflow-hidden px-6 py-14 text-white sm:min-h-[260px] sm:py-16 md:py-20">
         <Image
           src="/warehouse_3.png"
           alt="Products hero warehouse"
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="z-0 object-cover"
+          aria-hidden
         />
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <h1 className="text-5xl font-black">Our Steel Products</h1>
-            <p className="mt-3 max-w-2xl text-zinc-200">
-              Premium JSW steel sheets, plates and coils for every industrial need. Trusted by 500+ businesses across
-              Tamil Nadu.
+        <div
+          className="absolute inset-0 z-[1] bg-gradient-to-t from-black/80 via-black/55 to-black/35"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <Reveal noHide>
+            <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
+              Our Products
+            </h1>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90 sm:mt-4 sm:text-base md:text-lg">
+              Premium JSW Steel sheets, coils and plates for fabrication, construction and industrial use across Tamil
+              Nadu
             </p>
           </Reveal>
         </div>
