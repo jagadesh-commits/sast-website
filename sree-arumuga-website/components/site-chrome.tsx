@@ -29,7 +29,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -95,20 +94,42 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             isScrolled ? "border-b border-[var(--primary-blue)] shadow-md" : "border-b border-zinc-200"
           }`}
         >
-          <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-            <Link href="/" className="flex items-center gap-3">
+          <nav className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-3 min-[769px]:justify-between min-[769px]:gap-0 min-[769px]:px-6 min-[769px]:py-4">
+            <Link href="/" className="flex shrink-0 items-center gap-3">
               <Image
                 src="/Logo.png"
                 alt="Sree Arumuga Steel Trading Private Limited logo"
                 width={60}
                 height={60}
-                className="h-12 w-12 md:h-14 md:w-14"
+                className="h-10 w-10 min-[769px]:h-14 min-[769px]:w-14"
               />
               <div className="hidden md:block">
                 <p className="industrial-heading text-xl font-bold text-[var(--primary-blue)]">Sree Arumuga Steel Trading Private Limited</p>
               </div>
             </Link>
-            <div className="hidden items-center gap-7 lg:flex">
+
+            <div className="scrollbar-hide min-w-0 flex-1 overflow-x-auto min-[769px]:hidden">
+              <div className="flex w-max items-center gap-3 pr-2">
+                {links.map((link) => {
+                  const active = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`industrial-heading whitespace-nowrap text-[11px] font-bold tracking-wide transition-colors ${
+                        active
+                          ? "border-b-2 border-[var(--gold)] pb-0.5 text-[var(--primary-blue)]"
+                          : "text-[var(--primary-blue)]/80 hover:text-[var(--primary-blue)]"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="hidden items-center gap-7 min-[769px]:flex">
               {links.map((link) => {
                 const active = pathname === link.href;
                 return (
@@ -140,101 +161,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 Request Quote
               </button>
             </div>
-            <button
-              onClick={() => setMobileOpen(true)}
-              className="rounded-md border border-zinc-300 p-2 lg:hidden"
-              aria-label="Open mobile menu"
-            >
-              <span className="block h-0.5 w-5 bg-[var(--primary-blue)]" />
-              <span className="mt-1.5 block h-0.5 w-5 bg-[var(--primary-blue)]" />
-              <span className="mt-1.5 block h-0.5 w-5 bg-[var(--primary-blue)]" />
-            </button>
           </nav>
         </div>
       </header>
-
-      <AnimatePresence>
-        {mobileOpen ? (
-          <motion.div
-            className="fixed inset-0 z-[105] bg-black/45 lg:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setMobileOpen(false)}
-          >
-            <motion.aside
-              className="ml-auto flex h-full w-full max-w-md flex-col bg-[var(--primary-blue)] text-white"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 26, stiffness: 240 }}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className="flex items-center justify-between px-5 py-5">
-                <Link href="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
-                  <Image src="/Logo.png" alt="Sree Arumuga Steel Trading Private Limited logo" width={46} height={46} className="h-11 w-11 rounded-full bg-white/85 p-1" />
-                  <p className="industrial-heading text-sm font-bold text-white">Sree Arumuga</p>
-                </Link>
-                <button
-                  type="button"
-                  aria-label="Close mobile menu"
-                  onClick={() => setMobileOpen(false)}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-white/35 text-2xl leading-none text-white"
-                >
-                  ×
-                </button>
-              </div>
-
-              <nav className="flex flex-1 flex-col items-center justify-center gap-6 px-8 text-center">
-                {links.map((link) => {
-                  const active = pathname === link.href;
-                  return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`industrial-heading text-[20px] font-bold tracking-wide transition-colors duration-300 ${
-                        active ? "text-white/100 underline underline-offset-8" : "text-white/90 hover:text-white"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  );
-                })}
-              </nav>
-
-              <div className="space-y-3 px-5 pb-6">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMobileOpen(false);
-                    setShowModal(true);
-                  }}
-                  className="industrial-heading w-full rounded-full bg-white px-5 py-3 text-sm font-semibold text-[var(--primary-blue)] transition hover:bg-[var(--primary-red)] hover:text-white active:bg-[var(--primary-red)]"
-                >
-                  Request Quote
-                </button>
-                <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER_DIGITS}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block w-full rounded-full bg-[#25D366] px-5 py-3 text-center text-sm font-semibold text-white"
-                >
-                  WhatsApp
-                </a>
-                <div className="pt-3">
-                  <div className="mx-auto h-px w-full bg-white/25" />
-                  <div className="mt-4 flex items-center justify-center gap-3 text-sm">
-                    <a href="https://www.facebook.com/profile.php?id=61577460474521" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white text-[var(--primary-blue)]">f</a>
-                    <a href="https://www.instagram.com/sreearumugastell" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white text-[var(--primary-blue)]">i</a>
-                    <a href="https://www.linkedin.com/company/sree-arumuga-steel-trading-private-limited" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white text-[var(--primary-blue)]">in</a>
-                  </div>
-                </div>
-              </div>
-            </motion.aside>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
 
       <main key={pathname}>{children}</main>
 
