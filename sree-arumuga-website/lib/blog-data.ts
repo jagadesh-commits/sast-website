@@ -16,7 +16,7 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "steel-price-trends-india-2024",
+    slug: "steel-price-trends-india-2026",
     title: "Steel Price Trends in India 2026",
     category: "Industry News",
     excerpt:

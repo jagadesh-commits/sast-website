@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { HeroGsap } from "@/components/hero-gsap";
-import { SteelCalculator } from "@/components/steel-calculator";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
 import { BlogPostImage } from "@/components/blog-post-image";
 import { blogPosts } from "@/lib/blog-data";
@@ -244,8 +243,6 @@ export default function Home() {
       </section>
 
       <TestimonialsCarousel />
-
-      <SteelCalculator />
 
       <section className="bg-[var(--primary-blue)] px-6 py-14 text-white">
         <div className="mx-auto max-w-7xl rounded-3xl border border-white/20 bg-white/10 p-7 md:flex md:items-center md:justify-between">
