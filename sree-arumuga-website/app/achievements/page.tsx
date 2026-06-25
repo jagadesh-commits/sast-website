@@ -32,21 +32,24 @@ export const metadata: Metadata = {
 export default function AchievementsPage() {
   return (
     <div>
-      <section className="relative overflow-hidden px-6 py-20 text-white">
+      <section className="relative min-h-[220px] overflow-hidden px-6 py-14 text-white sm:min-h-[260px] sm:py-16 md:py-20">
         <Image
           src="/warehouse_1.png"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="z-0 object-cover"
           aria-hidden
         />
-        <div className="absolute inset-0 bg-[var(--primary-blue)]/75" aria-hidden="true" />
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <h1 className="text-5xl font-black md:text-6xl">Our Achievements</h1>
-            <p className="mt-3 text-white/80">
+        <div
+          className="absolute inset-0 z-[1] bg-gradient-to-t from-black/80 via-black/55 to-black/35"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <Reveal noHide>
+            <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-5xl lg:text-6xl">Our Achievements</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90 sm:mt-4 sm:text-base md:text-lg">
               Four decades of milestones, awards and recognition in the steel trading industry.
             </p>
           </Reveal>

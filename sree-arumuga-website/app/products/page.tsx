@@ -270,7 +270,7 @@ export default function ProductsPage() {
         <div className="relative z-10 mx-auto max-w-7xl">
           <Reveal noHide>
             <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              Our Products
+              Our Steel Products
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90 sm:mt-4 sm:text-base md:text-lg">
               Premium JSW Steel sheets, coils and plates for fabrication, construction and industrial use across Tamil
