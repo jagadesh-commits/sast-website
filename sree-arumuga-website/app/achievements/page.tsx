@@ -40,7 +40,7 @@ export default function AchievementsPage() {
           fill
           priority
           sizes="100vw"
-          className="z-0 object-cover object-center"
+          className="z-0 object-cover object-[center_20%]"
           aria-hidden
         />
         <div
