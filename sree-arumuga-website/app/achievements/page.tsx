@@ -34,16 +34,16 @@ export default function AchievementsPage() {
     <div>
       <section className="relative min-h-[220px] overflow-hidden px-6 py-14 text-white sm:min-h-[260px] sm:py-16 md:py-20">
         <Image
-          src="/warehouse_1.png"
-          alt=""
+          src="/achievements-hero.png"
+          alt="JSW Champions Night 2025 award ceremony — Sree Arumuga Steel Trading on stage"
           fill
           priority
           sizes="100vw"
-          className="z-0 object-cover"
+          className="z-0 object-cover object-center"
           aria-hidden
         />
         <div
-          className="absolute inset-0 z-[1] bg-gradient-to-t from-black/80 via-black/55 to-black/35"
+          className="absolute inset-0 z-[1] bg-gradient-to-b from-black/50 via-black/40 to-black/20"
           aria-hidden="true"
         />
         <div className="relative z-10 mx-auto max-w-7xl">
