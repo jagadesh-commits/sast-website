@@ -32,14 +32,14 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div>
-      <section className="relative min-h-[220px] overflow-hidden px-6 py-14 text-white sm:min-h-[260px] sm:py-16 md:py-20">
+      <section className="relative flex h-[350px] items-center overflow-hidden px-6 text-white sm:h-[380px]">
         <Image
           src="/warehouse_3.png"
           alt="Steel warehouse Chennai — HR CR GP coil sheets"
           fill
           priority
           sizes="100vw"
-          className="z-0 object-cover"
+          className="z-0 object-cover object-center"
           aria-hidden
         />
         <div

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 export default function AchievementsPage() {
   return (
     <div>
-      <section className="relative min-h-[300px] overflow-hidden px-6 py-16 text-white sm:min-h-[380px] md:min-h-[460px] md:py-20 lg:min-h-[520px] lg:py-24">
+      <section className="relative flex h-[350px] items-center overflow-hidden px-6 text-white sm:h-[380px]">
         <Image
           src="/achievements-hero.png"
           alt="JSW Champions Night 2025 award ceremony — Sree Arumuga Steel Trading on stage"
