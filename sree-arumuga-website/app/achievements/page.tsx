@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AwardsRecognition } from "@/components/awards-recognition";
 import { CountUp } from "@/components/count-up";
 import { MilestoneTimeline } from "@/components/milestone-timeline";
 import { Reveal } from "@/components/reveal";
@@ -62,6 +63,7 @@ export default function AchievementsPage() {
           <CountUp end={3000} label="Happy Customers" />
           <CountUp end={500000} label="Tons Supplied" />
         </div>
+        <AwardsRecognition />
         <Reveal className="mt-10 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
           <MilestoneTimeline />
         </Reveal>

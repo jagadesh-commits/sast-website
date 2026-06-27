@@ -6,7 +6,6 @@ import {
   FaBuilding,
   FaGlobe,
   FaHandshake,
-  FaImage,
   FaRocket,
   FaTrophy,
   FaTruck,
@@ -19,7 +18,6 @@ type Milestone = {
   description: string;
   icon: IconType;
   stat?: { value: string; label: string };
-  showAwardPlaceholder?: boolean;
 };
 
 const MILESTONES: Milestone[] = [
@@ -59,7 +57,6 @@ const MILESTONES: Milestone[] = [
     description:
       "Recognized as the Top Performing JSW Distributor in Tamil Nadu — honoring excellence in sales volume, customer retention, and service standards.",
     icon: FaTrophy,
-    showAwardPlaceholder: true,
   },
   {
     year: "2024",
@@ -140,18 +137,6 @@ function MilestoneCard({
         </div>
       )}
 
-      {milestone.showAwardPlaceholder && (
-        <div
-          className="mt-5 flex aspect-[4/3] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-[var(--gold)]/50 bg-[var(--primary-blue)]/[0.03]"
-          role="img"
-          aria-label="JSW Top Performing Distributor Tamil Nadu 2020 award certificate"
-        >
-          <FaImage className="h-8 w-8 text-[var(--gold)]/60" aria-hidden />
-          <span className="text-xs font-medium text-zinc-400" aria-hidden="true">
-            Certificate photo coming soon
-          </span>
-        </div>
-      )}
     </motion.article>
   );
 }
