@@ -33,14 +33,14 @@ export const metadata: Metadata = {
 export default function AchievementsPage() {
   return (
     <div>
-      <section className="relative flex h-[350px] items-center overflow-hidden px-6 text-white sm:h-[380px]">
+      <section className="relative flex h-[400px] items-center overflow-hidden px-6 text-white sm:h-[460px]">
         <Image
           src="/achievements-hero.png"
           alt="JSW Champions Night 2025 award ceremony — Sree Arumuga Steel Trading on stage"
           fill
           priority
           sizes="100vw"
-          className="z-0 object-cover object-top"
+          className="z-0 object-cover object-[center_38%]"
           aria-hidden
         />
         <div
