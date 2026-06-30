@@ -33,29 +33,28 @@ export const metadata: Metadata = {
 export default function AchievementsPage() {
   return (
     <div>
-      <section className="relative flex h-[400px] items-center overflow-hidden px-6 text-white sm:h-[460px]">
-        <Image
-          src="/achievements-hero.png"
-          alt="JSW Champions Night 2025 award ceremony — Sree Arumuga Steel Trading on stage"
-          fill
-          priority
-          sizes="100vw"
-          className="z-0 object-cover object-[center_38%]"
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 z-[1] bg-gradient-to-b from-black/50 via-black/40 to-black/20"
-          aria-hidden="true"
-        />
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <Reveal noHide>
-            <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-5xl lg:text-6xl">Our Achievements</h1>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90 sm:mt-4 sm:text-base md:text-lg">
-              Four decades of milestones, awards and recognition in the steel trading industry.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <header>
+        <section className="bg-[var(--primary-blue)] px-6 py-12 text-white md:py-16">
+          <div className="mx-auto max-w-7xl">
+            <Reveal noHide>
+              <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-5xl lg:text-6xl">Our Achievements</h1>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90 sm:mt-4 sm:text-base md:text-lg">
+                Four decades of milestones, awards and recognition in the steel trading industry.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+        <section className="relative h-[350px] overflow-hidden sm:h-[400px]">
+          <Image
+            src="/achievements-hero.png"
+            alt="JSW Champions Night 2025 award ceremony — Sree Arumuga Steel Trading on stage"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </section>
+      </header>
 
       <section className="mx-auto max-w-7xl px-6 py-20" aria-label="Achievement statistics and milestones">
         <div className="grid gap-6 md:grid-cols-3" role="group" aria-label="Company achievement statistics">

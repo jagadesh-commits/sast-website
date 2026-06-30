@@ -32,31 +32,30 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div>
-      <section className="relative flex h-[350px] items-center overflow-hidden px-6 text-white sm:h-[380px]">
-        <Image
-          src="/warehouse_3.png"
-          alt="Steel warehouse Chennai — HR CR GP coil sheets"
-          fill
-          priority
-          sizes="100vw"
-          className="z-0 object-cover object-center"
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 z-[1] bg-gradient-to-t from-black/80 via-black/55 to-black/35"
-          aria-hidden="true"
-        />
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <Reveal noHide>
-            <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              About Sree Arumuga Steel Trading
-            </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90 sm:mt-4 sm:text-base md:text-lg">
-              Four decades of trust, quality and excellence in steel trading across Tamil Nadu.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <header>
+        <section className="bg-[var(--primary-blue)] px-6 py-12 text-white md:py-16">
+          <div className="mx-auto max-w-7xl">
+            <Reveal noHide>
+              <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
+                About Sree Arumuga Steel Trading
+              </h1>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90 sm:mt-4 sm:text-base md:text-lg">
+                Four decades of trust, quality and excellence in steel trading across Tamil Nadu.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+        <section className="relative h-[350px] overflow-hidden sm:h-[400px]">
+          <Image
+            src="/warehouse_3.png"
+            alt="Steel warehouse Chennai — HR CR GP coil sheets"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </section>
+      </header>
 
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-8 md:grid-cols-2 md:items-center">
