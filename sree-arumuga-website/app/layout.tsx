@@ -18,7 +18,7 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sast-website.vercel.app"),
+  metadataBase: new URL("https://sreearumugasteeltrading.com"),
   title: {
     default: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
     template: "%s | Sree Arumuga Steel Trading",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
     description:
       "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, PPGL sheets, plates and coils. Get instant quote.",
-    images: [{ url: "https://sast-website.vercel.app/og-image.jpg", width: 1200, height: 630, alt: "Sree Arumuga Steel Trading" }],
+    images: [{ url: "https://sreearumugasteeltrading.com/og-image.jpg", width: 1200, height: 630, alt: "Sree Arumuga Steel Trading" }],
     locale: "en_IN",
   },
   twitter: {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
     description:
       "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, PPGL sheets, plates and coils. Get instant quote.",
-    images: ["https://sast-website.vercel.app/og-image.jpg"],
+    images: ["https://sreearumugasteeltrading.com/og-image.jpg"],
   },
   category: "business",
   applicationName: "Sree Arumuga Steel Trading",
@@ -79,8 +79,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Sree Arumuga Steel Trading Private Limited",
-    image: "https://sast-website.vercel.app/og-image.jpg",
-    url: "https://sast-website.vercel.app",
+    image: "https://sreearumugasteeltrading.com/og-image.jpg",
+    url: "https://sreearumugasteeltrading.com",
     telephone: PHONE_PRIMARY_E164,
     contactPoint: [
       {
