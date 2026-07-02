@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords:
     "hr coil, cr coil, gp coil, hrpo coil, hrpo sheet, cold rolled coil, hot rolled steel coil, gp coil sheet, cr sheet coil, jsw steel dealers near me, steel sheets chennai",
   alternates: {
-    canonical: "https://sast-website.vercel.app/products",
+    canonical: "https://sreearumugasteeltrading.com/products",
   },
 };
 

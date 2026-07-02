@@ -10,22 +10,22 @@ export const metadata: Metadata = {
     "Contact Sree Arumuga Steel Trading Pvt Ltd. D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. JSW steel dealer near you in Chennai.",
   keywords:
     "steel supplier near me chennai, jsw steel dealers near me, steel trading company manali, sathangadu steel market, steel dealer contact chennai, hr coil dealer chennai",
-  alternates: { canonical: "https://sast-website.vercel.app/contact" },
+  alternates: { canonical: "https://sreearumugasteeltrading.com/contact" },
   openGraph: {
     type: "website",
     siteName: "Sree Arumuga Steel Trading",
-    url: "https://sast-website.vercel.app/contact",
+    url: "https://sreearumugasteeltrading.com/contact",
     title: "Contact | Sree Arumuga Steel Trading Chennai | JSW Steel Dealer",
     description:
       "Contact Sree Arumuga Steel Trading Pvt Ltd. D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. JSW steel dealer near you in Chennai.",
-    images: ["https://sast-website.vercel.app/og-image.jpg"],
+    images: ["https://sreearumugasteeltrading.com/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact | Sree Arumuga Steel Trading Chennai | JSW Steel Dealer",
     description:
       "Contact Sree Arumuga Steel Trading Pvt Ltd. D-196 Sathangadu Iron & Steel Market, Manali, Chennai 600068. JSW steel dealer near you in Chennai.",
-    images: ["https://sast-website.vercel.app/og-image.jpg"],
+    images: ["https://sreearumugasteeltrading.com/og-image.jpg"],
   },
 };
 

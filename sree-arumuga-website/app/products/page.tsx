@@ -243,7 +243,7 @@ export default function ProductsPage() {
       name: "Sree Arumuga Steel Trading Private Limited",
     },
     category: "HR, HRPO, CR, GP, GL, PPGL Steel Sheets and Coils",
-    url: "https://sast-website.vercel.app/products",
+    url: "https://sreearumugasteeltrading.com/products",
   };
 
   return (

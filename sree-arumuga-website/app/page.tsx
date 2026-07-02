@@ -14,22 +14,22 @@ export const metadata: Metadata = {
     "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, PPGL sheets and MS plates at best price in Tamil Nadu.",
   keywords:
     "jsw steel dealers chennai, hr coil chennai, cr coil chennai, gp coil chennai, hrpo sheet chennai, steel supplier chennai, jsw distributors tamil nadu, steel trading company manali chennai",
-  alternates: { canonical: "https://sast-website.vercel.app/" },
+  alternates: { canonical: "https://sreearumugasteeltrading.com/" },
   openGraph: {
     type: "website",
     siteName: "Sree Arumuga Steel Trading",
-    url: "https://sast-website.vercel.app/",
+    url: "https://sreearumugasteeltrading.com/",
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
     description:
       "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, PPGL sheets and MS plates at best price in Tamil Nadu.",
-    images: ["https://sast-website.vercel.app/og-image.jpg"],
+    images: ["https://sreearumugasteeltrading.com/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Steel Distributor Chennai",
     description:
       "JSW exclusive steel distributor in Chennai since 1984. Buy HR coil, CR coil, GP coil, HRPO sheets, GL, PPGL sheets and MS plates at best price in Tamil Nadu.",
-    images: ["https://sast-website.vercel.app/og-image.jpg"],
+    images: ["https://sreearumugasteeltrading.com/og-image.jpg"],
   },
 };
 

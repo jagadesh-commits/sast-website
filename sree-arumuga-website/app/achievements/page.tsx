@@ -11,22 +11,22 @@ export const metadata: Metadata = {
     "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 3000+ customers across Tamil Nadu since 1984.",
   keywords:
     "jsw steel dealer award, steel trading company achievements, sree arumuga steel trading, jsw distributor tamil nadu, steel supplier chennai 1984",
-  alternates: { canonical: "https://sast-website.vercel.app/achievements" },
+  alternates: { canonical: "https://sreearumugasteeltrading.com/achievements" },
   openGraph: {
     type: "website",
     siteName: "Sree Arumuga Steel Trading",
-    url: "https://sast-website.vercel.app/achievements",
+    url: "https://sreearumugasteeltrading.com/achievements",
     title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd | 40 Years Excellence Chennai",
     description:
       "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 3000+ customers across Tamil Nadu since 1984.",
-    images: ["https://sast-website.vercel.app/og-image.jpg"],
+    images: ["https://sreearumugasteeltrading.com/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Achievements | Sree Arumuga Steel Trading Pvt Ltd | 40 Years Excellence Chennai",
     description:
       "40+ years of excellence in steel trading. JSW exclusive distributor awards and milestones. Trusted by 3000+ customers across Tamil Nadu since 1984.",
-    images: ["https://sast-website.vercel.app/og-image.jpg"],
+    images: ["https://sreearumugasteeltrading.com/og-image.jpg"],
   },
 };
 
