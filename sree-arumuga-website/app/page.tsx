@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { HeroGsap } from "@/components/hero-gsap";
+import { QuickCalculatorStrip } from "@/components/quick-calculator-strip";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
 import { BlogPostImage } from "@/components/blog-post-image";
 import { blogPosts } from "@/lib/blog-data";
@@ -88,6 +89,8 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      <QuickCalculatorStrip />
 
       <section className="overflow-hidden bg-[var(--primary-blue)] py-3">
         <div className="ticker-track flex w-max gap-10 whitespace-nowrap px-6 text-sm font-semibold text-white">
