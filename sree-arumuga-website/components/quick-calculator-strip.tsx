@@ -25,6 +25,9 @@ const QUICK_PRODUCTS = [
 const DEFAULT_LENGTH_MM = 2500;
 const DEFAULT_WIDTH_MM = 1250;
 
+const clearButtonClass =
+  "industrial-heading w-full shrink-0 cursor-pointer rounded-lg border border-[var(--gold)] bg-transparent px-6 py-2.5 text-sm font-bold text-[var(--gold)] transition hover:bg-[var(--gold)] hover:text-[#0a1628] focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/50 active:brightness-95 md:w-auto md:min-w-[120px]";
+
 const fieldClass =
   "mt-1 w-full cursor-pointer rounded-lg border border-white/20 bg-white/10 px-3 py-2.5 text-sm text-white placeholder:text-white/40 transition focus:border-[var(--gold)] focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/50";
 
@@ -47,6 +50,13 @@ export function QuickCalculatorStrip() {
   const handleCalculate = () => {
     if (totalWeightKg !== null) setShowResult(true);
     else setShowResult(false);
+  };
+
+  const handleClear = () => {
+    setProduct(QUICK_PRODUCTS[0]);
+    setThickness("");
+    setQuantity("");
+    setShowResult(false);
   };
 
   return (
@@ -107,13 +117,18 @@ export function QuickCalculatorStrip() {
             />
           </label>
 
-          <button
-            type="button"
-            onClick={handleCalculate}
-            className="industrial-heading w-full shrink-0 cursor-pointer rounded-lg bg-[var(--gold)] px-6 py-2.5 text-sm font-bold text-[#0a1628] transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-white/50 active:brightness-95 md:w-auto md:min-w-[120px]"
-          >
-            Calculate
-          </button>
+          <div className="flex w-full shrink-0 flex-col gap-2 md:w-auto md:flex-row">
+            <button
+              type="button"
+              onClick={handleCalculate}
+              className="industrial-heading w-full shrink-0 cursor-pointer rounded-lg bg-[var(--gold)] px-6 py-2.5 text-sm font-bold text-[#0a1628] transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-white/50 active:brightness-95 md:w-auto md:min-w-[120px]"
+            >
+              Calculate
+            </button>
+            <button type="button" onClick={handleClear} className={clearButtonClass}>
+              Clear
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>

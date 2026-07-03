@@ -43,6 +43,18 @@ export function SteelCalculator({ compact = false, initialProduct, initialType: 
     return { min: base * 0.97, max: base * 1.03 };
   }, [result, product]);
 
+  const handleClear = () => {
+    setProduct(CALCULATOR_PRODUCTS[0].value);
+    setThickness("");
+    setLength("");
+    setWidth("");
+    setQuantity("");
+    setShow(false);
+  };
+
+  const clearButtonClass =
+    "cursor-pointer rounded-full border border-[var(--gold)] bg-transparent px-7 py-3 font-semibold text-[var(--gold)] transition hover:bg-[var(--gold)] hover:text-[#0a1628] focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/50 active:brightness-95";
+
   return (
     <section className={compact ? "" : "bg-white px-6 py-20"}>
       <div className={compact ? "" : "mx-auto max-w-6xl"}>
@@ -65,13 +77,18 @@ export function SteelCalculator({ compact = false, initialProduct, initialType: 
             <CalcField label="Width (mm)" value={width} onChange={setWidth} />
             <CalcField label="Quantity (pieces)" value={quantity} onChange={setQuantity} />
           </div>
-          <button
-            type="button"
-            onClick={() => setShow(true)}
-            className="mt-6 rounded-full bg-[var(--primary-blue)] px-7 py-3 font-semibold text-white transition hover:bg-[var(--primary-red)] active:bg-[var(--primary-red)]"
-          >
-            Calculate
-          </button>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => setShow(true)}
+              className="cursor-pointer rounded-full bg-[var(--primary-blue)] px-7 py-3 font-semibold text-white transition hover:bg-[var(--primary-red)] active:bg-[var(--primary-red)]"
+            >
+              Calculate
+            </button>
+            <button type="button" onClick={handleClear} className={clearButtonClass}>
+              Clear
+            </button>
+          </div>
           <AnimatePresence>
             {show && result && estimate ? (
               <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} className="mt-6 grid gap-4 rounded-2xl bg-white p-5 md:grid-cols-3">
