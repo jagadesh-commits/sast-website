@@ -124,6 +124,62 @@ export default function RootLayout({
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              '@id': 'https://sreearumugasteeltrading.com',
+              name: 'Sree Arumuga Steel Trading Private Limited',
+              alternateName: 'SAST',
+              url: 'https://sreearumugasteeltrading.com',
+              logo: {
+                '@type': 'ImageObject',
+                url: 'https://sreearumugasteeltrading.com/Logo.png',
+                width: 512,
+                height: 512,
+              },
+              image: 'https://sreearumugasteeltrading.com/Logo.png',
+              description: 'JSW exclusive steel distributor in Chennai since 1984. Premium HR, CR, GP, GL and PPGL sheets, plates and coils for Tamil Nadu industries.',
+              foundingDate: '1984',
+              telephone: '+919940119914',
+              email: 'sree.arumuga@gmail.com',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'D-196, Sathangadu Iron & Steel Market, Manali',
+                addressLocality: 'Chennai',
+                addressRegion: 'Tamil Nadu',
+                postalCode: '600068',
+                addressCountry: 'IN',
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: 13.1388,
+                longitude: 80.2978,
+              },
+              openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday','Tuesday','Wednesday',
+                  'Thursday','Friday','Saturday'],
+                opens: '09:00',
+                closes: '18:00',
+              },
+              sameAs: [
+                'https://www.facebook.com/profile.php?id=61577460474521',
+                'https://www.instagram.com/sreearumugastell',
+                'https://www.linkedin.com/company/sree-arumuga-steel-trading-private-limited',
+              ],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+919940119914',
+                contactType: 'sales',
+                areaServed: 'IN',
+                availableLanguage: ['English', 'Tamil'],
+              },
+            }),
+          }}
+        />
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
