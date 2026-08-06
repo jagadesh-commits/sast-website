@@ -27,6 +27,7 @@ const links = [
 
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const isDashboard = pathname.startsWith("/dashboard");
   const [isScrolled, setIsScrolled] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -259,7 +260,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       </footer>
 
       <QuoteModal show={showModal} onClose={() => setShowModal(false)} />
-      <ExitIntentPopup />
+      {!isDashboard && <ExitIntentPopup />}
       <BackToTopProgress />
       <ChatbotOpenProvider>
         <ChatbotWidget />
