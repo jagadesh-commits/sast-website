@@ -55,6 +55,11 @@ export const metadata: Metadata = {
   },
   category: "business",
   applicationName: "Sree Arumuga Steel Trading",
+  icons: {
+    icon: [{ url: "/favicon.ico", sizes: "any" }],
+    apple: [{ url: "/Logo.png", type: "image/png" }],
+    shortcut: ["/favicon.ico"],
+  },
   formatDetection: {
     telephone: true,
     email: true,
