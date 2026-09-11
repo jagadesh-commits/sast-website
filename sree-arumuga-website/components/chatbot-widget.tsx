@@ -495,7 +495,7 @@ export function ChatbotWidget() {
         <div className="chatbot-fab-anchor">
           <AnimatePresence>
             {showFabHint ? (
-              <div className="steelbot-tooltip-shell">
+              <div className="steelbot-tooltip-shell max-md:hidden">
                 <motion.div
                   initial={{ opacity: 0, x: 6 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -503,7 +503,7 @@ export function ChatbotWidget() {
                   className="steelbot-tooltip whitespace-nowrap"
                   role="status"
                 >
-                  <span className="align-middle">👋 Need a steel quote? Chat with us!</span>{" "}
+                  <span className="align-middle">Need a steel quote? Chat with us!</span>{" "}
                   <button
                     type="button"
                     onClick={() => setTooltipVisible(false)}
@@ -527,7 +527,7 @@ export function ChatbotWidget() {
             className="chatbot-trigger fab-stack-item relative grid shrink-0 cursor-pointer place-items-center overflow-visible rounded-full bg-transparent p-0 shadow-none"
           >
             <span
-              className="pointer-events-none absolute inset-0 rounded-full bg-amber-400 opacity-60 animate-ping"
+              className="pointer-events-none absolute inset-0 rounded-full bg-amber-400 opacity-60 max-md:hidden animate-ping"
               aria-hidden
             />
             <div className="relative z-10 h-full w-full overflow-hidden rounded-full">

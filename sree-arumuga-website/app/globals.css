@@ -143,18 +143,37 @@ body {
 @media (max-width: 768px) {
   :root {
     --fab-size: 48px;
-    --fab-chatbot-size: 72px;
-    --fab-inset: 16px;
+    --fab-chatbot-size: 64px;
+    --fab-inset: 14px;
+    --fab-gap: 10px;
   }
 
-  /* Prevent content hiding behind floating buttons */
-  main,
-  .page-content {
-    padding-bottom: 220px;
-  }
-
+  /* Clear FAB stack without a huge empty band under the page */
   footer {
-    margin-bottom: 220px;
+    padding-bottom: calc(var(--fab-inset) + var(--fab-size) + var(--fab-gap) + var(--fab-chatbot-size) + var(--fab-gap) + var(--fab-size) + 20px);
+  }
+
+  .steelbot-tooltip-shell {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%);
+  }
+
+  .steelbot-tooltip {
+    white-space: normal;
+    max-width: min(240px, calc(100vw - 96px));
+    text-align: center;
+  }
+
+  .steelbot-tooltip::after {
+    top: auto;
+    bottom: -7px;
+    right: 50%;
+    transform: translateX(50%);
+    border-width: 8px 7px 0 7px;
+    border-color: white transparent transparent transparent;
   }
 
   /* Fix testimonial card overflow */
@@ -387,6 +406,18 @@ html {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+@media (max-width: 768px) {
+  .beat-glow-blue,
+  .beat-glow-green {
+    animation: none;
+    box-shadow: 0 0 12px 4px rgba(37, 211, 102, 0.35);
+  }
+
+  .beat-glow-blue {
+    box-shadow: 0 0 12px 4px rgba(26, 58, 143, 0.35);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

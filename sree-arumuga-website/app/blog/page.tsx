@@ -28,23 +28,24 @@ export default function BlogPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-20">
-        <article className="relative mb-12 overflow-hidden rounded-3xl text-white">
-          <div className="relative aspect-[1024/682] w-full">
-            <Image
-              src={featuredPost.image}
-              alt={featuredPost.imageAlt}
-              fill
-              sizes="100vw"
-              className="object-contain"
-            />
-            <div className="absolute inset-0 bg-black/60" />
-            <div className="absolute inset-0 p-8 md:p-12">
+        <article className="relative mb-12 overflow-hidden rounded-3xl bg-[#1d1f24] text-white">
+          <div className="grid md:grid-cols-2">
+            <div className="relative aspect-[1024/682] w-full md:min-h-full">
+              <Image
+                src={featuredPost.image}
+                alt={featuredPost.imageAlt}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col justify-center p-6 sm:p-8 md:p-12">
               <p className="text-xs uppercase tracking-widest text-zinc-300">Featured Post</p>
-              <h2 className="mt-3 text-3xl font-black md:text-4xl">{featuredPost.title}</h2>
-              <p className="mt-3 max-w-2xl text-zinc-200">{featuredPost.excerpt}</p>
+              <h2 className="mt-3 text-2xl font-black sm:text-3xl md:text-4xl">{featuredPost.title}</h2>
+              <p className="mt-3 max-w-2xl text-sm text-zinc-200 sm:text-base">{featuredPost.excerpt}</p>
               <Link
                 href={`/blog/${featuredPost.slug}`}
-                className="mt-6 inline-block rounded-full border border-white px-6 py-2 text-sm font-semibold"
+                className="mt-6 inline-block self-start rounded-full border border-white px-6 py-2 text-sm font-semibold"
               >
                 Read More
               </Link>

@@ -14,8 +14,6 @@ export function WhatsAppWidget() {
   const [whatsappOpen, setWhatsappOpen] = useState(false);
   const { chatbotOpen } = useChatbotOpen();
 
-  const popupRight = chatbotOpen ? 420 : 24;
-
   const sendOnWhatsApp = useCallback(() => {
     window.open(WA_SEND_URL, "_blank", "noopener,noreferrer");
     setWhatsappOpen(false);
@@ -30,18 +28,11 @@ export function WhatsAppWidget() {
             initial={{ opacity: 0, y: 14, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            style={{
-              position: "fixed",
-              bottom: 100,
-              right: popupRight,
-              width: 300,
-              borderRadius: 16,
-              overflow: "hidden",
-              boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
-              zIndex: 9997,
-              display: "flex",
-              flexDirection: "column",
-            }}
+            className={`fixed z-[9997] flex w-[min(300px,calc(100vw-28px))] flex-col overflow-hidden rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] ${
+              chatbotOpen
+                ? "bottom-[100px] right-4 max-md:right-3.5 md:right-[min(420px,calc(100vw-320px))]"
+                : "bottom-[100px] right-4 max-md:right-3.5 md:right-6"
+            }`}
           >
             <div
               style={{

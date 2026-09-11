@@ -51,43 +51,34 @@ export function SiteChrome({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  // #region agent log
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
-    const logProbe = (reason: string) => {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const min769 = window.matchMedia("(min-width: 769px)").matches;
-      const max768 = window.matchMedia("(max-width: 768px)").matches;
-      fetch("http://127.0.0.1:7734/ingest/c439cf8e-d643-4685-858a-3d34dff60eb3", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "a439d7" },
-        body: JSON.stringify({
-          sessionId: "a439d7",
-          runId: "ui-audit-pre",
-          hypothesisId: "H1-H5",
-          location: "site-chrome.tsx:uiProbe",
-          message: "viewport_route_breakpoints",
-          data: { reason, pathname, vw, vh, min769, max768 },
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
-    };
-    logProbe("pathname");
-    const onResize = () => logProbe("resize");
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    setMenuOpen(false);
   }, [pathname]);
-  // #endregion
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
       <header className="sticky top-0 z-50">
-        <div className="bg-[#141414] px-6 py-2 text-xs text-white">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-1">
-            <p>Mon-Sat: 9AM - 6PM</p>
-            <p>☎ {PHONE_PRIMARY}</p>
-            <p>✉ sree.arumuga@gmail.com</p>
-            <p>📍 Manali, Chennai</p>
+        <div className="bg-[#141414] px-4 py-2 text-[11px] text-white min-[769px]:px-6 min-[769px]:text-xs">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-1">
+            <p className="hidden sm:block">Mon-Sat: 9AM - 6PM</p>
+            <a href={`tel:${PHONE_PRIMARY.replace(/\s/g, "")}`} className="hover:underline">
+              ☎ {PHONE_PRIMARY}
+            </a>
+            <a href="mailto:sree.arumuga@gmail.com" className="hidden truncate sm:inline hover:underline">
+              ✉ sree.arumuga@gmail.com
+            </a>
+            <p className="sm:ml-auto">📍 Manali, Chennai</p>
           </div>
         </div>
         <div
@@ -95,63 +86,74 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             isScrolled ? "border-b border-[var(--primary-blue)] shadow-md" : "border-b border-zinc-200"
           }`}
         >
-          <nav className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-3 min-[769px]:justify-between min-[769px]:gap-0 min-[769px]:px-6 min-[769px]:py-4">
-            <Link href="/" className="flex shrink-0 items-center gap-3">
+          <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 min-[769px]:px-6 min-[769px]:py-4">
+            <Link href="/" className="flex min-w-0 shrink items-center gap-3">
               <Image
                 src="/Logo.png"
                 alt="Sree Arumuga Steel Trading Private Limited logo"
                 width={60}
                 height={60}
-                className="h-10 w-10 min-[769px]:h-14 min-[769px]:w-14"
+                className="h-10 w-10 shrink-0 min-[769px]:h-14 min-[769px]:w-14"
               />
-              <div className="hidden md:block">
-                <p className="industrial-heading text-xl font-bold text-[var(--primary-blue)]">Sree Arumuga Steel Trading Private Limited</p>
+              <div className="hidden min-[900px]:block">
+                <p className="industrial-heading text-xl font-bold text-[var(--primary-blue)]">
+                  Sree Arumuga Steel Trading Private Limited
+                </p>
               </div>
             </Link>
 
-            <div className="scrollbar-hide min-w-0 flex-1 overflow-x-auto min-[769px]:hidden">
-              <div className="flex w-max items-center gap-3 pr-2">
-                {links.map((link) => {
-                  const active = pathname === link.href;
-                  return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={`industrial-heading whitespace-nowrap text-[11px] font-bold tracking-wide transition-colors ${
-                        active
-                          ? "border-b-2 border-[var(--gold)] pb-0.5 text-[var(--primary-blue)]"
-                          : "text-[var(--primary-blue)]/80 hover:text-[var(--primary-blue)]"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  );
-                })}
-              </div>
+            <div className="flex shrink-0 items-center gap-2 min-[769px]:hidden">
+              <button
+                type="button"
+                onClick={() => setShowModal(true)}
+                className="industrial-heading rounded-full bg-[var(--primary-blue)] px-3.5 py-2 text-[11px] font-semibold text-white transition active:bg-[var(--primary-red)]"
+              >
+                Quote
+              </button>
+              <button
+                type="button"
+                aria-expanded={menuOpen}
+                aria-controls="mobile-nav-panel"
+                aria-label={menuOpen ? "Close menu" : "Open menu"}
+                onClick={() => setMenuOpen((v) => !v)}
+                className="grid h-10 w-10 place-items-center rounded-full border border-[var(--primary-blue)]/25 text-[var(--primary-blue)]"
+              >
+                {menuOpen ? (
+                  <span aria-hidden className="text-xl leading-none">
+                    ×
+                  </span>
+                ) : (
+                  <span aria-hidden className="flex flex-col gap-1.5">
+                    <span className="block h-0.5 w-5 bg-current" />
+                    <span className="block h-0.5 w-5 bg-current" />
+                    <span className="block h-0.5 w-5 bg-current" />
+                  </span>
+                )}
+              </button>
             </div>
 
             <div className="hidden items-center gap-7 min-[769px]:flex">
               {links.map((link) => {
                 const active = pathname === link.href;
                 return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`industrial-heading group relative text-sm font-bold tracking-wide transition-colors duration-300 ease-[ease] ${
-                    active
-                      ? "text-[var(--primary-red)]"
-                      : "text-[var(--primary-blue)] hover:text-[var(--primary-red)]"
-                  }`}
-                >
-                  {link.label}
-                  <span
-                    className={`absolute -bottom-2 left-0 h-[2px] transition-[width,background-color] duration-300 ease-[ease] ${
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`industrial-heading group relative text-sm font-bold tracking-wide transition-colors duration-300 ease-[ease] ${
                       active
-                        ? "w-full bg-[var(--primary-red)]"
-                        : "w-0 bg-[var(--primary-blue)] group-hover:w-full group-hover:bg-[var(--primary-red)]"
+                        ? "text-[var(--primary-red)]"
+                        : "text-[var(--primary-blue)] hover:text-[var(--primary-red)]"
                     }`}
-                  />
-                </Link>
+                  >
+                    {link.label}
+                    <span
+                      className={`absolute -bottom-2 left-0 h-[2px] transition-[width,background-color] duration-300 ease-[ease] ${
+                        active
+                          ? "w-full bg-[var(--primary-red)]"
+                          : "w-0 bg-[var(--primary-blue)] group-hover:w-full group-hover:bg-[var(--primary-red)]"
+                      }`}
+                    />
+                  </Link>
                 );
               })}
               <button
@@ -163,6 +165,39 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               </button>
             </div>
           </nav>
+
+          <AnimatePresence>
+            {menuOpen ? (
+              <motion.div
+                id="mobile-nav-panel"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.22 }}
+                className="overflow-hidden border-t border-zinc-200 bg-white min-[769px]:hidden"
+              >
+                <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3">
+                  {links.map((link) => {
+                    const active = pathname === link.href;
+                    return (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setMenuOpen(false)}
+                        className={`industrial-heading rounded-xl px-4 py-3 text-sm font-bold tracking-wide ${
+                          active
+                            ? "bg-[var(--primary-blue)]/10 text-[var(--primary-blue)]"
+                            : "text-[var(--primary-blue)]/85 active:bg-zinc-50"
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
         </div>
       </header>
 

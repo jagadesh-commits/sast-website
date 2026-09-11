@@ -51,12 +51,12 @@ export default function CareersPage() {
             <p className="mt-2 text-sm text-zinc-600">{job.meta}</p>
             <p className="mt-3 text-sm text-zinc-600">{job.desc}</p>
             <p className="mt-3 text-sm text-zinc-600">{job.req}</p>
-            <button
-              type="button"
-              className="mt-5 rounded-full bg-[var(--primary-blue)] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[var(--primary-red)] active:bg-[var(--primary-red)]"
+            <a
+              href={`mailto:sree.arumuga@gmail.com?subject=${encodeURIComponent(`Application — ${job.title}`)}`}
+              className="mt-5 inline-block rounded-full bg-[var(--primary-blue)] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[var(--primary-red)] active:bg-[var(--primary-red)]"
             >
               Apply Now
-            </button>
+            </a>
           </Reveal>
         ))}
       </div>

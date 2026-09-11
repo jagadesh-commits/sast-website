@@ -51,7 +51,7 @@ export default function Home() {
           className="object-cover"
         />
         <div className="absolute inset-0 z-[1] bg-black/[0.55]" />
-        <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl items-center">
+        <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl items-center pb-28 pt-8 max-md:pb-36">
           <Reveal noHide>
             <HeroGsap>
               <p data-hero-anim className="industrial-heading text-sm font-semibold tracking-[0.25em] text-white/90">
