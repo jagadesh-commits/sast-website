@@ -18,7 +18,7 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sreearumugasteeltrading.com"),
+  metadataBase: new URL("https://www.sreearumugasteeltrading.com"),
   title: {
     default: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
     template: "%s | Sree Arumuga Steel Trading",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
     description:
       "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, PPGL sheets, plates and coils. Get instant quote.",
-    images: [{ url: "https://sreearumugasteeltrading.com/og-image.jpg", width: 1200, height: 630, alt: "Sree Arumuga Steel Trading" }],
+    images: [{ url: "https://www.sreearumugasteeltrading.com/og-image.jpg", width: 1200, height: 630, alt: "Sree Arumuga Steel Trading" }],
     locale: "en_IN",
   },
   twitter: {
@@ -51,15 +51,17 @@ export const metadata: Metadata = {
     title: "Sree Arumuga Steel Trading Pvt Ltd | JSW Exclusive Distributor Chennai",
     description:
       "Leading steel trading company in Chennai since 1984. JSW exclusive distributor for HR, HRPO, CR, GP, GL, PPGL sheets, plates and coils. Get instant quote.",
-    images: ["https://sreearumugasteeltrading.com/og-image.jpg"],
+    images: ["https://www.sreearumugasteeltrading.com/og-image.jpg"],
   },
   category: "business",
   applicationName: "Sree Arumuga Steel Trading",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
       { url: "/favicon-48.png", type: "image/png", sizes: "48x48" },
+      { url: "/favicon-96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
     apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
     shortcut: ["/favicon.ico"],
