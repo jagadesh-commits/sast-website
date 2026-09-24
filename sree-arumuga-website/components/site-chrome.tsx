@@ -69,7 +69,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[var(--background)]">
       <header className="sticky top-0 z-50">
-        <div className="bg-[#141414] px-4 py-2 text-[11px] text-white min-[769px]:px-6 min-[769px]:text-xs">
+        <div className="bg-[#141414] px-4 py-2 text-[11px] text-white md:px-6 md:text-xs">
           <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-1">
             <p className="hidden sm:block">Mon-Sat: 9AM - 6PM</p>
             <a href={`tel:${PHONE_PRIMARY.replace(/\s/g, "")}`} className="hover:underline">
@@ -86,27 +86,31 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             isScrolled ? "border-b border-[var(--primary-blue)] shadow-md" : "border-b border-zinc-200"
           }`}
         >
-          <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 min-[769px]:px-6 min-[769px]:py-4">
-            <Link href="/" className="flex min-w-0 shrink items-center gap-3">
+          <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:px-6 md:py-4">
+            <Link href="/" className="flex shrink-0 items-center gap-2 max-[379px]:gap-1.5 sm:gap-2.5 lg:gap-3">
               <Image
                 src="/Logo.png"
                 alt="Sree Arumuga Steel Trading Private Limited logo"
                 width={60}
                 height={60}
-                className="h-10 w-10 shrink-0 min-[769px]:h-14 min-[769px]:w-14"
+                className="h-10 w-10 shrink-0 md:h-12 md:w-12 min-[1100px]:h-14 min-[1100px]:w-14"
               />
-              <div className="hidden min-[900px]:block">
-                <p className="industrial-heading text-xl font-bold text-[var(--primary-blue)]">
-                  Sree Arumuga Steel Trading Private Limited
+              <div>
+                <p className="industrial-heading whitespace-nowrap text-[13px] font-bold leading-none text-[var(--primary-blue)] max-[379px]:text-[11px] sm:text-sm min-[1100px]:!text-base xl:!text-xl xl:leading-normal">
+                  <span className="lg:hidden">Sree Arumuga Steel Trading</span>
+                  <span className="hidden lg:inline min-[1100px]:!hidden">Sree Arumuga</span>
+                  <span className="hidden min-[1100px]:!inline">
+                    Sree Arumuga Steel Trading Private Limited
+                  </span>
                 </p>
               </div>
             </Link>
 
-            <div className="flex shrink-0 items-center gap-2 min-[769px]:hidden">
+            <div className="flex shrink-0 items-center gap-2 max-[379px]:gap-1.5 lg:hidden">
               <button
                 type="button"
                 onClick={() => setShowModal(true)}
-                className="industrial-heading rounded-full bg-[var(--primary-blue)] px-3.5 py-2 text-[11px] font-semibold text-white transition active:bg-[var(--primary-red)]"
+                className="industrial-heading rounded-full bg-[var(--primary-blue)] px-3.5 py-2 text-[11px] font-semibold text-white transition active:bg-[var(--primary-red)] max-[379px]:px-3"
               >
                 Quote
               </button>
@@ -132,7 +136,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               </button>
             </div>
 
-            <div className="hidden items-center gap-7 min-[769px]:flex">
+            <div className="hidden items-center gap-4 lg:flex xl:gap-7">
               {links.map((link) => {
                 const active = pathname === link.href;
                 return (
@@ -174,7 +178,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.22 }}
-                className="overflow-hidden border-t border-zinc-200 bg-white min-[769px]:hidden"
+                className="overflow-hidden border-t border-zinc-200 bg-white lg:hidden"
               >
                 <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3">
                   {links.map((link) => {
@@ -288,7 +292,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="mt-10 h-[1px] bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
-        <p className="pt-5 text-center text-xs text-white/65">
+        <p className="pt-5 text-center text-xs text-white/65" suppressHydrationWarning>
           © {new Date().getFullYear()} Sree Arumuga Steel Trading Private Limited. All Rights Reserved.
         </p>
         </div>

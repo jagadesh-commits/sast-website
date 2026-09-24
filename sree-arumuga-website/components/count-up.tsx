@@ -47,7 +47,7 @@ export function CountUp({ end, suffix = "+", label, dark = false, className }: C
     <div ref={ref} className={className ?? "premium-card rounded-3xl p-6 text-center"}>
       <p
         className={`text-5xl font-black ${dark ? "text-white" : "text-[var(--primary-blue)]"}`}
-        aria-label={`${end.toLocaleString()}${suffix} ${label}`}
+        aria-label={`${end.toLocaleString("en-IN")}${suffix} ${label}`}
       >
         <span aria-hidden="true">
           {value}

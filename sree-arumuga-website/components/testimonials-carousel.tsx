@@ -75,8 +75,8 @@ export function TestimonialsCarousel() {
     if (!el) return;
     const w = el.getBoundingClientRect().width;
     setViewportW(w);
-    // Mobile is max-width: 768px → 1 card. Desktop starts at 769px → 2 cards.
-    const perView = window.matchMedia("(min-width: 769px)").matches ? 2 : 1;
+    // Tailwind md (768px): 1 card below, 2 cards from md up.
+    const perView = window.matchMedia("(min-width: 768px)").matches ? 2 : 1;
     setCardsPerView(perView);
   }, []);
 
@@ -93,7 +93,7 @@ export function TestimonialsCarousel() {
   }, [measure]);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 769px)");
+    const mq = window.matchMedia("(min-width: 768px)");
     const onChange = () => {
       measure();
       setSlideIndex(0);

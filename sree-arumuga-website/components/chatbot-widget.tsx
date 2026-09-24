@@ -142,7 +142,11 @@ export function ChatbotWidget() {
   const [botTyping, setBotTyping] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [inactivityPrompted, setInactivityPrompted] = useState(false);
-  const [lastActivityTs, setLastActivityTs] = useState<number>(Date.now());
+  const [lastActivityTs, setLastActivityTs] = useState<number>(0);
+
+  useEffect(() => {
+    setLastActivityTs(Date.now());
+  }, []);
   const chatBodyRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -537,7 +541,7 @@ export function ChatbotWidget() {
                 autoplay
                 useFrameInterpolation
                 renderConfig={{
-                  devicePixelRatio: typeof window !== "undefined" ? Math.max(3, window.devicePixelRatio || 1) : 3,
+                  devicePixelRatio: 3,
                   autoResize: true,
                   quality: 100,
                 }}
